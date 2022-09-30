@@ -1,5 +1,6 @@
-import { View, Text,StyleSheet, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text,StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 export default function Login(){
   return (
@@ -22,11 +23,11 @@ export default function Login(){
       
       <View style={styles.forget}>
           <TouchableOpacity style={styles.for}>
-            <Text style={styles.textget}>Forget password</Text>
+            <Text style={styles.textForget}>Forget password</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.for}>
-            <Text style={styles.textget}>Don't have an account click here</Text>
+            <Text style={styles.textForget}>Don't have an account click here</Text>
           </TouchableOpacity>
 
         </View>
@@ -34,16 +35,13 @@ export default function Login(){
       <View style={styles.buttonContainer}>
             <TouchableOpacity
                 style={styles.button}
-            >
+            ><FontAwesomeIcon icon={ faEnvelope} />
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
-
-        <View style={styles.bottomContainer}>
-          <Text></Text>
-
+        <View>
+          <Text>OR</Text>
         </View>
-      
     </View>
   )
 }
@@ -87,7 +85,7 @@ const styles = StyleSheet.create({
       width:'190px',
     },
 
-    textget:{
+    textForget:{
       fontFamily:'coda',
       fontStyle:'normal',
       fontWeight:'200',
