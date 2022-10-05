@@ -1,20 +1,22 @@
-import { StyleSheet, Text, View, } from 'react-native';
+import { StyleSheet,SafeAreaView, Text, View, } from 'react-native';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
 
 export default function RedPart() {
     return (
-      
+
         <View style={styles.topContainer} >
             <Text style={styles.usernameTXT}>lindo@gmail.com</Text><FontAwesomeIcon icon={faUser} style={styles.userIcon} />
         </View>
+      
+        
     );
   }
   
   const styles = StyleSheet.create({
     topContainer:{
-        flex:1,
+      flex:1,
       display:'flex',
       flexDirection:'row',
       backgroundColor:'#D2373C',
@@ -29,11 +31,10 @@ export default function RedPart() {
       paddingRight:20,
     },
     userIcon:{
-      
       backgroundColor:'white',
       width:25,
       height:25,
       borderRadius:50,
     },
-    
+  
   });
