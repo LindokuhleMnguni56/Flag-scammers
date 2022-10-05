@@ -1,9 +1,10 @@
 import { View, Text,StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react'
-<<<<<<< HEAD
+
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import react from 'react';
 import { auth } from './config/firebase';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default function Login({navigation}){
   const [email,setEmail]=react.useState('');
@@ -19,9 +20,9 @@ export default function Login({navigation}){
     })
     
 })
-=======
-import Icon from 'react-native-vector-icons/FontAwesome'
->>>>>>> b0f28ae99224a7de3180d832d467b3c311043d81
+
+
+
 
   return (
     <View style={styles.wrapper}>
@@ -29,7 +30,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
       <Text style={styles.text}>Login</Text>
 
       <View style={styles.inputContainer}>
-<<<<<<< HEAD
+
         <TextInput
         placeholder='Email'
         style={styles.input}
@@ -38,8 +39,8 @@ import Icon from 'react-native-vector-icons/FontAwesome'
         <TextInput
             placeholder='Password'
             style={styles.input}
-            onChange={(e)=>setPass(e.target)}
-=======
+            onChange={(e)=>setPass(e.target)}/>
+
 
       
        <View style={styles.LoginTxt}>
@@ -65,7 +66,7 @@ import Icon from 'react-native-vector-icons/FontAwesome'
        <TextInput
           placeholder='Password'
           style={styles.input}
->>>>>>> b0f28ae99224a7de3180d832d467b3c311043d81
+
         />
        </View>    
       </View>
@@ -86,13 +87,13 @@ import Icon from 'react-native-vector-icons/FontAwesome'
       <View style={styles.buttonContainer}>
             <TouchableOpacity
                 style={styles.button}
-<<<<<<< HEAD
+
                 onPress={login}
             >
               <FontAwesomeIcon icon={ faEnvelope} />
-=======
-            >
->>>>>>> b0f28ae99224a7de3180d832d467b3c311043d81
+
+       
+
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
