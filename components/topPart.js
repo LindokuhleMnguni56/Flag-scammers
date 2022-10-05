@@ -1,20 +1,35 @@
-import { StyleSheet, Text, View, } from 'react-native';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { StyleSheet,SafeAreaView, Text, View, } from 'react-native';
+import { faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+
+import { TouchableOpacity } from 'react-native-web';
 
 
 export default function RedPart() {
     return (
-      
+
         <View style={styles.topContainer} >
-            <Text style={styles.usernameTXT}>lindo@gmail.com</Text><FontAwesomeIcon icon={faUser} style={styles.userIcon} />
+            <View style={styles.btnBackground}>
+              <TouchableOpacity>
+                <Text style={styles.usernameTXT1}>Login</Text>
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Text style={styles.usernameTXT}>Register</Text>
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity >
+                <FontAwesomeIcon icon={faEllipsisV} style={styles.menuDots}/>
+            </TouchableOpacity>
+                  
         </View>
+      
+        
     );
   }
   
   const styles = StyleSheet.create({
     topContainer:{
-        flex:1,
+      flex:1,
       display:'flex',
       flexDirection:'row',
       backgroundColor:'#D2373C',
@@ -24,16 +39,27 @@ export default function RedPart() {
       paddingRight:20,
       justifyContent:'flex-end',
     },
+    btnBackground:{
+      display:'flex',
+      flexDirection:'row',
+      marginRight:'205px',
+      
+    },
+    usernameTXT1:{
+      paddingRight:15,
+      marginRight:5,
+      borderRightWidth:'2px',
+      borderRightColor:'white',
+      height:20,
+      color:'white',
+    },
     usernameTXT:{
       textAlign:'right',
-      paddingRight:20,
+      paddingLeft:10,
+      color:'white',
     },
-    userIcon:{
-      
-      backgroundColor:'white',
-      width:25,
-      height:25,
-      borderRadius:50,
+    menuDots:{
+      color:'white',
     },
-    
+  
   });
