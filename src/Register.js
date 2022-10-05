@@ -1,7 +1,35 @@
 import { View, Text,StyleSheet, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
 import React from 'react'
+import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import react from 'react';
+import { auth } from './config/firebase';
 
 const Register = () => {
+    const [passSecured,setpassSecured]=react.useState(true);
+    const [uid,setUid]=react.useState('');
+    const [email,setEmail]=react.useState('');
+    const [password,setPass]=react.useState('');
+    const [confirmPassword,setConfirmedPassword]=react.useState('');
+
+
+  const register = ()=>{
+
+    createUserWithEmailAndPassword(auth, email, password).then(async(userCredential)=>{
+
+      const displayName = uid;
+      setUser(()=>({...userCredential.user}));
+
+       updateProfile(auth.currentUser, {displayName:displayName}).then().catch();
+      alert(displayName+ "successfull")
+      navigation.push('Home')
+  }).catch((error)=>{
+      alert(error);
+      console.log(error)
+  })
+  
+}
+
+
   return (
 
     <View style={styles.wrapper}>
@@ -12,20 +40,24 @@ const Register = () => {
       <TextInput
       placeholder='Username'
       style={styles.input}
+      onChange={(e)=>setUid(e.target)}
       />
 
       <TextInput
         placeholder='Email'
         style={styles.input}
+        onChange={(e)=>setEmail(e.target)}
       />
       <TextInput
           placeholder='Password'
           style={styles.input}
+          onChange={(e)=>setPass(e.target)}
       />
 
       <TextInput
         placeholder='Confirm Password'
         style={styles.input}
+        onChange={(e)=>setConfirmedPassword(e.target)}
       
       />
 
@@ -37,11 +69,15 @@ const Register = () => {
 
     
     <View style={styles.forget}>
-        <TouchableOpacity style={styles.for}>
+        <TouchableOpacity style={styles.for}
+        
+        >
           <Text style={styles.textget}>Forget password</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.for}>
+        <TouchableOpacity style={styles.for}
+        onPress={() => navigation.push('Login')}
+        >
           <Text style={styles.textget}>Don't have an account click here</Text>
         </TouchableOpacity>
 
@@ -50,6 +86,7 @@ const Register = () => {
     <View style={styles.buttonContainer}>
           <TouchableOpacity
               style={styles.button}
+              onPress={register}
           >
               <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>

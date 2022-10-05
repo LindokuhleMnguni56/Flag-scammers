@@ -1,16 +1,48 @@
 import { View, Text,StyleSheet, TextInput, TouchableOpacity, ImageBackground,Image } from 'react-native';
 import React from 'react'
+
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import react from 'react';
+import { auth } from './config/firebase';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import image1 from "../assets/bg.png"
 import image2 from '../assets/google.png'
 
-export default function Login(){
+export default function Login({navigation}){
+  const [email,setEmail]=react.useState('');
+  const [password,setPass]=react.useState('');
+
+  const login = (()=>{
+
+    signInWithEmailAndPassword(auth, email, password).then(()=>{
+      navigation.push('Home');
+    }).catch((err)=>{
+
+        console.log(err);
+    })
+    
+})
+
+
+
+
   return (
   <ImageBackground style={styles.wrapper} source={image1} >
       <Text style={styles.header}>Welcome Back</Text>
       <Text style={styles.text}>Login</Text>
 
       <View style={styles.inputContainer}>
+
+        <TextInput
+        placeholder='Email'
+        style={styles.input}
+        onChange={(e)=>setEmail(e.target)}
+        />
+        <TextInput
+            placeholder='Password'
+            style={styles.input}
+            onChange={(e)=>setPass(e.target)}/>
+
 
       
        <View style={styles.LoginTxt}>
@@ -36,6 +68,7 @@ export default function Login(){
        <TextInput
           placeholder='Password'
           style={styles.input}
+
         />
        </View>    
       </View>
@@ -45,7 +78,9 @@ export default function Login(){
             <Text style={styles.textForget}>Forget password</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.for}>
+          <TouchableOpacity style={styles.for}
+          onPress={() => navigation.push('Register')}
+          >
             <Text style={styles.textForget}>Don't have an account click here</Text>
           </TouchableOpacity>
 
@@ -54,7 +89,13 @@ export default function Login(){
       <View style={styles.buttonContainer}>
             <TouchableOpacity
                 style={styles.button}
+
+                onPress={login}
             >
+              <FontAwesomeIcon icon={ faEnvelope} />
+
+       
+
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
