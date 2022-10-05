@@ -1,10 +1,12 @@
-import { View, Text,StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text,StyleSheet, TextInput, TouchableOpacity, ImageBackground,Image } from 'react-native';
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import image1 from "../assets/bg.png"
+import image2 from '../assets/google.png'
 
 export default function Login(){
   return (
-    <View style={styles.wrapper}>
+  <ImageBackground style={styles.wrapper} source={image1} >
       <Text style={styles.header}>Welcome Back</Text>
       <Text style={styles.text}>Login</Text>
 
@@ -57,9 +59,24 @@ export default function Login(){
             </TouchableOpacity>
         </View>
         <View style={styles.OR}>
-          <Text style={{}}>OR</Text>
+          <Text style={styles.ORTxt}>Or</Text>
         </View>
-    </View>
+
+        
+      <View style={styles.GoogleContainer}>
+            <TouchableOpacity
+                style={styles.GoogleButton}
+            >
+              <Image
+               source={image2}
+               style={{width:'30px', height:'30px'}}
+               />
+                <Text style={styles.googleButtonText}>Login with google</Text>
+            </TouchableOpacity>
+        </View>
+
+
+    </ImageBackground>
   )
 }
 
@@ -72,6 +89,7 @@ const styles = StyleSheet.create({
     },
     header:{
         color:"red",
+        marginTop:'20%',
         marginLeft:"20%",
         fontFamily:'coda',
         fontWeight:'200',
@@ -80,12 +98,17 @@ const styles = StyleSheet.create({
     },
 
     text:{
-      marginLeft:'80%'
+      marginLeft:'80%',
+      fontSize:'25px',
+      fontFamily:'coda',
+      fontStyle:'normal',
+      
     },
 
     Login:{
       display:'flex',
       flexDirection:'row',
+    
  
       
 
@@ -94,6 +117,8 @@ const styles = StyleSheet.create({
    
     input:{
       width:'100%',
+      paddingLeft:'10px',
+      
   
      
    
@@ -109,6 +134,7 @@ const styles = StyleSheet.create({
       borderBottomColor:'gray',
       borderBottomWidth:1,
       paddingHorizontal:2,
+      
 
 
    
@@ -118,6 +144,7 @@ const styles = StyleSheet.create({
     forget:{
       display:'flex',
       flexDirection:"row",
+      marginTop:"20px"
     },
 
     for:{
@@ -146,23 +173,71 @@ const styles = StyleSheet.create({
   },
   
   button:{
-      backgroundColor:'red',
+      backgroundColor:'#EA4335',
       width:'100%',
       padding:15,
-      borderRadius:10,
+      borderRadius:'27px',
       alignItems:'center',
       fontSize:'bold'
       
     },
+
+
+
+
     buttonText:{
-      
+       color:'white',
       fontSize:'bold'
     },
 
+    
+
     bottomContainer:{
       backgroundColor:'black',
-      marginTop:'10%'
+      marginTop:'10%',
+    },
+
+    GoogleContainer:{
+      width:'100%',
+      justifyContent:'center',
+      alignItems:'center',
+      marginTop:'10%',
+      paddingHorizontal:50,
       
+    },
+
+    GoogleButton:{
+      backgroundColor: '#FFFFFF',
+      width:'100%',
+      padding:15,
+      borderRadius:'30px',
+      alignItems:'center',
+      fontSize:'bold',
+      display:'flex',
+      flexDirection:'row',
+     
+    },
+
+    googleButtonText:{
+      paddingLeft:"30px"
+    },
+
+    OR:{
+      width:'100%',
+      alignItems:'center',
+      justifyContent:'center',
+      textAlign:'center',
+      marginTop:"10%", 
+    },
+
+    ORTxt:{
+      fontFamily:'coda',
+      fontWeight:400,
+      fontSize:'25px',
+      lineHeight:'35px',
+      color:'#353535',
+      textAlign:'center',
+
     }
   });
 
