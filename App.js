@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer >
-            <Stack.Navigator initialRouteName='Comments'>
+            <Stack.Navigator initialRouteName='Home'>
                   <Stack.Screen name='Home' options={{title:'Home', headerShown:false}}>
                     {(props)=> <HomeScreen {...props} />}
                   </Stack.Screen>

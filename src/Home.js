@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
+
 
 export default function HomeScreem() {
   return (
@@ -14,7 +16,11 @@ export default function HomeScreem() {
       
         <View style={styles.midContainer}>
             <View style={styles.boxes}>
-              <TextInput style={styles.selectBox}  placeholder='Select Type'></TextInput>
+              <View style={styles.selectView}>
+                <Text style={styles.selectBox}  placeholder=''>Select Type</Text>
+                <TouchableOpacity style={styles.drop}><FontAwesomeIcon icon={faCaretDown} style={styles.dropDown} /></TouchableOpacity>
+              </View>
+              
               <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
               <View style={styles.searchIconBtn} ><FontAwesomeIcon icon={ faSearch } style={styles.searchIcon}/></View>
             </View>
@@ -37,7 +43,7 @@ export default function HomeScreem() {
                         </TouchableOpacity>
                   </View>
                   <View style={styles.card}>
-                  <View style={styles.dateContainer}>
+                        <View style={styles.dateContainer}>
                           <Text style={styles.date1}>4</Text>
                           <Text style={styles.date2}>Jan</Text>
                           <Text style={styles.date3}>2022</Text>
@@ -50,7 +56,7 @@ export default function HomeScreem() {
                                 </View>
                         </View>
                         <TouchableOpacity style={styles.upvoteBtn}>
-                                <Text style={styles.upvoteTXT}>UPVOTE</Text>        
+                               <Text style={styles.upvoteTXT}>UPVOTE</Text>        
                         </TouchableOpacity>
                   </View>
                   <View style={styles.card}>
@@ -60,7 +66,7 @@ export default function HomeScreem() {
                           <Text style={styles.date3}>2021</Text>
                         </View>
                         <View style={styles.userContainer}>
-                                <Text style={styles.username1}>tebzahamham@gmail.com</Text>
+                                <Text style={styles.username1}>tebzaham@gmail.com</Text>
                                 <View style={styles.comments}>
                                   <Text style={styles.username2}>1k</Text><FontAwesomeIcon icon={ faFlag } style={styles.flags}/>
                                   <Text  style={styles.username2}>100</Text><FontAwesomeIcon icon={ faComment } style={styles.commentIcon}/>
@@ -107,14 +113,23 @@ const styles = StyleSheet.create({
     backgroundColor:'#EDEDED',
     borderRadius:4,
   },
-  selectBox:{
-    height:'25px',
-    border:'1px solid black',
-    marginTop:'25px',
+  selectView:{
+    display:'flex',
+    flexDirection:'row',
     width:'30%',
-    paddingLeft:'2%',
-    backgroundColor:'#EDEDED',
+    height:25,
+    marginTop:25,
+    border:'1px solid black',
     borderRadius:4,
+  },
+  dropDown:{
+    paddingTop:3,
+    paddingRight:5,
+  },
+  selectBox:{
+    paddingLeft:'2%',
+    marginLeft:5,
+    width:'80%',
   },
   searchIconBtn:{
     backgroundColor:'#D2373C',
