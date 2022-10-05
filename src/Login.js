@@ -1,6 +1,6 @@
 import { View, Text,StyleSheet, TextInput, TouchableOpacity, ImageBackground,Image } from 'react-native';
 import React from 'react'
-
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import react from 'react';
 import { auth } from './config/firebase';
