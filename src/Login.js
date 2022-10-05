@@ -1,8 +1,24 @@
 import { View, Text,StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import react from 'react';
+import { auth } from './config/firebase';
 
-export default function Login(){
+export default function Login({navigation}){
+  const [email,setEmail]=react.useState('');
+  const [password,setPass]=react.useState('');
+
+  const login = (()=>{
+
+    signInWithEmailAndPassword(auth, email, password).then(()=>{
+      navigation.push('Home');
+    }).catch((err)=>{
+
+        console.log(err);
+    })
+    
+})
+
   return (
     <View style={styles.wrapper}>
       <Text style={styles.header}>Welcome Back</Text>
@@ -12,10 +28,12 @@ export default function Login(){
         <TextInput
         placeholder='Email'
         style={styles.input}
+        onChange={(e)=>setEmail(e.target)}
         />
         <TextInput
             placeholder='Password'
             style={styles.input}
+            onChange={(e)=>setPass(e.target)}
         />
       </View>
 
@@ -26,7 +44,9 @@ export default function Login(){
             <Text style={styles.textForget}>Forget password</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.for}>
+          <TouchableOpacity style={styles.for}
+          onPress={() => navigation.push('Register')}
+          >
             <Text style={styles.textForget}>Don't have an account click here</Text>
           </TouchableOpacity>
 
@@ -35,7 +55,9 @@ export default function Login(){
       <View style={styles.buttonContainer}>
             <TouchableOpacity
                 style={styles.button}
-            ><FontAwesomeIcon icon={ faEnvelope} />
+                onPress={login}
+            >
+              <FontAwesomeIcon icon={ faEnvelope} />
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
