@@ -27,9 +27,9 @@ export default function HomeScreem() {
             <View style={styles.cardsContainer}>
                   <View style={styles.card}>
                         <View style={styles.dateContainer}>
-                          <Text style={styles.date1}>22</Text>
-                          <Text style={styles.date2}>Aug</Text>
-                          <Text style={styles.date3}>2022</Text>
+                          <Text style={styles.day}>22</Text>
+                          <Text style={styles.month}>Aug</Text>
+                          <Text style={styles.year}>2022</Text>
                         </View>
                         <View style={styles.userContainer}>
                                 <Text style={styles.username1}>lindo@gmail.com</Text>
@@ -44,9 +44,9 @@ export default function HomeScreem() {
                   </View>
                   <View style={styles.card}>
                         <View style={styles.dateContainer}>
-                          <Text style={styles.date1}>4</Text>
-                          <Text style={styles.date2}>Jan</Text>
-                          <Text style={styles.date3}>2022</Text>
+                          <Text style={styles.day}>4</Text>
+                          <Text style={styles.month}>Jan</Text>
+                          <Text style={styles.year}>2022</Text>
                         </View>
                         <View style={styles.userContainer}>
                                 <Text style={styles.username1}>nkadimeng@gmail.com</Text>
@@ -61,9 +61,9 @@ export default function HomeScreem() {
                   </View>
                   <View style={styles.card}>
                   <View style={styles.dateContainer}>
-                          <Text style={styles.date1}>15</Text>
-                          <Text style={styles.date2}>May</Text>
-                          <Text style={styles.date3}>2021</Text>
+                          <Text style={styles.day}>15</Text>
+                          <Text style={styles.month}>May</Text>
+                          <Text style={styles.year}>2021</Text>
                         </View>
                         <View style={styles.userContainer}>
                                 <Text style={styles.username1}>tebzaham@gmail.com</Text>
@@ -146,6 +146,8 @@ const styles = StyleSheet.create({
   },
   dateContainer:{
     flex:1,
+    borderRightWidth:'2px',
+    height:60,
   },
   userContainer:{
     flex:3,
@@ -180,19 +182,19 @@ const styles = StyleSheet.create({
     color:'#EDEDED',
     fontSize:'1.8em',
   },
-  date1:{
+  day:{
     paddingTop:15,
     paddingLeft:25,
     fontSize:12,
     color:'red',
   },
-  date2:{
+  month:{
     paddingLeft:20,
     fontSize:12,
     color:'#D2373C',
     fontWeight:'bolder',
   },
-  date3:{
+  year:{
     paddingLeft:18,
     fontSize:12,
     color:'#D2373C',
