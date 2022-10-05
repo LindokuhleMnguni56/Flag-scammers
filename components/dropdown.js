@@ -2,7 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { Dropdown } from "react-native-material-dropdown";
 
-class DropDownList extends Component{
+export default class DropDownList extends Component{
     render(){
         let data =[{
             value:'Physical',

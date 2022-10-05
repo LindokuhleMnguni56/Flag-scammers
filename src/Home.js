@@ -162,8 +162,8 @@ const styles = StyleSheet.create({
     height:80,
     width:'92%',
     marginLeft:15,
-    marginTop:40,
-    boxShadow:'0px 4px 5px 0px grey',
+    marginTop:20,
+    boxShadow:'#ababab 0px 6px 9px -3px;',
   },
   buttonContainer:{
     backgroundColor:'#D2373C',
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     height:'50px',
     paddingLeft:16,
     borderRadius:50,
-    marginTop:25,
+    marginTop:80,
     marginRight:15,
     alignSelf:'flex-end',
   },
@@ -188,13 +188,13 @@ const styles = StyleSheet.create({
   date2:{
     paddingLeft:20,
     fontSize:12,
-    color:'red',
+    color:'#D2373C',
     fontWeight:'bolder',
   },
   date3:{
     paddingLeft:18,
     fontSize:12,
-    color:'red',
+    color:'#D2373C',
   },
   username1:{
     paddingLeft:50,
