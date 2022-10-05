@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     flex:12,
     height:'500px',
     width:'100%',
+    marginTop:20,
   },
   boxes:{
     display:'flex',
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
     height:'50px',
     paddingLeft:16,
     borderRadius:50,
-    marginTop:80,
+    marginTop:60,
     marginRight:15,
     alignSelf:'flex-end',
   },
