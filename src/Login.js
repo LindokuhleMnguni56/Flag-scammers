@@ -1,6 +1,6 @@
 import { View, Text,StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react'
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default function Login(){
   return (
@@ -9,18 +9,35 @@ export default function Login(){
       <Text style={styles.text}>Login</Text>
 
       <View style={styles.inputContainer}>
-        <TextInput
-        placeholder='Email'
-        style={styles.input}
-        />
-        <TextInput
-            placeholder='Password'
-            style={styles.input}
-        />
-      </View>
-
 
       
+       <View style={styles.LoginTxt}>
+        <Icon
+        color='red'
+        name='envelope'
+        type='font-awesome'
+        size={12}
+        />
+       <TextInput
+          placeholder='Email'
+          style={styles.input}
+        />
+       </View>
+
+       <View style={styles.LoginTxt}>
+        <Icon
+        color='red'
+        name='lock'
+        type='font-awesome'
+        size={16}
+        />
+       <TextInput
+          placeholder='Password'
+          style={styles.input}
+        />
+       </View>    
+      </View>
+
       <View style={styles.forget}>
           <TouchableOpacity style={styles.for}>
             <Text style={styles.textForget}>Forget password</Text>
@@ -35,12 +52,12 @@ export default function Login(){
       <View style={styles.buttonContainer}>
             <TouchableOpacity
                 style={styles.button}
-            ><FontAwesomeIcon icon={ faEnvelope} />
+            >
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
-        <View>
-          <Text>OR</Text>
+        <View style={styles.OR}>
+          <Text style={{}}>OR</Text>
         </View>
     </View>
   )
@@ -49,13 +66,13 @@ export default function Login(){
 const styles = StyleSheet.create({
     wrapper:{
       flex:1,
-      paddingHorizontal:10,
+      paddingHorizontal:30,
       justifyContent:'center',
 
     },
     header:{
         color:"red",
-        marginLeft:100,
+        marginLeft:"20%",
         fontFamily:'coda',
         fontWeight:'200',
         fontSize:'25px',
@@ -63,17 +80,39 @@ const styles = StyleSheet.create({
     },
 
     text:{
-      marginLeft:300
+      marginLeft:'80%'
+    },
+
+    Login:{
+      display:'flex',
+      flexDirection:'row',
+ 
+      
+
     },
 
    
     input:{
-      height:50,
-      marginBottom:30,
+      width:'100%',
+  
+     
+   
+    },
+
+    LoginTxt:{
+      width:'100%',
+      height:44,
+      paddingHorizontal:10,
+      display:'flex',
+      flexDirection:'row',
+      alignItems:'center',
       borderBottomColor:'gray',
       borderBottomWidth:1,
-      paddingHorizontal:10,
+      paddingHorizontal:2,
+
+
    
+
     },
 
     forget:{
