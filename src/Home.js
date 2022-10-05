@@ -13,14 +13,14 @@ export default function HomeScreem() {
     <SafeAreaView style={styles.container}>
       
           <RedPart />
-      
+  
         <View style={styles.midContainer}>
             <View style={styles.boxes}>
               <View style={styles.selectView}>
                 <Text style={styles.selectBox}  placeholder=''>Select Type</Text>
                 <TouchableOpacity style={styles.drop}><FontAwesomeIcon icon={faCaretDown} style={styles.dropDown} /></TouchableOpacity>
               </View>
-              
+        
               <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
               <View style={styles.searchIconBtn} ><FontAwesomeIcon icon={ faSearch } style={styles.searchIcon}/></View>
             </View>
