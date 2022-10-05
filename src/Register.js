@@ -1,15 +1,15 @@
 import { View, Text,StyleSheet, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React from 'react';
 import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { auth } from './config/firebase';
 
 
 const Register = () => {
-    const [passSecured,setpassSecured]=react.useState(true);
-    const [uid,setUid]=react.useState('');
-    const [email,setEmail]=react.useState('');
-    const [password,setPass]=react.useState('');
-    const [confirmPassword,setConfirmedPassword]=react.useState('');
+    const [passSecured,setpassSecured]=React.useState(true);
+    const [uid,setUid]=React.useState('');
+    const [email,setEmail]=React.useState('');
+    const [password,setPass]=React.useState('');
+    const [confirmPassword,setConfirmedPassword]=React.useState('');
 
 
   const register = ()=>{
