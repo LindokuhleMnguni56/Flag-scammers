@@ -3,9 +3,10 @@ import { faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
 import { TouchableOpacity } from 'react-native-web';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
-export default function RedPart() {
+const Stack = createNativeStackNavigator();
+export default function RedPart({ navigation }) {
     return (
 
         <View style={styles.topContainer} >
@@ -13,7 +14,9 @@ export default function RedPart() {
               <TouchableOpacity>
                 <Text style={styles.usernameTXT1}>Login</Text>
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity
+               title="register"
+               onPress={() => navigation.push('register')}>
                 <Text style={styles.usernameTXT}>Register</Text>
               </TouchableOpacity>
             </View>
