@@ -1,7 +1,10 @@
-import { View, Text,StyleSheet, KeyboardAvoidingView, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text,StyleSheet, Image, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react';
 import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { auth } from './config/firebase';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import image1 from "../assets/bg.png"
+import image2 from '../assets/google.png'
 
 
 const Register = () => {
@@ -32,53 +35,79 @@ const Register = () => {
 
   return (
 
-    <View style={styles.wrapper}>
+    <ImageBackground style={styles.wrapper} source={image1}>
     <Text style={styles.header}>Welcome </Text>
     <Text style={styles.text}>Register</Text>
 
     <View style={styles.inputContainer}>
+
+      <View style={styles.RegisterTxt}>
+      <Icon
+        color='red'
+        name='envelope'
+        type='font-awesome'
+        size={12}
+        />
+
       <TextInput
-      placeholder='Username'
-      style={styles.input}
-      onChange={(e)=>setUid(e.target)}
+        placeholder='Username'
+        style={styles.input}
+        onChange={(e)=>setUid(e.target)}
       />
+      </View>
+
+      
+      <View style={styles.RegisterTxt}>
+      <Icon
+        color='red'
+        name='envelope'
+        type='font-awesome'
+        size={12}
+        />
 
       <TextInput
         placeholder='Email'
         style={styles.input}
         onChange={(e)=>setEmail(e.target)}
       />
+      </View>
+
+      <View style={styles.RegisterTxt}>
+      <Icon
+       color='red'
+       name='lock'
+       type='font-awesome'
+       size={16}
+        />
       <TextInput
           placeholder='Password'
           style={styles.input}
           onChange={(e)=>setPass(e.target)}
       />
+      </View>
+      <View style={styles.RegisterTxt}>
 
+      <Icon
+        color='red'
+        name='lock'
+        type='font-awesome'
+        size={16}
+        />
       <TextInput
         placeholder='Confirm Password'
         style={styles.input}
         onChange={(e)=>setConfirmedPassword(e.target)}
-      
       />
-
-      
-
-
+      </View>
     </View>
 
 
     
     <View style={styles.forget}>
-        <TouchableOpacity style={styles.for}
-        
-        >
-          <Text style={styles.textget}>Forget password</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.for}
+        <TouchableOpacity style={styles.account}
         onPress={() => navigation.push('Login')}
         >
-          <Text style={styles.textget}>Don't have an account click here</Text>
+          <Text style={styles.txtAccount}>Don't have an account click here</Text>
         </TouchableOpacity>
 
       </View>
@@ -91,13 +120,25 @@ const Register = () => {
               <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
       </View>
+      <View style={styles.OR}>
+          <Text style={styles.ORTxt}>Or</Text>
+        </View>
 
-      <View style={styles.bottomContainer}>
-        <Text></Text>
+        
+      <View style={styles.GoogleContainer}>
+            <TouchableOpacity
+                style={styles.GoogleButton}
+            >
+              <Image
+               source={image2}
+               style={{width:'30px', height:'30px'}}
+               />
+                <Text style={styles.googleButtonText}>Login with google</Text>
+            </TouchableOpacity>
+        </View>
 
-      </View>
-    
-  </View>
+
+  </ImageBackground>
   
   )
 }
@@ -105,50 +146,75 @@ const Register = () => {
 const styles = StyleSheet.create({
   wrapper:{
     flex:1,
-    paddingHorizontal:10,
-    justifyContent:'center',
-
+      paddingHorizontal:30,
+      justifyContent:'center',
+      width:'100%',
+      backgroundColor:'#C4C4C4',
   },
+
+
   header:{
-      color:"red",
-      marginLeft:100,
-      fontFamily:'coda',
-      fontWeight:'200',
-      fontSize:'25px',
-      lineHeight:35,
+    color:'#EA4335',
+    marginTop:'50%',
+    marginLeft:"20%",
+    fontFamily:'coda',
+    fontWeight:'200',
+    fontSize:'25px',
+    lineHeight:35,
   },
 
   text:{
-    marginLeft:300
+    marginLeft:'70%',
+      fontSize:'25px',
+      fontFamily:'coda',
+      fontStyle:'normal',
+  },
+
+  RegisterTxt:{
+    display:'flex',
+    flexDirection:'row',
   },
 
  
   input:{
-    height:50,
-    marginBottom:30,
+    width:'100%',
+    paddingLeft:'10px',
+  },
+
+  
+  RegisterTxt:{
+    width:'100%',
+    height:44,
+    paddingHorizontal:10,
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
     borderBottomColor:'gray',
     borderBottomWidth:1,
-    paddingHorizontal:10,
- 
+    paddingHorizontal:2,
   },
+
+
+
 
   forget:{
-    display:'flex',
-    flexDirection:"row",
+    width:'100%',
+    marginTop:"20px"
   },
 
-  for:{
+  account:{
     width:'190px',
+    marginLeft:'50%'
   },
 
-  textget:{
+  txtAccount:{
     fontFamily:'coda',
     fontStyle:'normal',
     fontWeight:'200',
     fontSize:'15px',
     lineHeight:'23px',
     color:'#34B1F8',
-
+  
   },
 
 
@@ -163,14 +229,14 @@ const styles = StyleSheet.create({
 },
 
 button:{
-    backgroundColor:'red',
-    width:'100%',
-    padding:15,
-    borderRadius:10,
-    alignItems:'center',
-    fontSize:'bold'
-    
+  backgroundColor:'#EA4335',
+  width:'100%',
+  padding:15,
+  borderRadius:'27px',
+  alignItems:'center',
+  fontSize:'bold'
   },
+
   buttonText:{
     color:'white',
     fontSize:'bold'
@@ -178,9 +244,53 @@ button:{
 
   bottomContainer:{
     backgroundColor:'black',
-    marginTop:'10%'
+    marginTop:'10%' 
+  },
+
+  GoogleContainer:{
+    width:'100%',
+    justifyContent:'center',
+    alignItems:'center',
+    marginTop:'10%',
+    paddingHorizontal:50,
     
+  },
+
+
+  GoogleButton:{
+    backgroundColor: '#FFFFFF',
+    width:'100%',
+    padding:15,
+    borderRadius:'30px',
+    alignItems:'center',
+    fontSize:'bold',
+    display:'flex',
+    flexDirection:'row',
+   
+  },
+
+  googleButtonText:{
+    paddingLeft:"30px"
+  },
+
+  OR:{
+    width:'100%',
+    alignItems:'center',
+    justifyContent:'center',
+    textAlign:'center',
+    marginTop:"10%", 
+  },
+
+  ORTxt:{
+    fontFamily:'coda',
+    fontWeight:400,
+    fontSize:'25px',
+    lineHeight:'35px',
+    color:'#353535',
+    textAlign:'center',
+
   }
+
 });
 
 

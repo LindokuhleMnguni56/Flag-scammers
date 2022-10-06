@@ -32,19 +32,7 @@ export default function Login({navigation}){
       <Text style={styles.text}>Login</Text>
 
       <View style={styles.inputContainer}>
-
-        <TextInput
-        placeholder='Email'
-        style={styles.input}
-        onChange={(e)=>setEmail(e.target)}
-        />
-        <TextInput
-            placeholder='Password'
-            style={styles.input}
-            onChange={(e)=>setPass(e.target)}/>
-
-
-      
+    
        <View style={styles.LoginTxt}>
         <Icon
         color='red'
@@ -55,6 +43,7 @@ export default function Login({navigation}){
        <TextInput
           placeholder='Email'
           style={styles.input}
+          onChange={(e)=>setEmail(e.target)}
         />
        </View>
 
@@ -68,7 +57,7 @@ export default function Login({navigation}){
        <TextInput
           placeholder='Password'
           style={styles.input}
-
+          onChange={(e)=>setPass(e.target)}
         />
        </View>    
       </View>
@@ -92,10 +81,6 @@ export default function Login({navigation}){
 
                 onPress={login}
             >
-              <FontAwesomeIcon icon={ faEnvelope} />
-
-       
-
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
@@ -129,7 +114,7 @@ const styles = StyleSheet.create({
 
     },
     header:{
-        color:"red",
+        color:'#EA4335',
         marginTop:'20%',
         marginLeft:"20%",
         fontFamily:'coda',
@@ -149,20 +134,12 @@ const styles = StyleSheet.create({
     Login:{
       display:'flex',
       flexDirection:'row',
-    
- 
-      
-
     },
 
    
     input:{
       width:'100%',
       paddingLeft:'10px',
-      
-  
-     
-   
     },
 
     LoginTxt:{
@@ -175,11 +152,6 @@ const styles = StyleSheet.create({
       borderBottomColor:'gray',
       borderBottomWidth:1,
       paddingHorizontal:2,
-      
-
-
-   
-
     },
 
     forget:{
@@ -199,7 +171,6 @@ const styles = StyleSheet.create({
       fontSize:'15px',
       lineHeight:'23px',
       color:'#34B1F8',
-
     },
   
 
