@@ -68,7 +68,7 @@ export default function Login({navigation}){
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.for}
-          onPress={() => navigation.navigate('Register')}
+          onPress={() => navigation.nav('Register')}
           >
             <Text style={styles.textForget}>Don't have an account click here</Text>
           </TouchableOpacity>

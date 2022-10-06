@@ -14,7 +14,8 @@ function App() {
   return (
     <NavigationContainer >
             <Stack.Navigator initialRouteName='Login'>
-            <Stack.Screen name='Register' options={{title:'Register', headerShown:false}}>
+            <Stack.Screen name='Register' options={{title:'Register
+            ', headerShown:false}}>
                     {(props)=> <Register {...props} />}
                   </Stack.Screen>
                   <Stack.Screen name='Login' options={{title:'Login', headerShown:false}}>
