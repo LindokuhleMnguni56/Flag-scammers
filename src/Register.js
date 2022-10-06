@@ -44,7 +44,7 @@ const Register = () => {
       <View style={styles.RegisterTxt}>
       <Icon
         color='red'
-        name='envelope'
+        name='user'
         type='font-awesome'
         size={12}
         />
@@ -107,7 +107,7 @@ const Register = () => {
         <TouchableOpacity style={styles.account}
         onPress={() => navigation.push('Login')}
         >
-          <Text style={styles.txtAccount}>Don't have an account click here</Text>
+          <Text style={styles.txtAccount}>Have an account click here</Text>
         </TouchableOpacity>
 
       </View>
@@ -146,10 +146,9 @@ const Register = () => {
 const styles = StyleSheet.create({
   wrapper:{
     flex:1,
-      paddingHorizontal:30,
+      paddingHorizontal:10,
       justifyContent:'center',
-      width:'100%',
-      backgroundColor:'#C4C4C4',
+     
   },
 
 
@@ -223,7 +222,7 @@ const styles = StyleSheet.create({
     width:'100%',
     justifyContent:'center',
     alignItems:'center',
-    marginTop:'10%',
+  
     paddingHorizontal:50
 
 },

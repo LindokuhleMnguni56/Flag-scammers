@@ -13,8 +13,13 @@ import Pro  from './src/pro'
 const Stack = createNativeStackNavigator();
 function App() {
   return (
+<<<<<<< HEAD
     <NavigationContainer >
             <Stack.Navigator initialRouteName='Pro'>
+=======
+    <NavigationContainer>
+            <Stack.Navigator initialRouteName='Register'>
+>>>>>>> 388d68a0003ea3b2cf31e690d4017c88412a9159
             <Stack.Screen name='Register' options={{title:'Register', headerShown:false}}>
                     {(props)=> <Register {...props} />}
                   </Stack.Screen>

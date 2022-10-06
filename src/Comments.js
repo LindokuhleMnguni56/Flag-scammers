@@ -1,8 +1,8 @@
-import {StyleSheet,SafeAreaView, View,Text } from 'react-native';
+import {StyleSheet,SafeAreaView, View,Text, TextInput } from 'react-native';
 import RedPart from '../components/topPart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
-import { faCircleUser } from '@fortawesome/free-regular-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 
 
 export default function Comments(){
@@ -20,7 +20,7 @@ export default function Comments(){
                     </View>
                     <View style={styles.userContainer}>
                           <View style={styles.userContainerBorder}>
-                                  <Text style={styles.username}>tebzaham@gmail.com</Text>
+                                  <Text style={styles.username}>tebzahamham@gmail.com</Text>
                           </View>
                           <View style={styles.likes}>
                                           <FontAwesomeIcon icon={ faFlag } style={styles.flags}/><Text style={styles.numberFlags}>1k</Text>
@@ -29,8 +29,33 @@ export default function Comments(){
                     
                 </View>
                 <View style={styles.textBox} >
-                        <FontAwesomeIcon icon={faCircleUser} />
-                        <Text>gfdfdg</Text>
+                        <View style={styles.userIconBg}>
+                            <FontAwesomeIcon icon={faUser} style={styles.userIcon} />
+                        </View>
+                        
+                        <TextInput style={styles.addComment} placeholder='Add a comment....'></TextInput>
+                </View>
+                <View style={styles.commentsBox}>
+                        <View style={styles.userIconBackground}>
+                            <FontAwesomeIcon icon={faUser} style={styles.commentsUserIcon}/>
+                        </View>
+                        <Text style={styles.userComments}>
+                                I got scammed twice with this email the scammer asked for my ID number and proof of residence
+                                and also R250 fee I only realized after I paid that I just gave away 
+                                my coonfidential information and even paid on top of that.
+                                Thank you for this app I wish I knew it earlier.
+                        </Text>
+                </View>
+                <View style={styles.commentsBox}>
+                        <View style={styles.userIconBackground}>
+                            <FontAwesomeIcon icon={faUser} style={styles.commentsUserIcon}/>
+                        </View>
+                        <Text style={styles.userComments}>
+                                I got scammed twice with this email the scammer asked for my ID number and proof of residence
+                                and also R250 fee I only realized after I paid that I just gave away 
+                                my coonfidential information and even paid on top of that.
+                                Thank you for this app I wish I knew it earlier.
+                        </Text>
                 </View>
             </View>
             <View style={styles.bottomContainer}>
@@ -98,14 +123,12 @@ const styles = StyleSheet.create({
         flex:3,
         display:'flex',
         flexDirection:'row',
-        paddingTop:2,
         marginRight:100,
     },
     userContainerBorder:{
         height:40,
         marginTop:13,
         paddingTop:10,
-        
     },
     likes:{
         fle:1,
@@ -128,6 +151,55 @@ const styles = StyleSheet.create({
     textBox:{
         display:'flex',
         flexDirection:'row',
-        justifyContent:'space-evenly',
+        marginLeft:15,
+        marginTop:20,
+        borderBottomWidth:2,
+        borderBottomColor:'#bd5d5d',
+        height:40,
+        width:'92%',
+        paddingLeft:10,
     },
+    userIconBg:{
+        backgroundColor:'grey',
+        width:30,
+        height:30,
+        borderRadius:50,
+        marginTop:5,
+    },
+    userIcon:{
+        paddingTop:6,
+        paddingLeft:6,
+    },
+    addComment:{
+        marginLeft:10,
+        paddingLeft:5,
+        height:20,
+        width:'100%',
+        marginTop:15,
+    },
+    commentsBox:{
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-evenly',
+        marginTop:20,
+    },
+    userIconBackground:{
+        backgroundColor:'grey',
+        width:30,
+        height:30,
+        borderRadius:50,
+        marginTop:5,
+        
+    },
+    commentsUserIcon:{
+        paddingTop:6,
+        paddingLeft:6,
+    },
+    userComments:{
+        fontSize:12,
+        width:'80%',
+        backgroundColor:'rgb(255,240,242)',
+        padding:10,
+    },
+    
   });
