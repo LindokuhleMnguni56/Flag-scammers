@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         borderBottomColor:'#bd5d5d',
         height:40,
         width:'92%',
-        paddingLeft:10,
+        
     },
     userIconBg:{
         backgroundColor:'grey',
@@ -169,11 +169,11 @@ const styles = StyleSheet.create({
         paddingLeft:6,
     },
     addComment:{
-        marginLeft:10,
+        marginLeft:20,
         paddingLeft:5,
-        height:20,
+        height:25,
         width:'100%',
-        marginTop:15,
+        marginTop:10,
     },
     commentsBox:{
         display:'flex',
