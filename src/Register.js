@@ -250,7 +250,7 @@ button:{
     width:'100%',
     justifyContent:'center',
     alignItems:'center',
-    marginTop:'10%',
+    marginTop:'1%',
     paddingHorizontal:50,
     
   },

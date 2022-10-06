@@ -5,6 +5,7 @@ import HomeScreen from './src/Home';
 import Comments from './src/Comments';
 import Register from './src/Register'
 import Login from './src/Login';
+import AddScammer from './src/AddScammer';
 
 
 
@@ -13,7 +14,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-            <Stack.Navigator initialRouteName='Register'>
+            <Stack.Navigator initialRouteName='Login'>
             <Stack.Screen name='Register' options={{title:'Register', headerShown:false}}>
                     {(props)=> <Register {...props} />}
                   </Stack.Screen>
@@ -25,6 +26,9 @@ function App() {
                   </Stack.Screen>
                   <Stack.Screen name='Comments' options={{title:'Comments', headerShown:false}}>
                     {(props)=> <Comments {...props} />}
+                  </Stack.Screen>
+                  <Stack.Screen name='AddScammer' options={{title:'AddScammer', headerShown:false}}>
+                    {(props)=> <AddScammer {...props} />}
                   </Stack.Screen>
             </Stack.Navigator>
     </NavigationContainer>
