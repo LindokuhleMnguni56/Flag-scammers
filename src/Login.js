@@ -111,16 +111,17 @@ const styles = StyleSheet.create({
       flex:1,
       paddingHorizontal:30,
       justifyContent:'center',
-
+      height:'100%'
+      
     },
+
     header:{
-        color:'#EA4335',
-        marginTop:'20%',
-        marginLeft:"20%",
-        fontFamily:'coda',
-        fontWeight:'200',
-        fontSize:'25px',
-        lineHeight:35,
+      color:'#EA4335',
+      marginTop:'20%',
+      marginLeft:"20%",
+      fontFamily:'coda',
+      fontWeight:'200',
+      fontSize:'25px',
     },
 
     text:{
@@ -128,7 +129,6 @@ const styles = StyleSheet.create({
       fontSize:'25px',
       fontFamily:'coda',
       fontStyle:'normal',
-      
     },
 
     Login:{
@@ -136,7 +136,6 @@ const styles = StyleSheet.create({
       flexDirection:'row',
     },
 
-   
     input:{
       width:'100%',
       paddingLeft:'10px',
@@ -173,18 +172,15 @@ const styles = StyleSheet.create({
       color:'#34B1F8',
     },
   
-
-
     buttonContainer:{
       width:'100%',
       justifyContent:'center',
       alignItems:'center',
       marginTop:'10%',
       paddingHorizontal:50
+    },
 
-  },
-  
-  button:{
+    button:{
       backgroundColor:'#EA4335',
       width:'100%',
       padding:15,
@@ -194,62 +190,64 @@ const styles = StyleSheet.create({
       
     },
 
-
-
-
     buttonText:{
-       color:'white',
-      fontSize:'bold'
-    },
+      color:'white',
+     fontSize:'bold'
+   },
 
+   bottomContainer:{
+    backgroundColor:'black',
+    marginTop:'10%',
+  },
+
+  GoogleContainer:{
+    width:'100%',
+    justifyContent:'center',
+    alignItems:'center',
+    marginTop:'5%',
+    paddingHorizontal:50,
     
+  },
 
-    bottomContainer:{
-      backgroundColor:'black',
-      marginTop:'10%',
-    },
+  GoogleButton:{
+    backgroundColor: '#FFFFFF',
+    width:'100%',
+    padding:15,
+    alignItems:'center',
+    fontSize:'bold',
+    display:'flex',
+    flexDirection:'row',
+    borderRadius:'27px',
 
-    GoogleContainer:{
-      width:'100%',
-      justifyContent:'center',
-      alignItems:'center',
-      marginTop:'10%',
-      paddingHorizontal:50,
-      
-    },
+   
+  },
 
-    GoogleButton:{
-      backgroundColor: '#FFFFFF',
-      width:'100%',
-      padding:15,
-      borderRadius:'30px',
-      alignItems:'center',
-      fontSize:'bold',
-      display:'flex',
-      flexDirection:'row',
-     
-    },
 
-    googleButtonText:{
-      paddingLeft:"30px"
-    },
+  googleButtonText:{
+    paddingLeft:"30px"
+    
+  },
 
-    OR:{
-      width:'100%',
-      alignItems:'center',
-      justifyContent:'center',
-      textAlign:'center',
-      marginTop:"10%", 
-    },
+  OR:{
+    width:'100%',
+    alignItems:'center',
+    justifyContent:'center',
+    textAlign:'center',
+    marginTop:"10%", 
+  },
 
-    ORTxt:{
-      fontFamily:'coda',
-      fontWeight:400,
-      fontSize:'25px',
-      lineHeight:'35px',
-      color:'#353535',
-      textAlign:'center',
+  ORTxt:{
+    fontFamily:'coda',
+    fontWeight:400,
+    fontSize:'25px',
+    lineHeight:'35px',
+    color:'#353535',
+    textAlign:'center',
+    } 
+  
 
-    }
+
+
+
   });
 
