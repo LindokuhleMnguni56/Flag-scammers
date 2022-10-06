@@ -21,8 +21,7 @@ export default function RedPart() {
                 <FontAwesomeIcon icon={faEllipsisV} style={styles.menuDots}/>
             </TouchableOpacity>
                   
-        </View>
-      
+        </View>     
         
     );
   }
