@@ -51,10 +51,7 @@ export default function Comments(){
                             <FontAwesomeIcon icon={faUser} style={styles.commentsUserIcon}/>
                         </View>
                         <Text style={styles.userComments}>
-                                I got scammed twice with this email the scammer asked for my ID number and proof of residence
-                                and also R250 fee I only realized after I paid that I just gave away 
-                                my coonfidential information and even paid on top of that.
-                                Thank you for this app I wish I knew it earlier.
+                                Yeah same thing happened to me last year and I was wondering when someone will design an app like this so helpful thank you very much.
                         </Text>
                 </View>
             </View>
@@ -199,7 +196,7 @@ const styles = StyleSheet.create({
         fontSize:12,
         width:'80%',
         backgroundColor:'rgb(255,240,242)',
-        padding:10,
+        padding:15,
     },
     
   });
