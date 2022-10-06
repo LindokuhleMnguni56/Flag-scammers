@@ -12,12 +12,8 @@ import Login from './src/Login';
 const Stack = createNativeStackNavigator();
 function App() {
   return (
-    <NavigationContainer >
-<<<<<<< HEAD
+    <NavigationContainer>
             <Stack.Navigator initialRouteName='Register'>
-=======
-            <Stack.Navigator initialRouteName='Comments'>
->>>>>>> 5cd8b668f53f89ecf0aaec2051025f4bdfe2d7ee
             <Stack.Screen name='Register' options={{title:'Register', headerShown:false}}>
                     {(props)=> <Register {...props} />}
                   </Stack.Screen>
