@@ -52,6 +52,7 @@ export default function Comments(){
                         </View>
                         <Text style={styles.userComments}>
                                 Yeah same thing happened to me last year and I was wondering when someone will design an app like this so helpful thank you very much.
+                                keep it up.
                         </Text>
                 </View>
             </View>
