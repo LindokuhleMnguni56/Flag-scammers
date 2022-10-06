@@ -11,19 +11,22 @@ export default function Comments(){
             <RedPart />
             <View style={styles.midContainer}>
                 <View style={styles.card}>
-                    <View style={styles.dateContainerBorder}>
-                        <View style={styles.dateContainer}>
+                    <View style={styles.dateContainer}>
+                        <View style={styles.dateContainerBorder}>
                             <Text style={styles.day}>15</Text>
                             <Text style={styles.month}>May</Text>
                             <Text style={styles.year}>2021</Text>
                         </View>
                     </View>
                     <View style={styles.userContainer}>
-                            <Text style={styles.username1}>tebzaham@gmail.com</Text>
-                            <View style={styles.comments}>
-                                    <FontAwesomeIcon icon={ faFlag } style={styles.flags}/><Text style={styles.username2}>1k</Text>
-                            </View>
+                          <View style={styles.userContainerBorder}>
+                                  <Text style={styles.username}>tebzaham@gmail.com</Text>
+                          </View>
+                          <View style={styles.likes}>
+                                          <FontAwesomeIcon icon={ faFlag } style={styles.flags}/><Text style={styles.numberFlags}>1k</Text>
+                          </View>
                     </View>
+                    
                 </View>
                 <View style={styles.textBox} >
                         <FontAwesomeIcon icon={faCircleUser} />
@@ -64,43 +67,67 @@ const styles = StyleSheet.create({
     marginTop:20,
     boxShadow:'#ababab 0px 6px 9px -3px;',
     },
-    dateContainerBorder:{
+    dateContainer:{
+        flex:1,
         width:80,
     },
+    dateContainerBorder:{
+      height:40,
+      marginTop:15,
+      borderRightWidth:1,
+      borderRightColor:'black',
+      width:50,
+    },
     day:{
-        paddingTop:10,
-        paddingLeft:25,
-        fontSize:12,
-        color:'#D2373C',
-      },
-      month:{
         paddingLeft:20,
-        fontSize:12,
+        fontSize:10,
+        color:'#D2373C',
+    },
+    month:{
+        paddingLeft:15,
+        fontSize:10,
         color:'#D2373C',
         fontWeight:'bolder',
-      },
-      year:{
-        paddingLeft:18,
-        fontSize:12,
+    },
+    year:{
+        paddingLeft:15,
+        fontSize:10,
         color:'#D2373C',
-      },
-      userContainer:{
+    },
+    userContainer:{
         flex:3,
         display:'flex',
         flexDirection:'row',
-        justifyContent:'space-around',
-        paddingTop:25,
-      },
-      comments:{
+        paddingTop:2,
+        marginRight:100,
+    },
+    userContainerBorder:{
+        height:40,
+        marginTop:13,
+        paddingTop:10,
+        
+    },
+    likes:{
+        fle:1,
         display:'flex',
         flexDirection:'row',
-      },
-      flags:{
+        height:40,
+        marginLeft:45,
+        marginTop:25,
+    },
+    username:{
+      width:180,
+    },
+    flags:{
         color:'#D2373C',
-      },
-      textBox:{
+    },
+    numberFlags:{
+      marginLeft:5,
+      fontSize:12,
+    },
+    textBox:{
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-evenly',
-      },
+    },
   });

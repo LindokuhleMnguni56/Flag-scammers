@@ -163,19 +163,21 @@ const styles = StyleSheet.create({
     width: 80,
   },
   dateContainer: {
-    height: 50,
+    height: 40,
     marginTop: 20,
-    borderRightWidth: 2,
-    borderRightColor: 'lightgrey',
+    borderRightWidth: 1,
+    borderRightColor: 'black',
+    
   },
   userContainerRightBorder:{
     flex:3,
   },
   userContainer: {
-    height: 50,
-    borderRightWidth:2,
-    borderRightColor:'lightgrey',
-    marginRight:40,
+    height: 40,
+    width:180,
+    borderRightWidth:1,
+    borderRightColor:'black',
+    paddingLeft:10,
     marginTop:20,
   },
   bottomContainer: {
@@ -242,12 +244,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   commentIcon: {
-    paddingTop: 12,
+    paddingTop: 10,
     position: 'absolute',
     paddingLeft: 115,
   },
   flags: {
-    paddingTop: 15,
+    paddingTop: 10,
     paddingLeft: 40,
     color: '#D2373C',
     position: 'absolute',
