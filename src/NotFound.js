@@ -83,7 +83,7 @@ numberFlags:{
 },
 
   bgImageContainer:{
-    marginTop:40,
+    marginTop:20,
     marginLeft:150,
   },
   bgImage:{
