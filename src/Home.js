@@ -8,7 +8,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 
 
-export default function HomeScreem() {
+export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
 
