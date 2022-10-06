@@ -5,6 +5,7 @@ import HomeScreen from './src/Home';
 import Comments from './src/Comments';
 import Register from './src/Register'
 import Login from './src/Login';
+import Pro  from './src/pro'
 
 
 
@@ -26,6 +27,10 @@ function App() {
                   <Stack.Screen name='Comments' options={{title:'Comments', headerShown:false}}>
                     {(props)=> <Comments {...props} />}
                   </Stack.Screen>
+                  <Stack.Screen name='Pro' options={{title:'pro', headerShown:false}}>
+                    {(props)=> <Pro {...props} />}
+                  </Stack.Screen>
+
             </Stack.Navigator>
     </NavigationContainer>
   );
