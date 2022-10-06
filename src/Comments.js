@@ -39,6 +39,23 @@ export default function Comments(){
                         <View style={styles.userIconBackground}>
                             <FontAwesomeIcon icon={faUser} style={styles.commentsUserIcon}/>
                         </View>
+                        <Text style={styles.userComments}>
+                                I got scammed twice with this email the scammer asked for my ID number and proof of residence
+                                and also R250 fee I only realized after I paid that I just gave away 
+                                my coonfidential information and even paid on top of that.
+                                Thank you for this app I wish I knew it earlier.
+                        </Text>
+                </View>
+                <View style={styles.commentsBox}>
+                        <View style={styles.userIconBackground}>
+                            <FontAwesomeIcon icon={faUser} style={styles.commentsUserIcon}/>
+                        </View>
+                        <Text style={styles.userComments}>
+                                I got scammed twice with this email the scammer asked for my ID number and proof of residence
+                                and also R250 fee I only realized after I paid that I just gave away 
+                                my coonfidential information and even paid on top of that.
+                                Thank you for this app I wish I knew it earlier.
+                        </Text>
                 </View>
             </View>
             <View style={styles.bottomContainer}>
@@ -160,15 +177,29 @@ const styles = StyleSheet.create({
         width:'100%',
         marginTop:15,
     },
+    commentsBox:{
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-evenly',
+        marginTop:20,
+    },
     userIconBackground:{
         backgroundColor:'grey',
         width:30,
         height:30,
         borderRadius:50,
+        marginTop:5,
         
     },
     commentsUserIcon:{
         paddingTop:6,
         paddingLeft:6,
     },
+    userComments:{
+        fontSize:12,
+        width:'80%',
+        backgroundColor:'rgb(255,240,242)',
+        padding:10,
+    },
+    
   });
