@@ -37,7 +37,7 @@ export default function Comments(){
                 </View>
                 <View style={styles.commentsBox}>
                         <View style={styles.userIconBackground}>
-                            <FontAwesomeIcon icon={faUser}/>
+                            <FontAwesomeIcon icon={faUser} style={styles.commentsUserIcon}/>
                         </View>
                 </View>
             </View>
@@ -160,5 +160,15 @@ const styles = StyleSheet.create({
         width:'100%',
         marginTop:15,
     },
-    user
+    userIconBackground:{
+        backgroundColor:'grey',
+        width:30,
+        height:30,
+        borderRadius:50,
+        
+    },
+    commentsUserIcon:{
+        paddingTop:6,
+        paddingLeft:6,
+    },
   });
