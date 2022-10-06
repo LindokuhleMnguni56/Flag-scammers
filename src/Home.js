@@ -11,240 +11,261 @@ import RedPart from '../components/topPart';
 export default function HomeScreem() {
   return (
     <SafeAreaView style={styles.container}>
-      
-          <RedPart />
-  
-        <View style={styles.midContainer}>
-            <View style={styles.boxes}>
-              <View style={styles.selectView}>
-                <Text style={styles.selectBox}  placeholder=''>Select Type</Text>
-                <TouchableOpacity style={styles.drop}><FontAwesomeIcon icon={faCaretDown} style={styles.dropDown} /></TouchableOpacity>
-              </View>
-        
-              <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-              <View style={styles.searchIconBtn} ><FontAwesomeIcon icon={ faSearch } style={styles.searchIcon}/></View>
-            </View>
-            <View style={styles.cardsContainer}>
-                  <View style={styles.card}>
-                    <View style={styles.dateContainerBorder}>
-                        <View style={styles.dateContainer}>
-                          <Text style={styles.day}>22</Text>
-                          <Text style={styles.month}>Aug</Text>
-                          <Text style={styles.year}>2022</Text>
-                        </View>
-                        
-                    </View>
-                        <View style={styles.userContainer}>
-                                <Text style={styles.username1}>lindo@gmail.com</Text>
-                                <View style={styles.comments}>
-                                  <Text style={styles.username2}>30</Text><FontAwesomeIcon icon={ faFlag } style={styles.flags}/>
-                                  <Text  style={styles.username2}>30</Text><FontAwesomeIcon icon={ faComment } style={styles.commentIcon}/>
-                                </View>
-                        </View>
-                        <TouchableOpacity style={styles.upvoteBtn}>
-                                <Text style={styles.upvoteTXT}>UPVOTE</Text>        
-                        </TouchableOpacity>
-                  </View>
-                  <View style={styles.card}>
-                  <View style={styles.dateContainerBorder}>
-                        <View style={styles.dateContainer}>
-                          <Text style={styles.day}>4</Text>
-                          <Text style={styles.month}>Jan</Text>
-                          <Text style={styles.year}>2022</Text>
-                        </View>
-                        
-                  </View>
-                        <View style={styles.userContainer}>
-                                <Text style={styles.username1}>nkadimeng@gmail.com</Text>
-                                <View style={styles.comments}>
-                                  <Text style={styles.username2}>30</Text><FontAwesomeIcon icon={ faFlag } style={styles.flags}/>
-                                  <Text  style={styles.username2}>30</Text><FontAwesomeIcon icon={ faComment } style={styles.commentIcon}/>
-                                </View>
-                        </View>
-                        <TouchableOpacity style={styles.upvoteBtn}>
-                               <Text style={styles.upvoteTXT}>UPVOTE</Text>        
-                        </TouchableOpacity>
-                  </View>
-                  <View style={styles.card}>
-                    <View style={styles.dateContainerBorder}>
-                    <View style={styles.dateContainer}>
-                          <Text style={styles.day}>15</Text>
-                          <Text style={styles.month}>May</Text>
-                          <Text style={styles.year}>2021</Text>
-                    </View>
-                    </View>
-                          
-                        <View style={styles.userContainer}>
-                                <Text style={styles.username1}>tebzaham@gmail.com</Text>
-                                <View style={styles.comments}>
-                                  <Text style={styles.username2}>1k</Text><FontAwesomeIcon icon={ faFlag } style={styles.flags}/>
-                                  <Text  style={styles.username2}>100</Text><FontAwesomeIcon icon={ faComment } style={styles.commentIcon}/>
-                                </View>
-                        </View>
-                        <TouchableOpacity style={styles.upvoteBtn}>
-                                <Text style={styles.upvoteTXT}>UPVOTE</Text>        
-                        </TouchableOpacity>
-                  </View>
-            </View>
-            <TouchableOpacity style={styles.buttonContainer}>
-              <Text style={styles.button}>+</Text>
-            </TouchableOpacity>
-        </View>
-        <View style={styles.bottomContainer}>
 
+      <RedPart />
+
+      <View style={styles.midContainer}>
+        <View style={styles.boxes}>
+          <View style={styles.selectView}>
+            <Text style={styles.selectBox} placeholder=''>Select Type</Text>
+            <TouchableOpacity style={styles.drop}><FontAwesomeIcon icon={faCaretDown} style={styles.dropDown} /></TouchableOpacity>
+          </View>
+
+          <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
+          <View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View>
         </View>
-      
+        <View style={styles.cardsContainer}>
+          <View style={styles.card}>
+            <View style={styles.dateContainerBorder}>
+              <View style={styles.dateContainer}>
+                <Text style={styles.day}>22</Text>
+                <Text style={styles.month}>Aug</Text>
+                <Text style={styles.year}>2022</Text>
+              </View>
+
+            </View>
+            <View style={styles.userContainerRightBorder}>
+              <View style={styles.userContainer}>
+                <Text style={styles.username1}>lindokuhle@gmail.com</Text>
+                <View style={styles.comments}>
+                  <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                  <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                </View>
+              </View>
+            </View>
+            <TouchableOpacity style={styles.upvoteBtn}>
+              <Text style={styles.upvoteTXT}>UPVOTE</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.card}>
+            <View style={styles.dateContainerBorder}>
+              <View style={styles.dateContainer}>
+                <Text style={styles.day}>4</Text>
+                <Text style={styles.month}>Jan</Text>
+                <Text style={styles.year}>2022</Text>
+              </View>
+
+            </View>
+            <View style={styles.userContainerRightBorder}>
+              <View style={styles.userContainer}>
+                <Text style={styles.username1}>hopewell@gmail.com</Text>
+                <View style={styles.comments}>
+                  <Text style={styles.username2}>1.3k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                  <Text style={styles.username3}>800</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                </View>
+              </View>
+            </View>
+            <TouchableOpacity style={styles.upvoteBtn}>
+              <Text style={styles.upvoteTXT}>UPVOTE</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.card}>
+            <View style={styles.dateContainerBorder}>
+              <View style={styles.dateContainer}>
+                <Text style={styles.day}>15</Text>
+                <Text style={styles.month}>May</Text>
+                <Text style={styles.year}>2021</Text>
+              </View>
+            </View>
+            <View style={styles.userContainerRightBorder}>
+              <View style={styles.userContainer}>
+                <Text style={styles.username1}>tebzaham@gmail.com</Text>
+                <View style={styles.comments}>
+                  <Text style={styles.username2}>1.1k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                  <Text style={styles.username3}>100</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                </View>
+              </View>
+            </View>
+
+            <TouchableOpacity style={styles.upvoteBtn}>
+              <Text style={styles.upvoteTXT}>UPVOTE</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <TouchableOpacity style={styles.buttonContainer}>
+          <Text style={styles.button}>+</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.bottomContainer}>
+
+      </View>
+
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    alignItems:'center',
+  container: {
+    flex: 1,
+    alignItems: 'center',
   },
-  midContainer:{
-    flex:12,
-    height:'500px',
-    width:'100%',
-    marginTop:20,
+  midContainer: {
+    flex: 12,
+    height: '500px',
+    width: '100%',
+    marginTop: 20,
   },
-  boxes:{
-    display:'flex',
-    flexDirection:'row',
-    justifyContent:'space-evenly'
+  boxes: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly'
   },
-  inputBox:{
-    height:'25px',
-    border:'1px solid black',
-    width:'45%',
-    marginTop:'25px',
-    paddingLeft:'2%',
-    backgroundColor:'#EDEDED',
-    borderRadius:4,
+  inputBox: {
+    height: '25px',
+    border: '1px solid black',
+    width: '45%',
+    marginTop: '25px',
+    paddingLeft: '2%',
+    backgroundColor: '#EDEDED',
+    borderRadius: 4,
   },
-  selectView:{
-    display:'flex',
-    flexDirection:'row',
-    width:'30%',
-    height:25,
-    marginTop:25,
-    border:'1px solid black',
-    borderRadius:4,
+  selectView: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '30%',
+    height: 25,
+    marginTop: 25,
+    border: '1px solid black',
+    borderRadius: 4,
   },
-  dropDown:{
-    paddingTop:3,
-    paddingRight:5,
+  dropDown: {
+    paddingTop: 3,
+    paddingRight: 5,
   },
-  selectBox:{
-    paddingLeft:'2%',
-    marginLeft:5,
-    width:'80%',
+  selectBox: {
+    paddingLeft: '2%',
+    marginLeft: 5,
+    width: '80%',
   },
-  searchIconBtn:{
-    backgroundColor:'#D2373C',
-    width:'30px',
-    height:'30px',
-    paddingTop:'7px',
-    paddingLeft:'8px',
-    borderRadius:'20px',
-    marginTop:'23px',
+  searchIconBtn: {
+    backgroundColor: '#D2373C',
+    width: '30px',
+    height: '30px',
+    paddingTop: '7px',
+    paddingLeft: '8px',
+    borderRadius: '20px',
+    marginTop: '23px',
   },
-  searchIcon:{
-    color:'#EDEDED'
+  searchIcon: {
+    color: '#EDEDED'
   },
-  dateContainerBorder:{
-    width:80,
+  dateContainerBorder: {
+    width: 80,
   },
-  userContainer:{
+  dateContainer: {
+    height: 50,
+    marginTop: 20,
+    borderRightWidth: 2,
+    borderRightColor: 'lightgrey',
+  },
+  userContainerRightBorder:{
     flex:3,
+  },
+  userContainer: {
+    height: 50,
+    borderRightWidth:2,
+    borderRightColor:'lightgrey',
     marginRight:40,
-  },
-  bottomContainer:{
-    flex:2.5,
-    backgroundColor:'#000000',
-    height:'20%',
-    width:'100%',
-  },
-  card:{
-    display:'flex',
-    flexDirection:'row',
-    height:80,
-    width:'92%',
-    marginLeft:15,
     marginTop:20,
-    boxShadow:'#ababab 0px 6px 9px -3px;',
   },
-  buttonContainer:{
-    backgroundColor:'#D2373C',
-    width:'50px',
-    height:'50px',
-    paddingLeft:16,
-    borderRadius:50,
-    marginTop:60,
-    marginRight:15,
-    alignSelf:'flex-end',
+  bottomContainer: {
+    flex: 2.5,
+    backgroundColor: '#000000',
+    height: '20%',
+    width: '100%',
   },
-  button:{
-    color:'#EDEDED',
-    fontSize:'1.8em',
+  card: {
+    display: 'flex',
+    flexDirection: 'row',
+    height: 80,
+    width: '92%',
+    marginLeft: 15,
+    marginTop: 20,
+    boxShadow: '#ababab 0px 6px 9px -3px;',
   },
-  day:{
-    paddingTop:15,
-    paddingLeft:25,
-    fontSize:12,
-    color:'red',
+  buttonContainer: {
+    backgroundColor: '#D2373C',
+    width: '50px',
+    height: '50px',
+    paddingLeft: 16,
+    borderRadius: 50,
+    marginTop: 60,
+    marginRight: 15,
+    alignSelf: 'flex-end',
   },
-  month:{
-    paddingLeft:20,
-    fontSize:12,
-    color:'#D2373C',
-    fontWeight:'bolder',
+  button: {
+    color: '#EDEDED',
+    fontSize: '1.8em',
   },
-  year:{
-    paddingLeft:18,
-    fontSize:12,
-    color:'#D2373C',
+  day: {
+    paddingLeft: 26,
+    fontSize: 12,
+    color: 'red',
   },
-  username1:{
-    paddingLeft:20,
-    paddingTop:15,
-    fontSize:12,
+  month: {
+    paddingLeft: 20,
+    fontSize: 12,
+    color: '#D2373C',
+    fontWeight: 'bolder',
   },
-  username2:{
-    paddingLeft:40,
-    paddingTop:10,
-    fontSize:10,
+  year: {
+    paddingLeft: 18,
+    fontSize: 12,
+    color: '#D2373C',
   },
-  comments:{
-    display:'flex',
-    flexDirection:'row',
+  username1: {
+    paddingLeft: 10,
+    fontSize: 12,
   },
-  commentIcon:{
-    paddingTop:12,
-    position:'absolute',
-    paddingLeft:130,
+  username2: {
+    paddingLeft: 10,
+    paddingTop: 10,
+    fontSize: 10,
   },
-  flags:{
-    paddingTop:15,
-    paddingLeft:65,
-    color:'#D2373C',
-    position:'absolute',
+  username3:{
+    paddingTop: 10,
+    fontSize: 10,
+    paddingLeft:60,
   },
-  upvoteBtn:{
-    flex:1,
-    border:'1px solid #6200EE',
-    height:22,
-    width:40,
-    marginTop:30,
-    marginRight:10,
-    borderRadius:4,
+  comments: {
+    display: 'flex',
+    flexDirection: 'row',
   },
-  upvoteTXT:{
-    paddingLeft:8,
-    paddingTop:2,
-    fontSize:11,
-    color:'#6200EE',
-    fontWeight:'bold',
+  commentIcon: {
+    paddingTop: 12,
+    position: 'absolute',
+    paddingLeft: 115,
+  },
+  flags: {
+    paddingTop: 15,
+    paddingLeft: 40,
+    color: '#D2373C',
+    position: 'absolute',
+  },
+  upvoteBtn: {
+    flex: 1,
+    border: '1px solid #6200EE',
+    height: 22,
+    width: 40,
+    marginTop: 30,
+    marginRight: 10,
+    borderRadius: 4,
+  },
+  upvoteTXT: {
+    paddingLeft: 8,
+    paddingTop: 2,
+    fontSize: 11,
+    color: '#6200EE',
+    fontWeight: 'bold',
   },
 });
