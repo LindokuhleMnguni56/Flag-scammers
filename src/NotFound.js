@@ -49,7 +49,7 @@ export default function NotFound() {
             
       </View>
       <View style={styles.bottomContainer}>
-
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,480,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>
 
     </SafeAreaView>
@@ -116,10 +116,11 @@ flags:{
     width:'100%',
   },
   bottomContainer:{
-    flex:2,
-    backgroundColor:'black',
+    flex:2.5,
+    backgroundColor:'#000000',
     height:'50px',
     width:'100%',
+    
   },
   notFoundText:{
     marginLeft:40,
