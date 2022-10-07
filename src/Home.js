@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+// import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import DropDown from '../components/dropdown'
 
@@ -19,7 +19,7 @@ export default function HomeScreen() {
         <View style={styles.boxes}>
         
           <View style={styles.selectView}>
-          <DropDown style={styles.dropdown}/>
+          <DropDown/>
             
           </View>
    
@@ -134,15 +134,8 @@ const styles = StyleSheet.create({
   selectView: {
     display: 'flex',
     flexDirection: 'row',
-   
-   
-    marginTop: 25,
-    backgroundColor:'blue',
-   
-  },
-  dropdown:{
-    height:20,
-     width: '45%',
+    width: '35%',
+  
   },
   // dropDown: {
   //   paddingTop: 3,
