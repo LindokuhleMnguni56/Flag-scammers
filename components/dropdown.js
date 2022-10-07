@@ -31,5 +31,8 @@ const styles = StyleSheet.create({
         width: '80%',
    
       },
+      droplist:{
+        borderBottomWidth:2,
+      },
 
 })

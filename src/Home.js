@@ -19,7 +19,7 @@ export default function HomeScreen() {
         <View style={styles.boxes}>
         
           <View style={styles.selectView}>
-          <DropDown/>
+          <DropDown style={styles.dropdown}/>
             
           </View>
    
@@ -134,10 +134,15 @@ const styles = StyleSheet.create({
   selectView: {
     display: 'flex',
     flexDirection: 'row',
-    width: '45%',
-    marginTop: 25,
    
-  
+   
+    marginTop: 25,
+    backgroundColor:'blue',
+   
+  },
+  dropdown:{
+    height:20,
+     width: '45%',
   },
   // dropDown: {
   //   paddingTop: 3,
