@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+// import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import DropDown from '../components/dropdown'
 
@@ -99,7 +99,7 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
       <View style={styles.bottomContainer}>
-
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>
 
     </SafeAreaView>
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor:'white',
   },
   midContainer: {
     flex: 12,
@@ -134,9 +135,7 @@ const styles = StyleSheet.create({
   selectView: {
     display: 'flex',
     flexDirection: 'row',
-    width: '45%',
-    marginTop: 25,
-   
+    width: '35%',
   
   },
   // dropDown: {

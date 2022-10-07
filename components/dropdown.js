@@ -9,6 +9,7 @@ import { StyleSheet } from 'react-native';
   const [items, setItems] = React.useState([
     {label: 'Email Address', value: 'Email Address'},
     {label: 'Physical Address', value: 'Physical Address'}
+
   ]);
 
   return (
@@ -25,11 +26,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     droplist: {
-       
-        paddingLeft: '2%',
         marginLeft: 5,
-        width: '80%',
-   
+        width: '92%',
       },
 
 })
