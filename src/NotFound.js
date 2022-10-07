@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { faBan } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
-import image1 from '../assets/cross3.png'
+import image1 from '../assets/4.png'
+import tipsImg from '../assets/tipsbg2.png'
 
 
 export default function NotFound() {
@@ -29,7 +30,23 @@ export default function NotFound() {
             <View style={styles.bgImageContainer}>
                     <ImageBackground source={image1} style={styles.bgImage} />
             </View>
-            <Text style={styles.tips}>Other tips and tricks</Text>
+            <View style={styles.tipsTextContainer}>
+                <Text style={styles.tipsText}>Other tips and tricks</Text>
+            </View>
+            
+            <View style={styles.tipsBgImage}>
+                <ImageBackground source={tipsImg} style={styles.tipsImage}>
+                  <View style={styles.tipsAndTricksContainer}>
+                        <Text style={styles.firstTip}>Do not share personal or financial information with a contact you did not expect.</Text>
+                        <Text style={styles.secondTip}>Do not share personal or financial information with a contact you did not expect.</Text>
+                        <Text style={styles.thirdTip}>Do your research on the company, the employer and the email-address</Text>
+                        <Text style={styles.fourthTip}>Search for jobs through a reliable platform.</Text>
+                        <Text style={styles.fifthTip}>If its a scam, Please report back to our platform</Text>
+                  </View>
+ 
+                </ImageBackground>
+            </View>
+            
       </View>
       <View style={styles.bottomContainer}>
 
@@ -43,6 +60,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor:'white'
   },
   midContainer:{
     flex:12,
@@ -77,21 +95,28 @@ flags:{
     color:'green',
     paddingRight:20,
 },
-numberFlags:{
-  marginLeft:5,
-  fontSize:12,
-},
 
   bgImageContainer:{
-    marginTop:20,
-    marginLeft:150,
+    marginTop:10,
+    marginLeft:140,
+    width:120,
+    borderRadius:50,
+    alignItems:'center',
   },
   bgImage:{
     height:100,
     width:100,
   },
+  tipsBgImage:{
+    width:'100%',
+    
+  },
+  tipsImage:{
+    height:220,
+    width:'100%',
+  },
   bottomContainer:{
-    flex:2.5,
+    flex:2,
     backgroundColor:'black',
     height:'50px',
     width:'100%',
@@ -105,13 +130,48 @@ numberFlags:{
     fontFamily:'sans',
     color:'darkgrey',
   },
-  tips:{
+  tipsTextContainer:{
     textAlign:'center',
-    marginTop:10,
-    backgroundColor:'#fff9f9',
-    height:30,
-    paddingTop:5,
+    backgroundColor:'#F8E9E9',
+    height:40,
+    
+  },
+  tipsText:{
+    paddingTop:10,
     fontSize:18,
     fontWeight:'bolder',
+    fontFamily:'sans',
   },
+  tipsAndTricksContainer:{
+    width:'75%',
+    height:200,
+    marginLeft:50,
+    paddingLeft:10,
+    
+  },
+  firstTip:{
+    marginTop:10,
+    paddingTop:4,
+    fontSize:12,
+  },
+  secondTip:{
+    marginTop:10,
+    fontSize:12,
+  },
+  thirdTip:{
+    marginTop:10,
+    fontSize:12,
+  },
+  fourthTip:{
+    marginTop:10,
+    fontSize:12,
+  },
+  fifthTip:{
+    marginTop:10,
+    color:'#D2373C',
+    width:180,
+    textAlign:'center',
+    marginLeft:50,
+  },
+  
 });
