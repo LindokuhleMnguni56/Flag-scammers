@@ -7,6 +7,7 @@ import Register from './src/Register'
 import Login from './src/Login';
 import Pro  from './src/pro';
 import NotFound from './src/NotFound';
+import AddScammer from './src/AddScammer'
 
 
 
@@ -33,6 +34,9 @@ function App() {
                   </Stack.Screen>
                   <Stack.Screen name='NotFound' options={{title:'NotFound', headerShown:false}}>
                     {(props)=> <NotFound {...props} />}
+                  </Stack.Screen>
+                  <Stack.Screen name='AddScammer' options={{title:'AddScammer', headerShown:false}}>
+                    {(props)=> <AddScammer {...props} />}
                   </Stack.Screen>
             </Stack.Navigator>
     </NavigationContainer>

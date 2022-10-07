@@ -9,102 +9,102 @@ import RedPart from '../components/topPart';
 import DropDown from '../components/dropdown'
 
 
-export default function HomeScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
+// export default function HomeScreen() {
+//   return (
+//     <SafeAreaView style={styles.container}>
 
-      <RedPart />
+//       <RedPart />
 
-      <View style={styles.midContainer}>
-        <View style={styles.boxes}>
+//       <View style={styles.midContainer}>
+//         <View style={styles.boxes}>
         
           <View style={styles.selectView}>
           <DropDown/>
             
-          </View>
+//           </View>
    
-          <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-          <View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View>
-        </View>
-        <View style={styles.cardsContainer}>
-          <View style={styles.card}>
-            <View style={styles.dateContainerBorder}>
-              <View style={styles.dateContainer}>
-                <Text style={styles.day}>22</Text>
-                <Text style={styles.month}>Aug</Text>
-                <Text style={styles.year}>2022</Text>
-              </View>
+//           <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
+//           <View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View>
+//         </View>
+//         <View style={styles.cardsContainer}>
+//           <View style={styles.card}>
+//             <View style={styles.dateContainerBorder}>
+//               <View style={styles.dateContainer}>
+//                 <Text style={styles.day}>22</Text>
+//                 <Text style={styles.month}>Aug</Text>
+//                 <Text style={styles.year}>2022</Text>
+//               </View>
 
-            </View>
-            <View style={styles.userContainerRightBorder}>
-              <View style={styles.userContainer}>
-                <Text style={styles.username1}>lindokuhle@gmail.com</Text>
-                <View style={styles.comments}>
-                  <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                  <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                </View>
-              </View>
-            </View>
-            <TouchableOpacity style={styles.upvoteBtn}>
-              <Text style={styles.upvoteTXT}>UPVOTE</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.card}>
-            <View style={styles.dateContainerBorder}>
-              <View style={styles.dateContainer}>
-                <Text style={styles.day}>4</Text>
-                <Text style={styles.month}>Jan</Text>
-                <Text style={styles.year}>2022</Text>
-              </View>
+//             </View>
+//             <View style={styles.userContainerRightBorder}>
+//               <View style={styles.userContainer}>
+//                 <Text style={styles.username1}>lindokuhle@gmail.com</Text>
+//                 <View style={styles.comments}>
+//                   <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+//                   <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+//                 </View>
+//               </View>
+//             </View>
+//             <TouchableOpacity style={styles.upvoteBtn}>
+//               <Text style={styles.upvoteTXT}>UPVOTE</Text>
+//             </TouchableOpacity>
+//           </View>
+//           <View style={styles.card}>
+//             <View style={styles.dateContainerBorder}>
+//               <View style={styles.dateContainer}>
+//                 <Text style={styles.day}>4</Text>
+//                 <Text style={styles.month}>Jan</Text>
+//                 <Text style={styles.year}>2022</Text>
+//               </View>
 
-            </View>
-            <View style={styles.userContainerRightBorder}>
-              <View style={styles.userContainer}>
-                <Text style={styles.username1}>hopewell@gmail.com</Text>
-                <View style={styles.comments}>
-                  <Text style={styles.username2}>1.3k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                  <Text style={styles.username3}>800</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                </View>
-              </View>
-            </View>
-            <TouchableOpacity style={styles.upvoteBtn}>
-              <Text style={styles.upvoteTXT}>UPVOTE</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.card}>
-            <View style={styles.dateContainerBorder}>
-              <View style={styles.dateContainer}>
-                <Text style={styles.day}>15</Text>
-                <Text style={styles.month}>May</Text>
-                <Text style={styles.year}>2021</Text>
-              </View>
-            </View>
-            <View style={styles.userContainerRightBorder}>
-              <View style={styles.userContainer}>
-                <Text style={styles.username1}>tebzaham@gmail.com</Text>
-                <View style={styles.comments}>
-                  <Text style={styles.username2}>1.1k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                  <Text style={styles.username3}>100</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                </View>
-              </View>
-            </View>
+//             </View>
+//             <View style={styles.userContainerRightBorder}>
+//               <View style={styles.userContainer}>
+//                 <Text style={styles.username1}>hopewell@gmail.com</Text>
+//                 <View style={styles.comments}>
+//                   <Text style={styles.username2}>1.3k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+//                   <Text style={styles.username3}>800</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+//                 </View>
+//               </View>
+//             </View>
+//             <TouchableOpacity style={styles.upvoteBtn}>
+//               <Text style={styles.upvoteTXT}>UPVOTE</Text>
+//             </TouchableOpacity>
+//           </View>
+//           <View style={styles.card}>
+//             <View style={styles.dateContainerBorder}>
+//               <View style={styles.dateContainer}>
+//                 <Text style={styles.day}>15</Text>
+//                 <Text style={styles.month}>May</Text>
+//                 <Text style={styles.year}>2021</Text>
+//               </View>
+//             </View>
+//             <View style={styles.userContainerRightBorder}>
+//               <View style={styles.userContainer}>
+//                 <Text style={styles.username1}>tebzaham@gmail.com</Text>
+//                 <View style={styles.comments}>
+//                   <Text style={styles.username2}>1.1k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+//                   <Text style={styles.username3}>100</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+//                 </View>
+//               </View>
+//             </View>
 
-            <TouchableOpacity style={styles.upvoteBtn}>
-              <Text style={styles.upvoteTXT}>UPVOTE</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <TouchableOpacity style={styles.buttonContainer}>
-          <Text style={styles.button}>+</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.bottomContainer}>
+//             <TouchableOpacity style={styles.upvoteBtn}>
+//               <Text style={styles.upvoteTXT}>UPVOTE</Text>
+//             </TouchableOpacity>
+//           </View>
+//         </View>
+//         <TouchableOpacity style={styles.buttonContainer}>
+//           <Text style={styles.button}>+</Text>
+//         </TouchableOpacity>
+//       </View>
+//       <View style={styles.bottomContainer}>
 
-      </View>
+//       </View>
 
-    </SafeAreaView>
-  );
-}
+//     </SafeAreaView>
+//   );
+// }
 
 const styles = StyleSheet.create({
   container: {
