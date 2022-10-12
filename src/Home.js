@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity,ScrollView } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 // import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import DropDown from '../components/dropdown'
-import { ScrollView } from 'react-native-web';
+
 
 
 export default function HomeScreen() {
@@ -26,7 +26,7 @@ export default function HomeScreen() {
           <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
           <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
       </View>
-      <ScrollView style={styles.midContainer}>
+      <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
         
         <View style={styles.cardsContainer}>
           <View style={styles.card}>
