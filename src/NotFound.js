@@ -109,16 +109,14 @@ flags:{
   },
   tipsBgImage:{
     width:'100%',
-    
   },
   tipsImage:{
     height:220,
     width:'100%',
   },
   bottomContainer:{
-    flex:2.5,
     backgroundColor:'#000000',
-    height:'50px',
+    height:'15%',
     width:'100%',
     
   },
@@ -135,6 +133,7 @@ flags:{
     textAlign:'center',
     backgroundColor:'#F8E9E9',
     height:40,
+    marginTop:10,
     
   },
   tipsText:{
