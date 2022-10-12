@@ -1,5 +1,4 @@
 
-import DropDownPicker from 'react-native-dropdown-picker';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 

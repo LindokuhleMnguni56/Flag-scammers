@@ -103,11 +103,12 @@ const styles = StyleSheet.create({
         height:'20px',
         boxShadow: '#ababab 0px 6px 9px -3px',
         marginTop:'20%',
-        backgroundColor:'blue',
+        backgroundColor:'white',
 
     },
 
     buttonContainer:{
+        flex:3,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',

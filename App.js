@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-            <Stack.Navigator initialRouteName='Pro'>
+            <Stack.Navigator initialRouteName='AddScammer'>
             <Stack.Screen name='Register' options={{title:'Register', headerShown:false}}>
                     {(props)=> <Register {...props} />}
                   </Stack.Screen>
