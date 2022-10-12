@@ -142,7 +142,6 @@ const styles = StyleSheet.create({
     marginTop:20,
   },
   bottomContainer: {
-    
     backgroundColor: '#000000',
     height: '15%',
     width: '100%',
