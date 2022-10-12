@@ -24,7 +24,7 @@ export default function HomeScreen() {
           </View>
    
           <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-          <View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View>
+          <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
         </View>
         <View style={styles.cardsContainer}>
           <View style={styles.card}>
