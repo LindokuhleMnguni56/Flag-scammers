@@ -1,13 +1,12 @@
 import { View, Text,StyleSheet, TextInput, TouchableOpacity, ImageBackground,Image } from 'react-native';
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { faMailBulk } from '@fortawesome/free-solid-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
+import { faComment } from '@fortawesome/free-regular-svg-icons';
 import picture from '../assets/pic.png';
-
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 import RedPart2 from '../components/secureTopParts';
 
@@ -26,52 +25,55 @@ export default function Pro (){
     </View> */}
 
 
-
       <View style={styles.midContainer}>
       <View style={styles.wrapper} >
-
-</View>
+      {/* <Icon color='red' sname='user'  type='font-awesome' size={12} /> */}
+  
+  
+      </View>
       <Text style={styles.container}>
 
       </Text>
       
       <View style={styles.profileDetails}>
           <View style={styles.usernameContainer}>
+              <br/>
               <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
-              <View style={styles.usernameTexts}>
-                  <Text style={styles.usernameLabel}>username</Text>
-                  <Text style={styles.username}>Sticky</Text>
+              <View style={styles.flagText}>
+                  <Text style={styles.label}>username</Text>
+                  <Text style={styles.text}>Sticky</Text>
               </View>
               <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>    
           </View>
 
            <View style={styles.emailContainer}>
-              <FontAwesomeIcon icon={faMailBulk} style={styles.userIcon}/>
-              <View style={styles.emailText}>
-                  <Text style={styles.emailLabel}>email</Text>
-                  <Text style={styles.email}>sticky@gmail.com</Text>
+              <FontAwesomeIcon icon={faEnvelope} style={styles.userIcon}/>
+              <View style={styles.flagText}>
+                  <Text style={styles.label}>email</Text>
+                  <Text style={styles.text}>sticky@gmail.com</Text>
               </View>
           </View>
 
           <View style={styles.flagContainer}>
               <FontAwesomeIcon icon={faFlag} style={styles.userIcon}/>
               <View style={styles.flagText}>
-                  <Text style={styles.flagNum}>flags</Text>
-                  <Text style={styles.email}>20</Text>
+                  <Text style={styles.label}>flags</Text>
+                  <Text style={styles.text}>20</Text>
               </View>
           </View>
 
           <View style={styles.commentContainer}>
           <FontAwesomeIcon icon={faComment} style={styles.userIcon}/>
               <View style={styles.flagText}>
-                  <Text style={styles.flagNum}>comments</Text>
-                  <Text style={styles.email}>100</Text>
+                  <Text style={styles.label}>comments</Text>
+                  <Text style={styles.text}>100</Text>
               </View>
           </View>
        </View>
       </View>
-
-     
+      <View style={styles.bottomContainer}>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+      </View>     
     </View>
  
   )
@@ -80,6 +82,19 @@ export default function Pro (){
 const styles = StyleSheet.create({
     container:{
       flex:1,
+    },
+
+    flagText:{
+        alignContent: 'space-around',
+        paddingLeft: 10,
+    },
+
+    text:{
+
+    },
+
+    label:{
+        color: 'grey',
     },
 
     midContainer: {
@@ -106,10 +121,11 @@ const styles = StyleSheet.create({
         //justifyContent:'space-between'
         alignSelf: 'flex-end',
     },
+
     editIcon:{
         alignSelf: 'flex-end',
         alignSelf: 'center',
-        paddingLeft: 229,
+        paddingLeft: 230,
     },
 
     emailContainer:{
@@ -132,8 +148,7 @@ const styles = StyleSheet.create({
         width:'100%',
         display:'flex',
         flexDirection:'row',
-        borderBottomWidth:0.5,
-        alignSelf: 'flex-end',
+        borderBottomWidth:0.5,   
     },
 
     
@@ -151,7 +166,20 @@ const styles = StyleSheet.create({
      
     profileDetails:{
         paddingBottom: 121,
+        alignSelf: 'center'
     },
-    
+
+    userIcon: {
+        width: "20px",
+        height: "50px",
+        color:  '#D2373C',
+    },
+    bottomContainer: {
+        flex: 2.5,
+        backgroundColor: '#000000',
+        height: '20%',
+        width: '100%',
+      }
+   
   });
 
