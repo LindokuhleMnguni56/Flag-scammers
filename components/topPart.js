@@ -31,7 +31,6 @@ export default function RedPart({ navigation }) {
   
   const styles = StyleSheet.create({
     topContainer:{
-      flex:1,
       display:'flex',
       flexDirection:'row',
       backgroundColor:'#D2373C',

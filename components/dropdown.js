@@ -1,32 +1,28 @@
-
+import  SelectList  from 'react-native-dropdown-select-list';
 import React from 'react';
-import { StyleSheet } from 'react-native';
 
  export default function DropDown() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] =React.useState(null);
-  const [items, setItems] = React.useState([
-    {label: 'Email Address', value: 'Email Address'},
-    {label: 'Physical Address', value: 'Physical Address'}
-
-  ]);
-
-  return (
-    <DropDownPicker style={styles.droplist}
-      open={open}
-      value={value}
-      items={items}
-      setOpen={setOpen}
-      setValue={setValue}
-      setItems={setItems}
-    />
-  );
+      const [selected, setSelected] = React.useState("");
+      const data = [
+        {key:'1', value:'Physical Address'},
+        {key:'2', value:'Email Address'},
+      ];
+      return (
+        <SelectList
+          data = {data}
+          setSelected = {setSelected}
+          boxStyles={{
+            height:26,
+            marginTop:24,
+            marginLeft:5,
+            borderRadius:4,
+            paddingTop:3,
+            paddingRight:5,
+            paddingLeft:10,
+            width:130,
+            backgroundColor:'#EDEDED'
+          }}
+          dropdownStyles={{backgroundColor:'#EDEDED'}}
+        />
+      )
 }
-
-const styles = StyleSheet.create({
-    droplist: {
-        marginLeft: 5,
-        width: '92%',
-      },
-
-})
