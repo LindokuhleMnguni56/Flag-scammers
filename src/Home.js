@@ -1,6 +1,7 @@
 
-import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity } from 'react-native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity,ScrollView } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
@@ -9,14 +10,13 @@ import RedPart from '../components/topPart';
 import DropDown from '../components/dropdown'
 
 
+
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
 
       <RedPart />
-
-      <View style={styles.midContainer}>
-        <View style={styles.boxes}>
+      <View style={styles.boxes}>
         
           <View style={styles.selectView}>
           <DropDown/>
@@ -24,80 +24,40 @@ export default function HomeScreen() {
           </View>
    
           <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-          <View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View>
-        </View>
+          <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
+      </View>
+      <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
+        
         <View style={styles.cardsContainer}>
           <View style={styles.card}>
-            <View style={styles.dateContainerBorder}>
-              <View style={styles.dateContainer}>
-                <Text style={styles.day}>22</Text>
-                <Text style={styles.month}>Aug</Text>
-                <Text style={styles.year}>2022</Text>
-              </View>
+              <View style={styles.dateContainerBorder}>
+                <View style={styles.dateContainer}>
+                  <Text style={styles.day}>22</Text>
+                  <Text style={styles.month}>Aug</Text>
+                  <Text style={styles.year}>2022</Text>
+                </View>
 
-            </View>
-            <View style={styles.userContainerRightBorder}>
-              <View style={styles.userContainer}>
-                <Text style={styles.username1}>lindokuhle@gmail.com</Text>
-                <View style={styles.comments}>
-                  <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                  <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+              </View>
+              <View style={styles.userContainerRightBorder}>
+                <View style={styles.userContainer}>
+                  <Text style={styles.username1}>lindokuhle@gmail.com</Text>
+                  <View style={styles.comments}>
+                    <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                    <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                  </View>
                 </View>
               </View>
-            </View>
-            <TouchableOpacity style={styles.upvoteBtn}>
-              <Text style={styles.upvoteTXT}>UPVOTE</Text>
-            </TouchableOpacity>
+              <TouchableOpacity style={styles.upvoteBtn}>
+                <Text style={styles.upvoteTXT}>UPVOTE</Text>
+              </TouchableOpacity>
           </View>
-          <View style={styles.card}>
-            <View style={styles.dateContainerBorder}>
-              <View style={styles.dateContainer}>
-                <Text style={styles.day}>4</Text>
-                <Text style={styles.month}>Jan</Text>
-                <Text style={styles.year}>2022</Text>
-              </View>
-
-            </View>
-            <View style={styles.userContainerRightBorder}>
-              <View style={styles.userContainer}>
-                <Text style={styles.username1}>hopewell@gmail.com</Text>
-                <View style={styles.comments}>
-                  <Text style={styles.username2}>1.3k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                  <Text style={styles.username3}>800</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                </View>
-              </View>
-            </View>
-            <TouchableOpacity style={styles.upvoteBtn}>
-              <Text style={styles.upvoteTXT}>UPVOTE</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.card}>
-            <View style={styles.dateContainerBorder}>
-              <View style={styles.dateContainer}>
-                <Text style={styles.day}>15</Text>
-                <Text style={styles.month}>May</Text>
-                <Text style={styles.year}>2021</Text>
-              </View>
-            </View>
-            <View style={styles.userContainerRightBorder}>
-              <View style={styles.userContainer}>
-                <Text style={styles.username1}>tebzaham@gmail.com</Text>
-                <View style={styles.comments}>
-                  <Text style={styles.username2}>1.1k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                  <Text style={styles.username3}>100</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                </View>
-              </View>
-            </View>
-
-            <TouchableOpacity style={styles.upvoteBtn}>
-              <Text style={styles.upvoteTXT}>UPVOTE</Text>
-            </TouchableOpacity>
-          </View>
+          
         </View>
-        <TouchableOpacity style={styles.buttonContainer}>
+        
+      </ScrollView>
+      <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.button}>+</Text>
         </TouchableOpacity>
-      </View>
       <View style={styles.bottomContainer}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>
@@ -121,10 +81,12 @@ const styles = StyleSheet.create({
   boxes: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    width: '100%',
+    
   },
   inputBox: {
-    height: '25px',
+    height: 25,
     border: '1px solid black',
     width: '45%',
     marginTop: '25px',
@@ -175,15 +137,13 @@ const styles = StyleSheet.create({
   userContainer: {
     height: 40,
     width:180,
-    borderRightWidth:1,
     borderRightColor:'black',
     paddingLeft:10,
     marginTop:20,
   },
   bottomContainer: {
-    flex: 2.5,
     backgroundColor: '#000000',
-    height: '20%',
+    height: '15%',
     width: '100%',
   },
   card: {
@@ -201,7 +161,7 @@ const styles = StyleSheet.create({
     height: '50px',
     paddingLeft: 16,
     borderRadius: 50,
-    marginTop: 60,
+    marginTop: 20,
     marginRight: 15,
     alignSelf: 'flex-end',
   },
