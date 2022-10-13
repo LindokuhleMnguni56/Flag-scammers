@@ -92,22 +92,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#EDEDED',
     borderRadius: 4,
     fontSize:12,
+    boxShadow: '#ababab 0px 6px 9px -3px;',
   },
-  selectView: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '35%',
-  
-  },
-  // dropDown: {
-  //   paddingTop: 3,
-  //   paddingRight: 5,
-  // },
-  // selectBox: {
-  //   paddingLeft: '2%',
-  //   marginLeft: 5,
-  //   width: '80%',
-  // },
+ 
   searchIconBtn: {
     backgroundColor: '#D2373C',
     width: '30px',
@@ -116,6 +103,7 @@ const styles = StyleSheet.create({
     paddingLeft: '8px',
     borderRadius: '20px',
     marginTop: '23px',
+    boxShadow: '#ababab 0px 6px 9px -1px;',
   },
   searchIcon: {
     color: '#EDEDED'

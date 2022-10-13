@@ -65,6 +65,7 @@
       border:'1px solid black',
       borderRadius: 4,
       paddingLeft:10,
+      boxShadow: '#ababab 0px 6px 9px -3px;',
       
     },
     icon: {
