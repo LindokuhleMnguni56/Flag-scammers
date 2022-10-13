@@ -2,7 +2,8 @@ import { SafeAreaView, StyleSheet, Text, View,TextInput,TouchableOpacity } from 
 import React from 'react'
 import Top from '../components/secureTopParts'
 import Icon  from 'react-native-vector-icons/FontAwesome'
-import DropDown from '../components/dropdown'
+
+
 
 const AddScammer = () => {
   return (
