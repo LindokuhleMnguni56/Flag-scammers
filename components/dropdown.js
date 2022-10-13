@@ -20,9 +20,13 @@ import React from 'react';
             paddingRight:5,
             paddingLeft:10,
             width:130,
-            backgroundColor:'#EDEDED'
+            backgroundColor:'#EDEDED',
           }}
-          dropdownStyles={{backgroundColor:'#EDEDED'}}
+          dropdownItemStyles={{height:10}}
+          dropdownTextStyles={{paddingLeft:5,height:5,marginTop:-10}}
+          dropdownStyles={{backgroundColor:'#EDEDED',marginVertical:0,paddingLeft:-10}}
+        
+          
         />
       )
 }
