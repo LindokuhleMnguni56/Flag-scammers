@@ -8,7 +8,7 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 // import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import DropDown from '../components/dropdown'
-
+import DropdownComponent from '../components/dropdownList';
 
 
 export default function HomeScreen() {
@@ -19,7 +19,7 @@ export default function HomeScreen() {
       <View style={styles.boxes}>
         
           <View style={styles.selectView}>
-          <DropDown/>
+          <DropdownComponent/>
             
           </View>
    
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     paddingLeft: '2%',
     backgroundColor: '#EDEDED',
     borderRadius: 4,
+    fontSize:12,
   },
   selectView: {
     display: 'flex',
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
     color: '#EDEDED'
   },
   dateContainerBorder: {
-    width: 80,
+    width: 70,
   },
   dateContainer: {
     height: 40,
@@ -152,7 +153,6 @@ const styles = StyleSheet.create({
     height: 80,
     width: '92%',
     marginLeft: 15,
-    marginTop: 20,
     boxShadow: '#ababab 0px 6px 9px -3px;',
   },
   buttonContainer: {
@@ -171,18 +171,18 @@ const styles = StyleSheet.create({
   },
   day: {
     paddingLeft: 26,
-    fontSize: 12,
     color: 'red',
+    fontSize:10,
   },
   month: {
     paddingLeft: 20,
-    fontSize: 12,
+    fontSize: 10,
     color: '#D2373C',
     fontWeight: 'bolder',
   },
   year: {
     paddingLeft: 18,
-    fontSize: 12,
+    fontSize: 10,
     color: '#D2373C',
   },
   username1: {
