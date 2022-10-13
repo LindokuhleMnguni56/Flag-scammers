@@ -1,6 +1,6 @@
-import  SelectList  from 'react-native-dropdown-select-list';
-import React from 'react';
 
+import React from 'react';
+import SelectList from "react-native-dropdown-select-list"
  export default function DropDown() {
       const [selected, setSelected] = React.useState("");
       const data = [
@@ -21,6 +21,7 @@ import React from 'react';
             paddingLeft:10,
             width:130,
             backgroundColor:'#EDEDED',
+    
           }}
           dropdownItemStyles={{height:10}}
           dropdownTextStyles={{paddingLeft:5,height:5,marginTop:-10}}
