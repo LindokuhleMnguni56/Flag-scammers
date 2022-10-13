@@ -7,8 +7,7 @@ import Register from './src/Register'
 import Login from './src/Login';
 import Pro  from './src/pro';
 import NotFound from './src/NotFound';
-import AddScammer from './src/AddScammer'
-// import DropDown from './components/dropdown';
+import AddScammer from './src/AddScammer';
 import DropDownList from './components/dropdownList';
 
 
