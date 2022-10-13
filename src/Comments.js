@@ -1,9 +1,9 @@
-import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView } from 'react-native';
+import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image } from 'react-native';
 import RedPart from '../components/topPart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-
+import profileImg from '../assets/pic.png'
 
 export default function Comments(){
     return(
@@ -31,14 +31,14 @@ export default function Comments(){
                 
                 <View style={styles.textBox} >
                         <View style={styles.userIconBg}>
-                            <FontAwesomeIcon icon={faUser} style={styles.userIcon} />
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
                         </View>
                         
                         <TextInput style={styles.addComment} placeholder='Add a comment....'></TextInput>
                 </View>
                 <View style={styles.commentsBox}>
                         <View style={styles.userIconBackground}>
-                            <FontAwesomeIcon icon={faUser} style={styles.commentsUserIcon}/>
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
                         </View>
                         <Text style={styles.userComments}>
                                 I got scammed twice with this email the scammer asked for my ID number and proof of residence

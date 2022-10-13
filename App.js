@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-            <Stack.Navigator initialRouteName='AddScammer'>
+            <Stack.Navigator initialRouteName='Home'>
             <Stack.Screen name='Register' options={{title:'Register', headerShown:false}}>
                     {(props)=> <Register {...props} />}
                   </Stack.Screen>
@@ -39,9 +39,9 @@ function App() {
                   <Stack.Screen name='AddScammer' options={{title:'AddScammer', headerShown:false}}>
                     {(props)=> <AddScammer {...props} />}
                   </Stack.Screen>
-                  <Stack.Screen name='dropdownList' options={{title:'dropdownList', headerShown:false}}>
+                  {/* <Stack.Screen name='dropdownList' options={{title:'dropdownList', headerShown:false}}>
                     {(props)=> <DropDownList {...props} />}
-                  </Stack.Screen>
+                  </Stack.Screen> */}
             </Stack.Navigator>
     </NavigationContainer>
   );
