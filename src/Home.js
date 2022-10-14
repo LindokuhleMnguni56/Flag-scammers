@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     boxShadow: '#ababab 0px 6px 9px -1px;',
   },
   searchIcon: {
-    color: '#EDEDED'
+    color: '#EDEDED',
   },
   dateContainerBorder: {
     width: 70,
