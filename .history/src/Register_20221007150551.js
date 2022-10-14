@@ -15,7 +15,7 @@ const Register = () => {
     const [confirmPassword,setConfirmedPassword]=React.useState('');
 
 
-  const register = ({navigation})=>{
+  const register = ()=>{
 
     createUserWithEmailAndPassword(auth, email, password).then(async(userCredential)=>{
 

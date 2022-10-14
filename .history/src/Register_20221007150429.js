@@ -15,7 +15,7 @@ const Register = () => {
     const [confirmPassword,setConfirmedPassword]=React.useState('');
 
 
-  const register = ({navigation})=>{
+  const register = ()=>{
 
     createUserWithEmailAndPassword(auth, email, password).then(async(userCredential)=>{
 
@@ -115,7 +115,8 @@ const Register = () => {
     <View style={styles.buttonContainer}>
           <TouchableOpacity
               style={styles.button}
-              onPress={register}
+              onPress={() => navigation.push('r')}
+              // onPress={register}
           >
               <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>

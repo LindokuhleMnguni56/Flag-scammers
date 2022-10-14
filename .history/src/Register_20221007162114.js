@@ -105,7 +105,7 @@ const Register = () => {
     
     <View style={styles.forget}>
         <TouchableOpacity style={styles.account}
-        onPress={() => navigation.push('Login')}
+        onPress={() => navigation.navigation('Login')}
         >
           <Text style={styles.txtAccount}>Have an account click here</Text>
         </TouchableOpacity>
