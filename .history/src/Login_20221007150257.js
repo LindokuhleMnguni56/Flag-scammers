@@ -4,20 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import react from 'react';
 import { auth } from './config/firebase';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import image1 from "../assets/bg.png";
-import image2 from '../assets/google.png';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import image1 from "../assets/bg.png"
+import image2 from '../assets/google.png'
 
 export default function Login({navigation}){
   const [email,setEmail]=react.useState('');
   const [password,setPass]=react.useState('');
-  
 
   const login = (()=>{
 
     signInWithEmailAndPassword(auth, email, password).then(()=>{
-      navigation.push('Home',);
+      navigation.push('Home');
     }).catch((err)=>{
 
         console.log(err);
@@ -45,7 +43,7 @@ export default function Login({navigation}){
        <TextInput
           placeholder='Email'
           style={styles.input}
-          onChangeText={(email)=>setEmail(email)}
+          onChange={(e)=>setEmail(e.target)}
         />
        </View>
 
@@ -59,7 +57,7 @@ export default function Login({navigation}){
        <TextInput
           placeholder='Password'
           style={styles.input}
-          onChangeText={(pass)=>setPass(pass)}
+          onChange={(e)=>setPass(e.target)}
         />
        </View>    
       </View>
@@ -81,12 +79,12 @@ export default function Login({navigation}){
             <TouchableOpacity
                 style={styles.button}
 
-                onPress={login}
+                onPress={() => navigation.push('Register')}
             >
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
-        <View style={styles.OR}> 
+        <View style={styles.OR}>
           <Text style={styles.ORTxt}>Or</Text>
         </View>
 
@@ -150,7 +148,7 @@ const styles = StyleSheet.create({
       display:'flex',
       flexDirection:'row',
       alignItems:'center',
-      borderBottomColor:'grey',
+      borderBottomColor:'gray',
       borderBottomWidth:1,
       paddingHorizontal:2,
     },

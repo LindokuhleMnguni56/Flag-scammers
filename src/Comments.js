@@ -1,11 +1,12 @@
-import {StyleSheet,SafeAreaView, View,Text, TextInput } from 'react-native';
+import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image } from 'react-native';
 import RedPart from '../components/topPart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { auth } from './config/firebase';
 import RedPart2 from '../components/secureTopParts';
-
+import profileImg from '../assets/pic.png'
+import { TouchableOpacity } from 'react-native-web';
 
 export default function Comments({flag}){
 
@@ -18,8 +19,7 @@ export default function Comments({flag}){
             {
                 user != null ? (<RedPart2 />):(<RedPart />)
             } 
-            <View style={styles.midContainer}>
-                <View style={styles.card}>
+            <View style={styles.card}>
                     <View style={styles.dateContainer}>
                         <View style={styles.dateContainerBorder}>
                             <Text style={styles.day}>15</Text>
@@ -37,17 +37,19 @@ export default function Comments({flag}){
                     </View>
                     
                 </View>
+            <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
+                
                 <View style={styles.textBox} >
-                        <View style={styles.userIconBg}>
-                            <FontAwesomeIcon icon={faUser} style={styles.userIcon} />
-                        </View>
+                        <TouchableOpacity style={styles.userIconBg}>
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
+                        </TouchableOpacity>
                         
                         <TextInput style={styles.addComment} placeholder='Add a comment....'></TextInput>
                 </View>
                 <View style={styles.commentsBox}>
-                        <View style={styles.userIconBackground}>
-                            <FontAwesomeIcon icon={faUser} style={styles.commentsUserIcon}/>
-                        </View>
+                        <TouchableOpacity style={styles.userIconBackground}>
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
+                        </TouchableOpacity>
                         <Text style={styles.userComments}>
                                 I got scammed twice with this email the scammer asked for my ID number and proof of residence
                                 and also R250 fee I only realized after I paid that I just gave away 
@@ -55,16 +57,9 @@ export default function Comments({flag}){
                                 Thank you for this app I wish I knew it earlier.
                         </Text>
                 </View>
-                <View style={styles.commentsBox}>
-                        <View style={styles.userIconBackground}>
-                            <FontAwesomeIcon icon={faUser} style={styles.commentsUserIcon}/>
-                        </View>
-                        <Text style={styles.userComments}>
-                                Yeah same thing happened to me last year and I was wondering when someone will design an app like this so helpful thank you very much.
-                                keep it up.
-                        </Text>
-                </View>
-            </View>
+                
+                
+            </ScrollView>
             <View style={styles.bottomContainer}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
             </View>
@@ -85,9 +80,8 @@ const styles = StyleSheet.create({
         marginTop:20,
       },
     bottomContainer:{
-        flex:2.5,
         backgroundColor:'#000000',
-        height:'20%',
+        height:'15%',
         width:'100%',
     },
 
@@ -96,7 +90,7 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     height:60,
     width:'92%',
-    marginLeft:15,
+    
     marginTop:20,
     boxShadow:'#ababab 0px 6px 9px -3px;',
     },
@@ -179,7 +173,7 @@ const styles = StyleSheet.create({
         paddingLeft:6,
     },
     addComment:{
-        marginLeft:20,
+        marginLeft:15,
         paddingLeft:5,
         height:25,
         width:'100%',

@@ -1,22 +1,21 @@
 import { View, Text,StyleSheet, Image, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react';
-import {createUserWithEmailAndPassword, updateProfile,UserProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { auth } from './config/firebase';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import image1 from "../assets/bg.png"
 import image2 from '../assets/google.png'
 
 
-const Register = ({navigation}) => {
+const Register = () => {
     const [passSecured,setpassSecured]=React.useState(true);
     const [uid,setUid]=React.useState('');
     const [email,setEmail]=React.useState('');
     const [password,setPass]=React.useState('');
-    const [user,setUser]=React.useState('');
     const [confirmPassword,setConfirmedPassword]=React.useState('');
 
-   
-  const register = ({navigation})=>{
+
+  const register = ()=>{
 
     createUserWithEmailAndPassword(auth, email, password).then(async(userCredential)=>{
 
@@ -25,7 +24,6 @@ const Register = ({navigation}) => {
 
        updateProfile(auth.currentUser, {displayName:displayName}).then().catch();
       alert(displayName+ "successfull")
-      
       navigation.push('Home')
   }).catch((error)=>{
       alert(error);
@@ -54,7 +52,7 @@ const Register = ({navigation}) => {
       <TextInput
         placeholder='Username'
         style={styles.input}
-        onChangeText={(uid)=>setUid(uid)}
+        onChange={(e)=>setUid(e.target)}
       />
       </View>
 
@@ -70,7 +68,7 @@ const Register = ({navigation}) => {
       <TextInput
         placeholder='Email'
         style={styles.input}
-        onChangeText={(email)=>setEmail(email)}
+        onChange={(e)=>setEmail(e.target)}
       />
       </View>
 
@@ -84,7 +82,7 @@ const Register = ({navigation}) => {
       <TextInput
           placeholder='Password'
           style={styles.input}
-          onChangeText={(pass)=>setPass(pass)}
+          onChange={(e)=>setPass(e.target)}
       />
       </View>
       <View style={styles.RegisterTxt}>
@@ -98,7 +96,7 @@ const Register = ({navigation}) => {
       <TextInput
         placeholder='Confirm Password'
         style={styles.input}
-        onChangeText={(conf)=>setConfirmedPassword(conf)}
+        onChange={(e)=>setConfirmedPassword(e.target)}
       />
       </View>
     </View>
@@ -117,7 +115,8 @@ const Register = ({navigation}) => {
     <View style={styles.buttonContainer}>
           <TouchableOpacity
               style={styles.button}
-              onPress={register}
+              onPress={() => navigation.push('r')}
+              // onPress={register}
           >
               <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
@@ -252,7 +251,7 @@ button:{
     width:'100%',
     justifyContent:'center',
     alignItems:'center',
-    marginTop:'1%',
+    marginTop:'10%',
     paddingHorizontal:50,
     
   },
@@ -296,6 +295,4 @@ button:{
 
 
 
-export default Register;
-
-
+export default Register

@@ -6,9 +6,8 @@ import React from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
-// import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
-import DropDown from '../components/dropdown';
+import DropdownComponent from '../components/dropdownList';
 import RedPart2 from '../components/secureTopParts';
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
@@ -98,8 +97,8 @@ export default function HomeScreen({navigation}) {
       <View style={styles.boxes}>
         
           <View style={styles.selectView}>
-          <DropDown/>
-            
+          {/* <DropdownComponent/> */}
+            <DropdownPicker/>
           </View>
    
           <TextInput style={styles.inputBox} placeholder='Enter Address...' onChangeText={address=>setAddress(address)}></TextInput>
@@ -169,7 +168,7 @@ const styles = StyleSheet.create({
   boxes: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent:'space-evenly',
     width: '100%',
     
   },
@@ -181,22 +180,10 @@ const styles = StyleSheet.create({
     paddingLeft: '2%',
     backgroundColor: '#EDEDED',
     borderRadius: 4,
+    fontSize:12,
+    boxShadow: '#ababab 0px 6px 9px -3px;',
   },
-  selectView: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '35%',
-  
-  },
-  // dropDown: {
-  //   paddingTop: 3,
-  //   paddingRight: 5,
-  // },
-  // selectBox: {
-  //   paddingLeft: '2%',
-  //   marginLeft: 5,
-  //   width: '80%',
-  // },
+ 
   searchIconBtn: {
     backgroundColor: '#D2373C',
     width: '30px',
@@ -205,12 +192,13 @@ const styles = StyleSheet.create({
     paddingLeft: '8px',
     borderRadius: '20px',
     marginTop: '23px',
+    boxShadow: '#ababab 0px 6px 9px -1px;',
   },
   searchIcon: {
-    color: '#EDEDED'
+    color: '#EDEDED',
   },
   dateContainerBorder: {
-    width: 80,
+    width: 70,
   },
   dateContainer: {
     height: 40,
@@ -230,7 +218,6 @@ const styles = StyleSheet.create({
     marginTop:20,
   },
   bottomContainer: {
-    
     backgroundColor: '#000000',
     height: '15%',
     width: '100%',
@@ -241,7 +228,6 @@ const styles = StyleSheet.create({
     height: 80,
     width: '92%',
     marginLeft: 15,
-    marginTop: 20,
     boxShadow: '#ababab 0px 6px 9px -3px;',
   },
   buttonContainer: {
@@ -260,18 +246,18 @@ const styles = StyleSheet.create({
   },
   day: {
     paddingLeft: 26,
-    fontSize: 12,
     color: 'red',
+    fontSize:10,
   },
   month: {
     paddingLeft: 20,
-    fontSize: 12,
+    fontSize: 10,
     color: '#D2373C',
     fontWeight: 'bolder',
   },
   year: {
     paddingLeft: 18,
-    fontSize: 12,
+    fontSize: 10,
     color: '#D2373C',
   },
   username1: {

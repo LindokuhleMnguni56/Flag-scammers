@@ -14,6 +14,7 @@ export default function NotFound() {
 
       <RedPart />
       <View style={styles.midContainer}>
+        <View style={styles.cardContainer}>
             <View style={styles.card}>
                     <View style={styles.userContainer}>
                           <View style={styles.userContainerBorder}>
@@ -26,27 +27,28 @@ export default function NotFound() {
                     </View>
                     
             </View>
+      </View>
             <Text style={styles.notFoundText}>Not Found</Text>
             <View style={styles.bgImageContainer}>
                     <ImageBackground source={image1} style={styles.bgImage} />
             </View>
-            <View style={styles.tipsTextContainer}>
-                <Text style={styles.tipsText}>Other tips and tricks</Text>
-            </View>
             
-            <View style={styles.tipsBgImage}>
-                <ImageBackground source={tipsImg} style={styles.tipsImage}>
-                  <View style={styles.tipsAndTricksContainer}>
+            
+      </View>
+      <View style={styles.tipsTextContainer}>
+                <Text style={styles.tipsText}>Other tips and tricks</Text>
+        </View>
+      <View style={styles.tipsBgImage}>
+          <ImageBackground source={tipsImg} style={styles.tipsImage}>
+                <View style={styles.tipsAndTricksContainer}>
                         <Text style={styles.firstTip}>Do not share personal or financial information with a contact you did not expect.</Text>
                         <Text style={styles.secondTip}>Do not share personal or financial information with a contact you did not expect.</Text>
                         <Text style={styles.thirdTip}>Do your research on the company, the employer and the email-address</Text>
                         <Text style={styles.fourthTip}>Search for jobs through a reliable platform.</Text>
                         <Text style={styles.fifthTip}>If its a scam, Please report back to our platform</Text>
-                  </View>
+                </View>
  
-                </ImageBackground>
-            </View>
-            
+          </ImageBackground>
       </View>
       <View style={styles.bottomContainer}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
@@ -65,12 +67,15 @@ const styles = StyleSheet.create({
   midContainer:{
     flex:12,
   },
+  cardContainer:{
+    width:'90%',
+  },
   card:{
     display:'flex',
     flexDirection:'row',
     height:60,
-    width:'90%',
-    marginLeft:20,
+    width:'95%',
+    marginLeft:30,
     marginTop:20,
     boxShadow:'#ababab 0px 6px 9px -3px;',
   },
@@ -109,16 +114,14 @@ flags:{
   },
   tipsBgImage:{
     width:'100%',
-    
   },
   tipsImage:{
     height:220,
     width:'100%',
   },
   bottomContainer:{
-    flex:2.5,
     backgroundColor:'#000000',
-    height:'50px',
+    height:'15%',
     width:'100%',
     
   },
@@ -135,6 +138,8 @@ flags:{
     textAlign:'center',
     backgroundColor:'#F8E9E9',
     height:40,
+    marginTop:10,
+    width:'100%'
     
   },
   tipsText:{
@@ -145,7 +150,7 @@ flags:{
   },
   tipsAndTricksContainer:{
     width:'75%',
-    height:200,
+    height:100,
     marginLeft:50,
     paddingLeft:10,
     

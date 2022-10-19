@@ -1,8 +1,10 @@
 import { SafeAreaView, StyleSheet, Text, View,TextInput,TouchableOpacity } from 'react-native'
 import React from 'react'
-import RedPart from '../components/topPart';
+import Top from '../components/secureTopParts';
 import RedPart2 from '../components/secureTopParts';
 import Icon  from 'react-native-vector-icons/FontAwesome'
+import DropdownPicker from '../components/dropdownpicker'
+
 
 const AddScammer = () => {
   return (
@@ -12,6 +14,11 @@ const AddScammer = () => {
             <View style={styles.text}>
                 <Text style={styles.txt}>ADD A SCAMMER</Text>
             </View>
+            <View style={styles.hhh}>
+
+            <View style={styles.selectView}>
+            <DropdownPicker/>
+          </View>
 
 
             <View style={styles.txtInput}>
@@ -32,7 +39,7 @@ const AddScammer = () => {
                 style={styles.addComment}
                 />
             </View>
-
+            </View>
             <View style={styles.buttonContainer}>
             <TouchableOpacity
                 style={styles.button}
@@ -58,14 +65,25 @@ const styles = StyleSheet.create({
     },
     midContainer:{
         flex:12,
-        padding:'50px',
+        padding:'20px',
+      
+    
     },
 
     text:{
-        height:'16px',
+        height:'5px',
         alignItems:'center',
-        padding:'50px',
-        boxShadow: '#ababab 0px 6px 9px -3px'
+        padding:'35px',
+        boxShadow: '#ababab 0px 6px 9px -3px',
+       
+    },
+
+    selectView: {
+        display: 'flex',
+        flexDirection: 'row',
+        width: '35%',
+        
+      
     },
     txt:{
         fontFamily:'coda',
@@ -78,14 +96,17 @@ const styles = StyleSheet.create({
     txtInput:{
         width:'100%',
         height:44,
-        paddingHorizontal:10,
+        paddingHorizontal:20,
         display:'flex',
-        marginTop:'20%',
+        marginTop:'10%',
         flexDirection:'row',
         alignItems:'center',
-        borderBottomColor:'gray',
+        borderBottomColor:'grey',
         borderBottomWidth:1,
-        paddingHorizontal:2,
+        
+
+    
+        
     },
 
     textInput:{
@@ -94,21 +115,20 @@ const styles = StyleSheet.create({
        
     },
 
-    comment:{
-      
-        
-    },
-
+  
     addComment:{
-        padding:'50px',
-        height:'20px',
+        padding:'20px',
+        height:'100px',
         boxShadow: '#ababab 0px 6px 9px -3px',
-        marginTop:'20%',
-        backgroundColor:'blue',
+        marginTop:'10%',
+        borderRadius:'10px',
+        borderColor:'grey'
+        
 
     },
 
     buttonContainer:{
+        flex:3,
         width:'100%',
         justifyContent:'center',
         alignItems:'center',
@@ -135,6 +155,11 @@ const styles = StyleSheet.create({
       backgroundColor:'black',
       marginTop:'10%',
     },
+
+    hhh:{
+        paddingHorizontal:'25px',
+        marginTop:'100px'
+    }
 
 
 
