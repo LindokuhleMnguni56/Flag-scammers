@@ -1,5 +1,5 @@
-import { StyleSheet, SafeAreaView, Text, View, } from 'react-native';
-// import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { StyleSheet,SafeAreaView, Text, View, } from 'react-native';
+import { faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { Link } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-web';
@@ -17,7 +17,10 @@ export default function RedPart() {
               <TouchableOpacity>
                 <Text style={styles.usernameTXT}><Link to={'/Register'}>Register</Link></Text>
               </TouchableOpacity>
-            </View>      
+            </View>
+            <TouchableOpacity >
+                <FontAwesomeIcon icon={faEllipsisV} style={styles.menuDots}/>
+            </TouchableOpacity>       
         </View>     
         
     );
@@ -53,6 +56,8 @@ export default function RedPart() {
       paddingLeft:10,
       color:'white',
     },
-  
+    menuDots:{
+      color:'white',
+    },
   
   });

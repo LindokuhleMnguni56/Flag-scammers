@@ -4,7 +4,7 @@ import { db,auth } from './config/firebase';
 import {addDoc,collection} from 'firebase/firestore'
 import Top from '../components/secureTopParts'
 import Icon  from 'react-native-vector-icons/FontAwesome'
-import DropdownPicker from '../components/dropdownpicker'
+import DropdownPicker from '../components/dropdownpicker';
 
 
 const AddScammer = () => {

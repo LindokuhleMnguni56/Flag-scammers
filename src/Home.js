@@ -1,11 +1,11 @@
 
 import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity,ScrollView } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
+// import RedPart2 from '../components/secureTopParts';
 // import DropdownComponent from '../components/dropdownList';
 import DropdownPicker from '../components/dropdownpicker';
 

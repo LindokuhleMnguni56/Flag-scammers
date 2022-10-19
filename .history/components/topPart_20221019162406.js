@@ -17,7 +17,10 @@ export default function RedPart() {
               <TouchableOpacity>
                 <Text style={styles.usernameTXT}><Link to={'/Register'}>Register</Link></Text>
               </TouchableOpacity>
-            </View>      
+            </View>
+            <TouchableOpacity >
+                <FontAwesomeIcon icon={faEllipsisV} style={styles.menuDots}/>
+            </TouchableOpacity>       
         </View>     
         
     );
@@ -53,6 +56,8 @@ export default function RedPart() {
       paddingLeft:10,
       color:'white',
     },
-  
+    menuDots:{
+      color:'white',
+    },
   
   });

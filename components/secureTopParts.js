@@ -1,5 +1,6 @@
 import { StyleSheet, SafeAreaView, Text, View, } from 'react-native';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+// import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import picture from '../assets/pic.png';
 
@@ -22,7 +23,7 @@ export default function RedPart2() {
 
             <View style={styles.menuDots}>
                 <TouchableOpacity >
-                    <FontAwesomeIcon style={styles.dots} icon={faEllipsisV} />
+                    <FontAwesomeIcon style={styles.signout} icon={faSignOut} />
                 </TouchableOpacity>
             </View>
 
@@ -33,7 +34,6 @@ export default function RedPart2() {
 
 const styles = StyleSheet.create({
     topContainer: {
-        flex: 1,
         display: 'flex',
 
         backgroundColor: '#D2373C',
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 
     },
-    dots: {
+    signout: {
         paddingLeft: '90%',
         color: 'white',
        

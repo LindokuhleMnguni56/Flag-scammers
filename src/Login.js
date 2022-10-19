@@ -86,7 +86,7 @@ export default function Login({navigation}){
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
-        <View style={styles.OR}>
+        <View style={styles.OR}> 
           <Text style={styles.ORTxt}>Or</Text>
         </View>
 
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
       display:'flex',
       flexDirection:'row',
       alignItems:'center',
-      borderBottomColor:'gray',
+      borderBottomColor:'grey',
       borderBottomWidth:1,
       paddingHorizontal:2,
     },
