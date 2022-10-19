@@ -8,18 +8,43 @@ import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 // import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
-import DropDown from '../components/dropdown'
+import DropDown from '../components/dropdown';
+import RedPart2 from '../components/secureTopParts';
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
+import { auth } from './config/firebase';
 import {addDoc, collection,doc, deleteDoc,getDocs,query,where} from 'firebase/firestore';
+import Comments from './Comments';
 
 
-
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
 
   const [flags,setFlags]= React.useState([]);
+  const[users,setUsers]= React.useState('');
+  const [address,setAddress] =React.useState('')
 
-  const flagRef =collection(db,"flags");
+  const flagRef =collection(db,"flag");
+
+  var user= auth.currentUser;
+  console.log(user);
+  
+
+ 
+
+  const addButton = async()=>{
+    if (user == null) {
+      
+      alert('not logged in')
+      navigation.push('Login');
+    }else{
+      alert('logged in')
+      navigation.push('AddScammer');
+     
+    }
+  }
+
+
+
 
   const getItems = async()=>{
       
@@ -29,6 +54,30 @@ export default function HomeScreen() {
      setFlags(data.docs.map((doc)=>({...doc.data(), id: doc.id})))
     
     }
+
+    
+    const search = async() =>{
+
+        flags.map(flag=>((
+
+          // console.log(address)
+
+          address == flag.address ?(
+            navigation.push('Comments',{})
+          ):(
+            navigation.push('NotFound')
+          )
+          
+          // console.log(address)
+          // address == flag.address ?(
+          //   navigation.push('Comments',{flag:flag})
+          // ):(
+          //   navigation.push('Home')
+          // )
+       
+        
+      )))}
+   
 
     React.useEffect(()=>{
       console.log("some")
@@ -40,8 +89,12 @@ export default function HomeScreen() {
   
   return (
     <SafeAreaView style={styles.container}>
-
-      <RedPart />
+      {
+        user != null ? (<RedPart2 />):(<RedPart />)
+      } 
+      
+      
+      
       <View style={styles.boxes}>
         
           <View style={styles.selectView}>
@@ -49,8 +102,8 @@ export default function HomeScreen() {
             
           </View>
    
-          <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-          <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
+          <TextInput style={styles.inputBox} placeholder='Enter Address...' onChangeText={address=>setAddress(address)}></TextInput>
+          <TouchableOpacity onPress={search}><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
       </View>
       
 
@@ -59,7 +112,7 @@ export default function HomeScreen() {
                   
                flags.map(flag=>((
         
-                  <View style={styles.cardsContainer} key={'flag.id'}>
+                  <View style={styles.cardsContainer} key={flag.id}>
                     <View style={styles.card}>
                         <View style={styles.dateContainerBorder}>
                           <View style={styles.dateContainer}>
@@ -71,7 +124,7 @@ export default function HomeScreen() {
                         </View>
                         <View style={styles.userContainerRightBorder}>
                           <View style={styles.userContainer}>
-                            <Text style={styles.username1}>{flag.email}</Text>
+                            <Text style={styles.username1}>{flag.address}</Text>
                             <View style={styles.comments}>
                               <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
                               <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
@@ -90,7 +143,7 @@ export default function HomeScreen() {
 
                   
       
-      <TouchableOpacity style={styles.buttonContainer}>
+      <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
           <Text style={styles.button}>+</Text>
         </TouchableOpacity>
       <View style={styles.bottomContainer}>

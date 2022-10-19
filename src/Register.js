@@ -1,6 +1,6 @@
 import { View, Text,StyleSheet, Image, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react';
-import {createUserWithEmailAndPassword, updateProfile,} from 'firebase/auth';
+import {createUserWithEmailAndPassword, updateProfile,UserProfile} from 'firebase/auth';
 import { auth } from './config/firebase';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import image1 from "../assets/bg.png"

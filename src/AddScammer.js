@@ -1,12 +1,13 @@
 import { SafeAreaView, StyleSheet, Text, View,TextInput,TouchableOpacity } from 'react-native'
 import React from 'react'
-import RedPart from '../components/topPart'
+import RedPart from '../components/topPart';
+import RedPart2 from '../components/secureTopParts';
 import Icon  from 'react-native-vector-icons/FontAwesome'
 
 const AddScammer = () => {
   return (
     <SafeAreaView style={styles.container}>
-        <RedPart/>
+        <RedPart2/>
         <View style={styles.midContainer}>
             <View style={styles.text}>
                 <Text style={styles.txt}>ADD A SCAMMER</Text>
