@@ -12,6 +12,8 @@ import { ScrollView } from 'react-native-web';
 
 
 export default function HomeScreen() {
+
+  
   return (
     <SafeAreaView style={styles.container}>
 
