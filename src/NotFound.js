@@ -14,6 +14,7 @@ export default function NotFound() {
 
       <RedPart />
       <View style={styles.midContainer}>
+        <View style={styles.cardContainer}>
             <View style={styles.card}>
                     <View style={styles.userContainer}>
                           <View style={styles.userContainerBorder}>
@@ -26,6 +27,7 @@ export default function NotFound() {
                     </View>
                     
             </View>
+      </View>
             <Text style={styles.notFoundText}>Not Found</Text>
             <View style={styles.bgImageContainer}>
                     <ImageBackground source={image1} style={styles.bgImage} />
@@ -65,12 +67,15 @@ const styles = StyleSheet.create({
   midContainer:{
     flex:12,
   },
+  cardContainer:{
+    width:'90%',
+  },
   card:{
     display:'flex',
     flexDirection:'row',
     height:60,
-    width:'90%',
-    marginLeft:20,
+    width:'95%',
+    marginLeft:30,
     marginTop:20,
     boxShadow:'#ababab 0px 6px 9px -3px;',
   },
