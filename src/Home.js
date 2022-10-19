@@ -14,6 +14,7 @@ import { db } from './config/firebase';
 import { auth } from './config/firebase';
 import {addDoc, collection,doc, deleteDoc,getDocs,query,where} from 'firebase/firestore';
 import Comments from './Comments';
+import DropdownPicker from '../components/dropdownpicker';
 
 
 export default function HomeScreen({navigation}) {
