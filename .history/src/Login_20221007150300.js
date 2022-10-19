@@ -4,15 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import react from 'react';
 import { auth } from './config/firebase';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import image1 from "../assets/bg.png";
-import image2 from '../assets/google.png';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import Icon from 'react-native-vector-icons/FontAwesome'
+import image1 from "../assets/bg.png"
+import image2 from '../assets/google.png'
 
 export default function Login({navigation}){
   const [email,setEmail]=react.useState('');
   const [password,setPass]=react.useState('');
-  
 
   const login = (()=>{
 
@@ -45,7 +43,7 @@ export default function Login({navigation}){
        <TextInput
           placeholder='Email'
           style={styles.input}
-          onChangeText={(email)=>setEmail(email)}
+          onChange={(e)=>setEmail(e.target)}
         />
        </View>
 
@@ -59,7 +57,7 @@ export default function Login({navigation}){
        <TextInput
           placeholder='Password'
           style={styles.input}
-          onChangeText={(pass)=>setPass(pass)}
+          onChange={(e)=>setPass(e.target)}
         />
        </View>    
       </View>
@@ -70,7 +68,7 @@ export default function Login({navigation}){
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.for}
-          onPress={() => navigation.push('Register')}
+          onPress={() => navigation.('Register')}
           >
             <Text style={styles.textForget}>Don't have an account click here</Text>
           </TouchableOpacity>
