@@ -2,7 +2,7 @@ import { SafeAreaView, StyleSheet, Text, View,TextInput,TouchableOpacity } from 
 import React from 'react'
 import Top from '../components/secureTopParts'
 import Icon  from 'react-native-vector-icons/FontAwesome'
-import DropdownComponent from '../components/dropdownList';
+import DropdownPicker from '../components/dropdownpicker'
 
 
 const AddScammer = () => {
@@ -16,7 +16,7 @@ const AddScammer = () => {
             <View style={styles.hhh}>
 
             <View style={styles.selectView}>
-            <DropdownComponent/>
+            <DropdownPicker/>
           </View>
 
 
