@@ -1,5 +1,6 @@
 import { StyleSheet,SafeAreaView, Text, View, } from 'react-native';
-import { faEllipsisV} from '@fortawesome/free-solid-svg-icons';
+// import { faEllipsisV} from '@fortawesome/free-solid-svg-icons';
+import { faSignOut } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { Link } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-web';
@@ -19,7 +20,7 @@ export default function RedPart() {
               </TouchableOpacity>
             </View>
             <TouchableOpacity >
-                <FontAwesomeIcon icon={faEllipsisV} style={styles.menuDots}/>
+                <FontAwesomeIcon icon={faSignOut} style={styles.menuDots}/>
             </TouchableOpacity>       
         </View>     
         
