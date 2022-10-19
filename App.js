@@ -40,9 +40,9 @@ function App() {
                   <Stack.Screen name='AddScammer' options={{title:'AddScammer', headerShown:false}}>
                     {(props)=> <AddScammer {...props} />}
                   </Stack.Screen>
-                  {/* <Stack.Screen name='dropdownpicker' options={{title:'dropdownpicker', headerShown:false}}>
+                  <Stack.Screen name='dropdownpicker' options={{title:'dropdownpicker', headerShown:false}}>
                     {(props)=> <DropdownPicker {...props} />}
-                  </Stack.Screen> */}
+                  </Stack.Screen>
             </Stack.Navigator>
     </NavigationContainer>
   );

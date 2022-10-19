@@ -6,7 +6,9 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
-import DropdownComponent from '../components/dropdownList';
+// import DropdownComponent from '../components/dropdownList';
+import DropdownPicker from '../components/dropdownpicker';
+
 
 
 export default function HomeScreen() {
@@ -17,8 +19,8 @@ export default function HomeScreen() {
       <View style={styles.boxes}>
         
           <View style={styles.selectView}>
-          <DropdownComponent/>
-            
+          {/* <DropdownComponent/> */}
+            <DropdownPicker/>
           </View>
    
           <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
   boxes: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent:'space-evenly',
     width: '100%',
     
   },
