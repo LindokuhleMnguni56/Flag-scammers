@@ -24,15 +24,13 @@ export default function RedPart({ navigation }) {
                 <FontAwesomeIcon icon={faEllipsisV} style={styles.menuDots}/>
             </TouchableOpacity>
                   
-        </View>
-      
+        </View>     
         
     );
   }
   
   const styles = StyleSheet.create({
     topContainer:{
-      flex:1,
       display:'flex',
       flexDirection:'row',
       backgroundColor:'#D2373C',

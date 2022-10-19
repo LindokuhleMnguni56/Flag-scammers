@@ -7,11 +7,12 @@ import image1 from "../assets/bg.png"
 import image2 from '../assets/google.png'
 
 
-const Register = () => {
+const Register = ({navigation}) => {
     const [passSecured,setpassSecured]=React.useState(true);
     const [uid,setUid]=React.useState('');
     const [email,setEmail]=React.useState('');
     const [password,setPass]=React.useState('');
+    const [user,setUser]=React.useState('');
     const [confirmPassword,setConfirmedPassword]=React.useState('');
 
 
@@ -52,7 +53,7 @@ const Register = () => {
       <TextInput
         placeholder='Username'
         style={styles.input}
-        onChange={(e)=>setUid(e.target)}
+        onChangeText={(uid)=>setUid(uid)}
       />
       </View>
 
@@ -68,7 +69,7 @@ const Register = () => {
       <TextInput
         placeholder='Email'
         style={styles.input}
-        onChange={(e)=>setEmail(e.target)}
+        onChangeText={(email)=>setEmail(email)}
       />
       </View>
 
@@ -82,7 +83,7 @@ const Register = () => {
       <TextInput
           placeholder='Password'
           style={styles.input}
-          onChange={(e)=>setPass(e.target)}
+          onChangeText={(pass)=>setPass(pass)}
       />
       </View>
       <View style={styles.RegisterTxt}>
@@ -96,7 +97,7 @@ const Register = () => {
       <TextInput
         placeholder='Confirm Password'
         style={styles.input}
-        onChange={(e)=>setConfirmedPassword(e.target)}
+        onChangeText={(conf)=>setConfirmedPassword(conf)}
       />
       </View>
     </View>
@@ -250,7 +251,7 @@ button:{
     width:'100%',
     justifyContent:'center',
     alignItems:'center',
-    marginTop:'10%',
+    marginTop:'1%',
     paddingHorizontal:50,
     
   },

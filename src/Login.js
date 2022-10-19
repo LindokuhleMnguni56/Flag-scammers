@@ -4,13 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import react from 'react';
 import { auth } from './config/firebase';
-import Icon from 'react-native-vector-icons/FontAwesome'
-import image1 from "../assets/bg.png"
-import image2 from '../assets/google.png'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import image1 from "../assets/bg.png";
+import image2 from '../assets/google.png';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function Login({navigation}){
   const [email,setEmail]=react.useState('');
   const [password,setPass]=react.useState('');
+  
 
   const login = (()=>{
 
@@ -43,7 +45,7 @@ export default function Login({navigation}){
        <TextInput
           placeholder='Email'
           style={styles.input}
-          onChange={(e)=>setEmail(e.target)}
+          onChangeText={(email)=>setEmail(email)}
         />
        </View>
 
@@ -57,7 +59,7 @@ export default function Login({navigation}){
        <TextInput
           placeholder='Password'
           style={styles.input}
-          onChange={(e)=>setPass(e.target)}
+          onChangeText={(pass)=>setPass(pass)}
         />
        </View>    
       </View>
