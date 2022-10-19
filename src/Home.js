@@ -63,7 +63,7 @@ export default function HomeScreen({navigation}) {
           // console.log(address)
 
           address == flag.address ?(
-            navigation.push('Comments',{})
+            navigation.push('Comments')
           ):(
             navigation.push('NotFound')
           )
