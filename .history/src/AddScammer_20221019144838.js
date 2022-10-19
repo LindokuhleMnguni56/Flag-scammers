@@ -3,22 +3,24 @@ import React, { useState,useEffect } from 'react'
 import { db,auth } from './config/firebase';
 import {addDoc,collection} from 'firebase/firestore'
 import Top from '../components/secureTopParts'
-import Icon  from 'react-native-vector-icons/FontAwesome'
+import Icon  from 'react-native-vector-icons/FontAwesome';
+import {userAppContext} from 
 import DropdownPicker from '../components/dropdownpicker';
 
 
 const AddScammer = () => {
 
+    const [globalState, dispatch] = useAppContext();
     const [mail,setMail]=useState('');
     const [comment,setComment]=useState('')
     const itemRef =collection(db,"flag");
-    
+ 
 
     const user=auth.currentUser
 
     const addflag = async()=>{
         if (user!=null){
-            await addDoc(itemRef,{address:mail ,comment:comment ,userId:user.uid})
+            await addDoc(itemRef,{address:mail ,comment:comment ,userId:user.uid,type:globalState   })
         }
 
         alert('flag added')

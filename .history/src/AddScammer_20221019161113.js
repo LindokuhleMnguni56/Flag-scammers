@@ -36,7 +36,7 @@ const AddScammer = () => {
             <View style={styles.hhh}>
 
             <View style={styles.selectView}>
-            <DropdownPicker/>
+            <
           </View>
 
 

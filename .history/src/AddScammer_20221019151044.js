@@ -4,6 +4,7 @@ import { db,auth } from './config/firebase';
 import {addDoc,collection} from 'firebase/firestore'
 import Top from '../components/secureTopParts'
 import Icon  from 'react-native-vector-icons/FontAwesome'
+
 import DropdownPicker from '../components/dropdownpicker';
 
 
@@ -18,7 +19,7 @@ const AddScammer = () => {
 
     const addflag = async()=>{
         if (user!=null){
-            await addDoc(itemRef,{address:mail ,comment:comment ,userId:user.uid})
+            await addDoc(itemRef,{address:mail ,comment:comment ,userId:user.uid, type  })
         }
 
         alert('flag added')

@@ -4,14 +4,15 @@ import { db,auth } from './config/firebase';
 import {addDoc,collection} from 'firebase/firestore'
 import Top from '../components/secureTopParts'
 import Icon  from 'react-native-vector-icons/FontAwesome'
-import DropdownPicker from '../components/dropdownpicker';
+
+
 
 
 const AddScammer = () => {
 
     const [mail,setMail]=useState('');
     const [comment,setComment]=useState('')
-    const itemRef =collection(db,"flag");
+    const itemRef =collection(db,"flags");
     
 
     const user=auth.currentUser
@@ -36,7 +37,7 @@ const AddScammer = () => {
             <View style={styles.hhh}>
 
             <View style={styles.selectView}>
-            <DropdownPicker/>
+
           </View>
 
 

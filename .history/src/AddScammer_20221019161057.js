@@ -4,7 +4,7 @@ import { db,auth } from './config/firebase';
 import {addDoc,collection} from 'firebase/firestore'
 import Top from '../components/secureTopParts'
 import Icon  from 'react-native-vector-icons/FontAwesome'
-import DropdownPicker from '../components/dropdownpicker';
+import 
 
 
 const AddScammer = () => {
@@ -36,7 +36,7 @@ const AddScammer = () => {
             <View style={styles.hhh}>
 
             <View style={styles.selectView}>
-            <DropdownPicker/>
+       
           </View>
 
 
