@@ -7,9 +7,6 @@ import Register from './src/Register'
 import Login from './src/Login';
 import Pro  from './src/pro';
 import NotFound from './src/NotFound';
-import AddScammer from './src/AddScammer';
-import DropdownComponent from './components/dropdownList';
-import DropdownPicker from './components/dropdownpicker';
 
 
 
@@ -18,7 +15,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-            <Stack.Navigator initialRouteName='Home'>
+            <Stack.Navigator initialRouteName='NotFound'>
             <Stack.Screen name='Register' options={{title:'Register', headerShown:false}}>
                     {(props)=> <Register {...props} />}
                   </Stack.Screen>
@@ -36,12 +33,6 @@ function App() {
                   </Stack.Screen>
                   <Stack.Screen name='NotFound' options={{title:'NotFound', headerShown:false}}>
                     {(props)=> <NotFound {...props} />}
-                  </Stack.Screen>
-                  <Stack.Screen name='AddScammer' options={{title:'AddScammer', headerShown:false}}>
-                    {(props)=> <AddScammer {...props} />}
-                  </Stack.Screen>
-                  <Stack.Screen name='dropdownpicker' options={{title:'dropdownpicker', headerShown:false}}>
-                    {(props)=> <DropdownPicker {...props} />}
                   </Stack.Screen>
             </Stack.Navigator>
     </NavigationContainer>

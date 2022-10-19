@@ -7,12 +7,11 @@ import image1 from "../assets/bg.png"
 import image2 from '../assets/google.png'
 
 
-const Register = ({navigation}) => {
+const Register = () => {
     const [passSecured,setpassSecured]=React.useState(true);
     const [uid,setUid]=React.useState('');
     const [email,setEmail]=React.useState('');
     const [password,setPass]=React.useState('');
-    const [user,setUser]=React.useState('');
     const [confirmPassword,setConfirmedPassword]=React.useState('');
 
 
@@ -53,7 +52,7 @@ const Register = ({navigation}) => {
       <TextInput
         placeholder='Username'
         style={styles.input}
-        onChangeText={(uid)=>setUid(uid)}
+        onChange={(e)=>setUid(e.target)}
       />
       </View>
 
@@ -69,7 +68,7 @@ const Register = ({navigation}) => {
       <TextInput
         placeholder='Email'
         style={styles.input}
-        onChangeText={(email)=>setEmail(email)}
+        onChange={(e)=>setEmail(e.target)}
       />
       </View>
 
@@ -83,7 +82,7 @@ const Register = ({navigation}) => {
       <TextInput
           placeholder='Password'
           style={styles.input}
-          onChangeText={(pass)=>setPass(pass)}
+          onChange={(e)=>setPass(e.target)}
       />
       </View>
       <View style={styles.RegisterTxt}>
@@ -97,7 +96,7 @@ const Register = ({navigation}) => {
       <TextInput
         placeholder='Confirm Password'
         style={styles.input}
-        onChangeText={(conf)=>setConfirmedPassword(conf)}
+        onChange={(e)=>setConfirmedPassword(e.target)}
       />
       </View>
     </View>
@@ -106,7 +105,7 @@ const Register = ({navigation}) => {
     
     <View style={styles.forget}>
         <TouchableOpacity style={styles.account}
-        onPress={() => navigation.push('Login')}
+        onPress={() => navigation.navigate('Login')}
         >
           <Text style={styles.txtAccount}>Have an account click here</Text>
         </TouchableOpacity>
@@ -251,7 +250,7 @@ button:{
     width:'100%',
     justifyContent:'center',
     alignItems:'center',
-    marginTop:'1%',
+    marginTop:'10%',
     paddingHorizontal:50,
     
   },

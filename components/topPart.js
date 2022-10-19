@@ -1,29 +1,26 @@
 import { StyleSheet,SafeAreaView, Text, View, } from 'react-native';
 import { faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-
+import { Link } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-web';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
-export default function RedPart({ navigation }) {
+export default function RedPart() {
     return (
 
         <View style={styles.topContainer} >
             <View style={styles.btnBackground}>
               <TouchableOpacity>
-                <Text style={styles.usernameTXT1}>Login</Text>
+                <Text style={styles.usernameTXT1}><Link to={'/Login'}>Login</Link></Text>
               </TouchableOpacity>
-              <TouchableOpacity
-               title="register"
-               onPress={() => navigation.push('register')}>
-                <Text style={styles.usernameTXT}>Register</Text>
+              <TouchableOpacity>
+                <Text style={styles.usernameTXT}><Link to={'/Register'}>Register</Link></Text>
               </TouchableOpacity>
             </View>
             <TouchableOpacity >
                 <FontAwesomeIcon icon={faEllipsisV} style={styles.menuDots}/>
-            </TouchableOpacity>
-                  
+            </TouchableOpacity>       
         </View>     
         
     );

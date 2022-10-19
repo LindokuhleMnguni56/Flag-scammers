@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import profileImg from '../assets/pic.png'
+import { TouchableOpacity } from 'react-native-web';
 
 export default function Comments(){
     return(
@@ -30,16 +31,16 @@ export default function Comments(){
             <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
                 
                 <View style={styles.textBox} >
-                        <View style={styles.userIconBg}>
+                        <TouchableOpacity style={styles.userIconBg}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
-                        </View>
+                        </TouchableOpacity>
                         
                         <TextInput style={styles.addComment} placeholder='Add a comment....'></TextInput>
                 </View>
                 <View style={styles.commentsBox}>
-                        <View style={styles.userIconBackground}>
+                        <TouchableOpacity style={styles.userIconBackground}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
-                        </View>
+                        </TouchableOpacity>
                         <Text style={styles.userComments}>
                                 I got scammed twice with this email the scammer asked for my ID number and proof of residence
                                 and also R250 fee I only realized after I paid that I just gave away 
@@ -163,7 +164,7 @@ const styles = StyleSheet.create({
         paddingLeft:6,
     },
     addComment:{
-        marginLeft:20,
+        marginLeft:15,
         paddingLeft:5,
         height:25,
         width:'100%',

@@ -73,7 +73,6 @@
     },
     label: {
       position: 'absolute',
-      backgroundColor: '#EDEDED', 
       zIndex: 999,
     },
     placeholderStyle: {
