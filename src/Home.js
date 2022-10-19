@@ -1,6 +1,7 @@
 
-import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity,ScrollView } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import React from 'react';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
@@ -8,10 +9,33 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 // import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import DropDown from '../components/dropdown'
-import { ScrollView } from 'react-native-web';
+// import { ScrollView } from 'react-native-web';
+import { db } from './config/firebase';
+import {addDoc, collection,doc, deleteDoc,getDocs,query,where} from 'firebase/firestore';
+
 
 
 export default function HomeScreen() {
+
+  const [flags,setFlags]= React.useState([]);
+
+  const flagRef =collection(db,"flags");
+
+  const getItems = async()=>{
+      
+    console.log(flagRef);
+  
+    let data = await getDocs(flagRef);
+     setFlags(data.docs.map((doc)=>({...doc.data(), id: doc.id})))
+    
+    }
+
+    React.useEffect(()=>{
+      console.log("some")
+      getItems();
+      console.log(getItems());
+      
+     }, [])
 
   
   return (
@@ -28,35 +52,44 @@ export default function HomeScreen() {
           <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
           <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
       </View>
-      <ScrollView style={styles.midContainer}>
-        
-        <View style={styles.cardsContainer}>
-          <View style={styles.card}>
-              <View style={styles.dateContainerBorder}>
-                <View style={styles.dateContainer}>
-                  <Text style={styles.day}>22</Text>
-                  <Text style={styles.month}>Aug</Text>
-                  <Text style={styles.year}>2022</Text>
-                </View>
+      
 
-              </View>
-              <View style={styles.userContainerRightBorder}>
-                <View style={styles.userContainer}>
-                  <Text style={styles.username1}>lindokuhle@gmail.com</Text>
-                  <View style={styles.comments}>
-                    <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                    <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity style={styles.upvoteBtn}>
-                <Text style={styles.upvoteTXT}>UPVOTE</Text>
-              </TouchableOpacity>
-          </View>
-          
-        </View>
+            <ScrollView style={styles.midContainer}>
+            {
+                  
+               flags.map(flag=>((
         
-      </ScrollView>
+                  <View style={styles.cardsContainer} key={'flag.id'}>
+                    <View style={styles.card}>
+                        <View style={styles.dateContainerBorder}>
+                          <View style={styles.dateContainer}>
+                            <Text style={styles.day}>22</Text>
+                            <Text style={styles.month}>Aug</Text>
+                            <Text style={styles.year}>2022</Text>
+                          </View>
+
+                        </View>
+                        <View style={styles.userContainerRightBorder}>
+                          <View style={styles.userContainer}>
+                            <Text style={styles.username1}>{flag.email}</Text>
+                            <View style={styles.comments}>
+                              <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                              <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                            </View>
+                          </View>
+                        </View>
+                        <TouchableOpacity style={styles.upvoteBtn}>
+                          <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
+                  </View>
+                 )))} 
+                  
+              </ScrollView> 
+
+                  
+      
       <TouchableOpacity style={styles.buttonContainer}>
           <Text style={styles.button}>+</Text>
         </TouchableOpacity>
