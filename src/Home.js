@@ -1,21 +1,100 @@
 
 import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity,ScrollView } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import React from 'react';
+
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
-// import RedPart2 from '../components/secureTopParts';
-// import DropdownComponent from '../components/dropdownList';
+import DropdownComponent from '../components/dropdownList';
+import RedPart2 from '../components/secureTopParts';
+// import { ScrollView } from 'react-native-web';
+import { db } from './config/firebase';
+import { auth } from './config/firebase';
+import {addDoc, collection,doc, deleteDoc,getDocs,query,where} from 'firebase/firestore';
+import Comments from './Comments';
 import DropdownPicker from '../components/dropdownpicker';
 
 
+export default function HomeScreen({navigation}) {
 
-export default function HomeScreen() {
+  const [flags,setFlags]= React.useState([]);
+  const[users,setUsers]= React.useState('');
+  const [address,setAddress] =React.useState('')
+
+  const flagRef =collection(db,"flag");
+
+  var user= auth.currentUser;
+  console.log(user);
+  
+
+ 
+
+  const addButton = async()=>{
+    if (user == null) {
+      
+      alert('not logged in')
+      navigation.push('Login');
+    }else{
+      alert('logged in')
+      navigation.push('AddScammer');
+     
+    }
+  }
+
+
+
+
+  const getItems = async()=>{
+      
+    console.log(flagRef);
+  
+    let data = await getDocs(flagRef);
+     setFlags(data.docs.map((doc)=>({...doc.data(), id: doc.id})))
+    
+    }
+
+    
+    const search = async() =>{
+
+        flags.map(flag=>((
+
+          // console.log(address)
+
+          address == flag.address ?(
+            navigation.push('Comments')
+          ):(
+            navigation.push('NotFound')
+          )
+          
+          // console.log(address)
+          // address == flag.address ?(
+          //   navigation.push('Comments',{flag:flag})
+          // ):(
+          //   navigation.push('Home')
+          // )
+       
+        
+      )))}
+   
+
+    React.useEffect(()=>{
+      console.log("some")
+      getItems();
+      console.log(getItems());
+      
+     }, [])
+
+  
   return (
     <SafeAreaView style={styles.container}>
-
-      <RedPart />
+      {
+        user != null ? (<RedPart2 />):(<RedPart />)
+      } 
+      
+      
+      
       <View style={styles.boxes}>
         
           <View style={styles.selectView}>
@@ -23,40 +102,48 @@ export default function HomeScreen() {
             <DropdownPicker/>
           </View>
    
-          <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-          <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
+          <TextInput style={styles.inputBox} placeholder='Enter Address...' onChangeText={address=>setAddress(address)}></TextInput>
+          <TouchableOpacity onPress={search}><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
       </View>
       
-      <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
-        
-        <View style={styles.cardsContainer}>
-          <View style={styles.card}>
-              <View style={styles.dateContainerBorder}>
-                <View style={styles.dateContainer}>
-                  <Text style={styles.day}>22</Text>
-                  <Text style={styles.month}>Aug</Text>
-                  <Text style={styles.year}>2022</Text>
-                </View>
 
-              </View>
-              <View style={styles.userContainerRightBorder}>
-                <View style={styles.userContainer}>
-                  <Text style={styles.username1}>lindokuhle@gmail.com</Text>
-                  <View style={styles.comments}>
-                    <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                    <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity style={styles.upvoteBtn}>
-                <Text style={styles.upvoteTXT}>UPVOTE</Text>
-              </TouchableOpacity>
-          </View>
-          
-        </View>
+            <ScrollView style={styles.midContainer}>
+            {
+                  
+               flags.map(flag=>((
         
-      </ScrollView>
-      <TouchableOpacity style={styles.buttonContainer}>
+                  <View style={styles.cardsContainer} key={flag.id}>
+                    <View style={styles.card}>
+                        <View style={styles.dateContainerBorder}>
+                          <View style={styles.dateContainer}>
+                            <Text style={styles.day}>22</Text>
+                            <Text style={styles.month}>Aug</Text>
+                            <Text style={styles.year}>2022</Text>
+                          </View>
+
+                        </View>
+                        <View style={styles.userContainerRightBorder}>
+                          <View style={styles.userContainer}>
+                            <Text style={styles.username1}>{flag.address}</Text>
+                            <View style={styles.comments}>
+                              <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                              <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                            </View>
+                          </View>
+                        </View>
+                        <TouchableOpacity style={styles.upvoteBtn}>
+                          <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
+                  </View>
+                 )))} 
+                  
+              </ScrollView> 
+
+                  
+      
+      <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
           <Text style={styles.button}>+</Text>
         </TouchableOpacity>
       <View style={styles.bottomContainer}>

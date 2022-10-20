@@ -1,31 +1,41 @@
-import { StyleSheet, SafeAreaView, Text, View, } from 'react-native';
+import { StyleSheet, SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
 // import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { faSignOut } from '@fortawesome/free-solid-svg-icons';
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import picture from '../assets/pic.png';
+import { auth } from '../src/config/firebase';
+import { Link } from '@react-navigation/native';
 
 
-import { TouchableOpacity } from 'react-native-web';
 
 export default function RedPart2() {
+
+    const signOut = async()=>{
+        auth
+        .signOut()
+        .then(() => console.log('User signed out!'));
+    }
+
+    const user = auth.currentUser;
+
+    console.log(user.displayName)
+   
+
     return (
         <View style={styles.topContainer} >
-            <View>
-                <View style={styles.wrapper} >
 
-                </View>
-                <View style={styles.userContainerBorder}>
-
-                    <Text style={styles.username}>example@gmail.com</Text>
-                </View>
-
+            <View style={styles.userContainer}>
+            <TouchableOpacity><FontAwesomeIcon icon={faChevronLeft} style={{width:20,height:20,color:'white'}} /></TouchableOpacity>
+                <TouchableOpacity><FontAwesomeIcon icon={faUser} style={{backgroundColor:'black',width:20,height:20,borderRadius:50,color:'white', marginLeft:5}} /></TouchableOpacity>
+                <Text style={styles.username}>{user.displayName}</Text>
             </View>
 
-            <View style={styles.menuDots}>
-                <TouchableOpacity >
+            <TouchableOpacity onPress={signOut}>
                     <FontAwesomeIcon style={styles.signout} icon={faSignOut} />
-                </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
+            
 
         </View>
 
@@ -34,42 +44,31 @@ export default function RedPart2() {
 
 const styles = StyleSheet.create({
     topContainer: {
-        display: 'flex',
-
+        flexDirection:'row',
         backgroundColor: '#D2373C',
         height: '50px',
         width: '100%',
-        // paddingTop: 15,
-
+        justifyContent:'space-between',
+        paddingTop:15,
+        paddingHorizontal:20
 
     },
     signout: {
-        paddingLeft: '90%',
         color: 'white',
-       
-       
     },
 
-    userContainerBorder: {
-
-        paddingLeft: '50px'
+    userContainer: {
+        flexDirection:'row'
+      
     },
 
     username: {
         color: 'white',
+        paddingLeft:5,
     },
 
-    wrapper: {
-        marginLeft: '12px',
-        height: 17,
-        width: 17,
-         top:'50%',
-        backgroundColor: 'green',
-        borderRadius: '50px'
-    },
+   
 
-    menuDots:{
-        bottom:'30%'
-    }
+    
 
 });

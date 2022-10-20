@@ -17,7 +17,7 @@ export default function Login({navigation}){
   const login = (()=>{
 
     signInWithEmailAndPassword(auth, email, password).then(()=>{
-      navigation.push('Home');
+      navigation.push('Home',);
     }).catch((err)=>{
 
         console.log(err);

@@ -1,6 +1,7 @@
 import { SafeAreaView, StyleSheet, Text, View,TextInput,TouchableOpacity } from 'react-native'
 import React from 'react'
-import Top from '../components/secureTopParts'
+import Top from '../components/secureTopParts';
+import RedPart2 from '../components/secureTopParts';
 import Icon  from 'react-native-vector-icons/FontAwesome'
 import DropdownPicker from '../components/dropdownpicker'
 
@@ -8,7 +9,7 @@ import DropdownPicker from '../components/dropdownpicker'
 const AddScammer = () => {
   return (
     <SafeAreaView style={styles.container}>
-        <Top/>
+        <RedPart2/>
         <View style={styles.midContainer}>
             <View style={styles.text}>
                 <Text style={styles.txt}>ADD A SCAMMER</Text>

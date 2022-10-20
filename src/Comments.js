@@ -3,13 +3,22 @@ import RedPart from '../components/topPart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { auth } from './config/firebase';
+import RedPart2 from '../components/secureTopParts';
 import profileImg from '../assets/pic.png'
 import { TouchableOpacity } from 'react-native-web';
 
-export default function Comments(){
+export default function Comments({flag}){
+
+    const user = auth.currentUser;
+
+    console.log(flag);
+
     return(
         <SafeAreaView style={styles.container}>
-            <RedPart />
+            {
+                user != null ? (<RedPart2 />):(<RedPart />)
+            } 
             <View style={styles.card}>
                     <View style={styles.dateContainer}>
                         <View style={styles.dateContainerBorder}>
@@ -70,9 +79,9 @@ const styles = StyleSheet.create({
         width:'100%',
         marginTop:20,
         backgroundColor:'white',
-        marginBottom:-60,
-        borderBottomLeftRadius:60,
-        borderBottomRightRadius:60,
+        marginBottom:-40,
+        borderBottomLeftRadius:40,
+        borderBottomRightRadius:40,
         zIndex:2000,
       },
     bottomContainer:{
