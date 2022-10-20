@@ -84,6 +84,7 @@ const Register = ({navigation}) => {
           placeholder='Password'
           style={styles.input}
           onChangeText={(pass)=>setPass(pass)}
+          secureTextEntry
       />
       </View>
       <View style={styles.RegisterTxt}>
@@ -98,6 +99,7 @@ const Register = ({navigation}) => {
         placeholder='Confirm Password'
         style={styles.input}
         onChangeText={(conf)=>setConfirmedPassword(conf)}
+        selectTextOnFocus
       />
       </View>
     </View>
@@ -223,8 +225,8 @@ const styles = StyleSheet.create({
     width:'100%',
     justifyContent:'center',
     alignItems:'center',
-  
-    paddingHorizontal:50
+    paddingHorizontal:50,
+    marginTop:'20px'
 
 },
 
