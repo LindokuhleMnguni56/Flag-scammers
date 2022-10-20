@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
       },
     bottomContainer:{
         backgroundColor:'#000000',
-        height:'15%',
+        height:'17%',
         width:'100%',
     },
 
@@ -90,7 +90,6 @@ const styles = StyleSheet.create({
     flexDirection:'row',
     height:60,
     width:'92%',
-    
     marginTop:20,
     boxShadow:'#ababab 0px 6px 9px -3px;',
     },

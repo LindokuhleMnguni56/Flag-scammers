@@ -10,6 +10,7 @@ import NotFound from './src/NotFound';
 import AddScammer from './src/AddScammer';
 import DropdownComponent from './components/dropdownList';
 import DropdownPicker from './components/dropdownpicker';
+import RedPart2 from './components/secureTopParts';
 
 
 
@@ -40,8 +41,8 @@ function App() {
                   <Stack.Screen name='AddScammer' options={{title:'AddScammer', headerShown:false}}>
                     {(props)=> <AddScammer {...props} />}
                   </Stack.Screen>
-                  <Stack.Screen name='dropdownpicker' options={{title:'dropdownpicker', headerShown:false}}>
-                    {(props)=> <DropdownPicker {...props} />}
+                  <Stack.Screen name='secureTopParts' options={{title:'secureTopParts', headerShown:false}}>
+                    {(props)=> <RedPart2 {...props} />}
                   </Stack.Screen>
             </Stack.Navigator>
     </NavigationContainer>

@@ -1,6 +1,6 @@
 import { StyleSheet,SafeAreaView, Text, View, } from 'react-native';
 // import { faEllipsisV} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { Link } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-web';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';

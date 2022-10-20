@@ -208,6 +208,7 @@ const styles = StyleSheet.create({
     height: '500px',
     width: '100%',
     marginTop: 20,
+    
   },
   boxes: {
     display: 'flex',
@@ -273,6 +274,8 @@ const styles = StyleSheet.create({
     width: '92%',
     marginLeft: 15,
     boxShadow: '#ababab 0px 6px 9px -3px;',
+    borderRadius:10
+
   },
   buttonContainer: {
     backgroundColor: '#D2373C',
@@ -280,9 +283,9 @@ const styles = StyleSheet.create({
     height: '50px',
     paddingLeft: 16,
     borderRadius: 50,
-    marginTop: 20,
     marginRight: 15,
     alignSelf: 'flex-end',
+   
   },
   button: {
     color: '#EDEDED',
