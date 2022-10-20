@@ -147,7 +147,7 @@ export default function HomeScreen({navigation}) {
           <Text style={styles.button}>+</Text>
         </TouchableOpacity>
       <View style={styles.bottomContainer}>
-      {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> */}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>
 
     </SafeAreaView>
@@ -165,11 +165,7 @@ const styles = StyleSheet.create({
     height: '500px',
     width: '100%',
     marginTop: 20,
-    backgroundColor:'white',
-    marginBottom:-110,
-    borderBottomLeftRadius:40,
-    borderBottomRightRadius:40,
-    zIndex:2000,
+    
   },
   boxes: {
     display: 'flex',
@@ -225,7 +221,7 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     backgroundColor: '#000000',
-    height: '17%',
+    height: '15%',
     width: '100%',
   },
   card: {
@@ -235,6 +231,8 @@ const styles = StyleSheet.create({
     width: '92%',
     marginLeft: 15,
     boxShadow: '#ababab 0px 6px 9px -3px;',
+    borderRadius:10
+
   },
   buttonContainer: {
     backgroundColor: '#D2373C',
@@ -242,10 +240,9 @@ const styles = StyleSheet.create({
     height: '50px',
     paddingLeft: 16,
     borderRadius: 50,
-    marginTop: 20,
     marginRight: 15,
     alignSelf: 'flex-end',
-    zIndex:2000,
+   
   },
   button: {
     color: '#EDEDED',
