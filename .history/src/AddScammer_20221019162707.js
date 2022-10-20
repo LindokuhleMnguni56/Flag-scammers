@@ -1,39 +1,22 @@
 import { SafeAreaView, StyleSheet, Text, View,TextInput,TouchableOpacity } from 'react-native'
-import React, { useState,useEffect } from 'react'
-import { db,auth } from './config/firebase';
-import {addDoc,collection} from 'firebase/firestore'
-import Top from '../components/secureTopParts';
-import RedPart2 from '../components/secureTopParts';
+import React from 'react'
+import Top from '../components/secureTopParts'
 import Icon  from 'react-native-vector-icons/FontAwesome'
-import { Picker } from 'react-native-web'
-
+import DropdownPicker from '../components/dropdownpicker'
 
 
 const AddScammer = () => {
-    const moment = require('moment')
-    const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
-    const timestamp =time.format("YYYY-MM-DD HH:mm:ss")
 
     const [mail,setMail]=useState('');
-    const [comment,setComment]=useState('');    
-
+    const [comment,setComment]=useState('')
     const itemRef =collection(db,"flag");
-    const commentRef = collection(db,"comments"); 
+    
+
     const user=auth.currentUser
 
-    const [selectedAddress, setSelectedAddress] = useState('');
-    const [addresses] = useState([
-        'Email Address',
-        'Physical Address'
-    ]
-    );
     const addflag = async()=>{
         if (user!=null){
-            //add to flag
-            const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp,comment:{[uid]:comment  }})
-            console.log("New Flag  ID: ", docRef.comment.uid);
-            //add to comments
- 
+            await addDoc(itemRef,{address:mail ,comment:comment ,userId:user.uid})
         }
 
         alert('flag added')
@@ -51,22 +34,7 @@ const AddScammer = () => {
             <View style={styles.hhh}>
 
             <View style={styles.selectView}>
-            {/* <DropdownPicker /> */}
-            <Picker
-            style={[styles.dropdownPick, {marginTop: '25px',marginVertical:10,backgroundColor:''}]}
-            selectedValue = {selectedAddress}
-            onValueChange = {( itemVal) => {
-                setSelectedAddress(itemVal); 
-                console.log({selectedAddress});
-                
-            }}
-            >
-            {
-                addresses.map((a) => (
-                    <Picker.Item label={a} value={a} key={a} />
-                ))
-            }
-        </Picker>
+            <DropdownPicker/>
           </View>
 
 

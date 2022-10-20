@@ -19,9 +19,9 @@ const AddScammer = () => {
 
     const itemRef =collection(db,"flag");
     const commentRef = collection(db,"comments"); 
-    const user=auth.currentUser
 
     const [selectedAddress, setSelectedAddress] = useState('');
+ 
     const [addresses] = useState([
         'Email Address',
         'Physical Address'
@@ -30,10 +30,10 @@ const AddScammer = () => {
     const addflag = async()=>{
         if (user!=null){
             //add to flag
-            const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp,comment:{[uid]:comment  }})
-            console.log("New Flag  ID: ", docRef.comment.uid);
+            const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp})
+            console.log("New Flag  ID: ", docRef.id);
             //add to comments
- 
+            await addDoc(commentRef,{comment:comment ,userId:user.uid,address:mail, flagId:docRef.id})
         }
 
         alert('flag added')
@@ -43,7 +43,7 @@ const AddScammer = () => {
     
   return (
     <SafeAreaView style={styles.container}>
-        <RedPart2/>
+        {/* <RedPart2/> */}
         <View style={styles.midContainer}>
             <View style={styles.text}>
                 <Text style={styles.txt}>ADD A SCAMMER</Text>

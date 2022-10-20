@@ -5,35 +5,33 @@ import {addDoc,collection} from 'firebase/firestore'
 import Top from '../components/secureTopParts';
 import RedPart2 from '../components/secureTopParts';
 import Icon  from 'react-native-vector-icons/FontAwesome'
+import DropdownPicker from '../components/dropdownpicker'
+// import {Picker} from '@react-native-picker/picker';
 import { Picker } from 'react-native-web'
 
 
-
 const AddScammer = () => {
-    const moment = require('moment')
-    const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
-    const timestamp =time.format("YYYY-MM-DD HH:mm:ss")
 
     const [mail,setMail]=useState('');
-    const [comment,setComment]=useState('');    
+    const [comment,setComment]=useState('');
+   
 
     const itemRef =collection(db,"flag");
-    const commentRef = collection(db,"comments"); 
-    const user=auth.currentUser
-
+    const commentRef = collection(db,"comments");
+    
     const [selectedAddress, setSelectedAddress] = useState('');
     const [addresses] = useState([
         'Email Address',
         'Physical Address'
-    ]
+    ].sort()
     );
+
+    const user=auth.currentUser
+
     const addflag = async()=>{
         if (user!=null){
-            //add to flag
-            const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp,comment:{[uid]:comment  }})
-            console.log("New Flag  ID: ", docRef.comment.uid);
-            //add to comments
- 
+            await addDoc(itemRef,{address:mail ,userId:user.uid})
+            await addDoc(commentRef,{comment:comment ,userId:user.uid,})
         }
 
         alert('flag added')
@@ -43,7 +41,7 @@ const AddScammer = () => {
     
   return (
     <SafeAreaView style={styles.container}>
-        <RedPart2/>
+        {/* <RedPart2/> */}
         <View style={styles.midContainer}>
             <View style={styles.text}>
                 <Text style={styles.txt}>ADD A SCAMMER</Text>
@@ -53,7 +51,7 @@ const AddScammer = () => {
             <View style={styles.selectView}>
             {/* <DropdownPicker /> */}
             <Picker
-            style={[styles.dropdownPick, {marginTop: '25px',marginVertical:10,backgroundColor:''}]}
+            style={[styles.dropdownPick, {marginTop: '25px',marginVertical:10}]}
             selectedValue = {selectedAddress}
             onValueChange = {( itemVal) => {
                 setSelectedAddress(itemVal); 

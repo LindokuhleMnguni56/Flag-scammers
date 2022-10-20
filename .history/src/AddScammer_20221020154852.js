@@ -43,7 +43,7 @@ const AddScammer = () => {
     
   return (
     <SafeAreaView style={styles.container}>
-        <RedPart2/>
+        {/* <RedPart2/> */}
         <View style={styles.midContainer}>
             <View style={styles.text}>
                 <Text style={styles.txt}>ADD A SCAMMER</Text>

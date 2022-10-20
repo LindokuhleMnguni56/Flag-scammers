@@ -5,35 +5,49 @@ import {addDoc,collection} from 'firebase/firestore'
 import Top from '../components/secureTopParts';
 import RedPart2 from '../components/secureTopParts';
 import Icon  from 'react-native-vector-icons/FontAwesome'
+
+// import {Picker} from '@react-native-picker/picker';
 import { Picker } from 'react-native-web'
 
 
 
 const AddScammer = () => {
-    const moment = require('moment')
-    const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
-    const timestamp =time.format("YYYY-MM-DD HH:mm:ss")
 
     const [mail,setMail]=useState('');
-    const [comment,setComment]=useState('');    
-
+    const [comment,setComment]=useState('');
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+    
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+    
+    const formattedToday = dd + '/' + mm + '/' + yyyy;
+    const dateNow=form
     const itemRef =collection(db,"flag");
-    const commentRef = collection(db,"comments"); 
-    const user=auth.currentUser
+    const commentRef = collection(db,"comments");
+    const flagDate = new Date('');
+    const date1 = flagDate.getDate();
 
+        console.log(date1);
+    
     const [selectedAddress, setSelectedAddress] = useState('');
     const [addresses] = useState([
         'Email Address',
         'Physical Address'
     ]
     );
+
+    const user=auth.currentUser
+
     const addflag = async()=>{
         if (user!=null){
             //add to flag
-            const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp,comment:{[uid]:comment  }})
-            console.log("New Flag  ID: ", docRef.comment.uid);
+            const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress})
+            console.log("New Flag  ID: ", docRef.id);
             //add to comments
- 
+            await addDoc(commentRef,{comment:comment ,userId:user.uid,address:mail, flagId:docRef.id})
         }
 
         alert('flag added')
@@ -43,7 +57,7 @@ const AddScammer = () => {
     
   return (
     <SafeAreaView style={styles.container}>
-        <RedPart2/>
+        {/* <RedPart2/> */}
         <View style={styles.midContainer}>
             <View style={styles.text}>
                 <Text style={styles.txt}>ADD A SCAMMER</Text>
