@@ -226,8 +226,8 @@ const styles = StyleSheet.create({
     width:'100%',
     justifyContent:'center',
     alignItems:'center',
-  
-    paddingHorizontal:50
+    paddingHorizontal:50,
+    marginTop:'20px'
 
 },
 
