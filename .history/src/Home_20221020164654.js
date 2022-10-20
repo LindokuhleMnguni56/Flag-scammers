@@ -58,7 +58,7 @@ console.log(user);
   const querySnapshot = await getDocs(q)
   querySnapshot.forEach((doc) => {
     let commentCount = Object.keys(doc.data().comments).length
-      listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
+    listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
   });
 
 
@@ -67,8 +67,8 @@ console.log(user);
 
 
 
-     setFlags(data.docs.map((doc)=>(
-        {...doc.data(), id: doc.id}
+  setFlags(data.docs.map((doc) => (
+    { ...doc.data(), id: doc.id }
   )))
 
 
@@ -81,7 +81,7 @@ console.log(user);
 
 
 
-    const search = async() =>{
+const search = async () => {
 
   //   flags.map(flag=>((
 
@@ -107,12 +107,12 @@ console.log(user);
   // )))
   console.log(flags.length);
 
-      for (var i=0; i < getItems().length; i++){
+  for (var i = 0; i < getItems().length; i++) {
 
-          if(address == flags.address){
+    if (address == flags.address) {
       navigation.push('Comments')
       console.log('found')
-          }else{
+    } else {
       navigation.push('NotFound')
     }
   }
@@ -120,7 +120,7 @@ console.log(user);
 }
 
 
-    React.useEffect(()=>{
+React.useEffect(() => {
   console.log("some")
   getItems();
 
@@ -136,7 +136,7 @@ return (
 
       <View style={styles.selectView}>
         {/* <DropdownComponent/> */}
-            <DropdownPicker/>
+        <DropdownPicker />
       </View>
 
       <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
@@ -147,7 +147,7 @@ return (
     <ScrollView style={styles.midContainer}>
       {
 
-               flags.map(flag=>((
+        flags.map(flag => ((
 
           <View style={styles.cardsContainer} key={flag.id}>
             <View style={styles.card}>
@@ -174,42 +174,42 @@ return (
             </View>
 
           </View>
-                 )))} 
-                  
-              </ScrollView> 
+        )))}
 
-                  
-      
-      <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
-          <Text style={styles.button}>+</Text>
-        </TouchableOpacity>
-      <View style={styles.bottomContainer}>
+    </ScrollView>
+
+
+
+    <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
+      <Text style={styles.button}>+</Text>
+    </TouchableOpacity>
+    <View style={styles.bottomContainer}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
-      </View>
+    </View>
 
-    </SafeAreaView>
-  );
+  </SafeAreaView>
+);
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor:'white',
+    backgroundColor: 'white',
   },
   midContainer: {
     flex: 12,
     height: '500px',
     width: '100%',
     marginTop: 20,
-    
+
   },
   boxes: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent:'space-evenly',
+    justifyContent: 'space-evenly',
     width: '100%',
-    
+
   },
   inputBox: {
     height: 25,
@@ -219,10 +219,10 @@ const styles = StyleSheet.create({
     paddingLeft: '2%',
     backgroundColor: '#EDEDED',
     borderRadius: 4,
-    fontSize:12,
+    fontSize: 12,
     boxShadow: '#ababab 0px 6px 9px -3px;',
   },
- 
+
   searchIconBtn: {
     backgroundColor: '#D2373C',
     width: '30px',
@@ -244,17 +244,17 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRightWidth: 1,
     borderRightColor: 'black',
-    
+
   },
-  userContainerRightBorder:{
-    flex:3,
+  userContainerRightBorder: {
+    flex: 3,
   },
   userContainer: {
     height: 40,
-    width:180,
-    borderRightColor:'black',
-    paddingLeft:10,
-    marginTop:20,
+    width: 180,
+    borderRightColor: 'black',
+    paddingLeft: 10,
+    marginTop: 20,
   },
   bottomContainer: {
     backgroundColor: '#000000',
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
     width: '92%',
     marginLeft: 15,
     boxShadow: '#ababab 0px 6px 9px -3px;',
-    borderRadius:10
+    borderRadius: 10
 
   },
   buttonContainer: {
@@ -279,7 +279,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginRight: 15,
     alignSelf: 'flex-end',
-   
+
   },
   button: {
     color: '#EDEDED',
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
   day: {
     paddingLeft: 26,
     color: 'red',
-    fontSize:10,
+    fontSize: 10,
   },
   month: {
     paddingLeft: 20,
@@ -310,10 +310,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     fontSize: 10,
   },
-  username3:{
+  username3: {
     paddingTop: 10,
     fontSize: 10,
-    paddingLeft:60,
+    paddingLeft: 60,
   },
   comments: {
     display: 'flex',

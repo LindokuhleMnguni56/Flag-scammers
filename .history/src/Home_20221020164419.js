@@ -10,7 +10,7 @@ import RedPart2 from '../components/secureTopParts';
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
-import {addDoc, collection,doc, deleteDoc,getDocs,query,where,getDoc,onSnapshot} from 'firebase/firestore';
+import {addDoc, collection,doc, deleteDoc,getDocs,query,where} from 'firebase/firestore';
 import Comments from './Comments';
 import DropdownPicker from '../components/dropdownpicker';
 import { async } from '@firebase/util';
@@ -19,138 +19,91 @@ import { Link } from '@react-navigation/native';
 
 
   const [flags,setFlags]= React.useState([]);
-const listFlag = []
   const[users,setUsers]= React.useState('');
   const [address,setAddress] =React.useState('')
 
   const flagRef =collection(db,"flag");
-  const commentRef =collection(db,"comments");
 
   var user= auth.currentUser;
-console.log(user);
+  console.log(user);
+  
 
-
-
+ 
 
   const addButton = async()=>{
-  if (user == null) {
-
-    alert('not logged in')
-    navigation.push('Login');
+    if (user == null) {
+      
+      alert('not logged in')
+      navigation.push('Login');
     }else{
-    alert('logged in')
-    navigation.push('AddScammer');
-
+      alert('logged in')
+      navigation.push('AddScammer');
+     
+    }
   }
-}
 
 
 
 
   const getItems = async()=>{
+      
+    console.log(flagRef);
+  
+    let data = await getDocs(flagRef);
+     setFlags(data.docs.map((doc)=>({...doc.data(), id: doc.id})))
+    
+    }
 
-  console.log(flagRef);
-  // myComment = 
-  let data = await getDocs(flagRef);
-
-
-  const q = query(collection(db, "flag"));
-  const querySnapshot = await getDocs(q)
-  querySnapshot.forEach((doc) => {
-    let commentCount = Object.keys(doc.data().comments).length
-      listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
-  });
-
-
-
-
-
-
-
-     setFlags(data.docs.map((doc)=>(
-        {...doc.data(), id: doc.id}
-  )))
-
-
-
-
-  console.log(listFlag);
-  // getComments()
-}
-
-
-
-
+    
     const search = async() =>{
 
-  //   flags.map(flag=>((
+        flags.map(flag=>((
 
-  //     // console.log(address)
+          // console.log(address)
 
-  //     address === flag.address ?(
-  //       // navigation.push('NotFound')
-  //       console.log(flag.address)
-  //       // navigation.push('Comments')
-  //     ) :(
-  //       // navigation.push('Comments')
-  //       console.log(flag.address,"notfound")
-  //     )
-
-  //     // console.log(address)
-  //     // address == flag.address ?(
-  //     //   navigation.push('Comments',{flag:flag})
-  //     // ):(
-  //     //   navigation.push('Home')
-  //     // )
-
-
-  // )))
-  console.log(flags.length);
-
-      for (var i=0; i < getItems().length; i++){
-
-          if(address == flags.address){
-      navigation.push('Comments')
-      console.log('found')
-          }else{
-      navigation.push('NotFound')
-    }
-  }
-
-}
-
+          address == flag.address ?(
+            navigation.push('Comments')
+          ):(
+            navigation.push('NotFound')
+          )
+          
+          // console.log(address)
+          // address == flag.address ?(
+          //   navigation.push('Comments',{flag:flag})
+          // ):(
+          //   navigation.push('Home')
+          // )
+       
+        
+      )))}
+   
 
     React.useEffect(()=>{
-  console.log("some")
-  getItems();
+      console.log("some")
+      getItems();
+      console.log(getItems());
+      
+     }, [])
 
+  
+  return (
+    <SafeAreaView style={styles.container}>
 
-}, [])
-
-
-return (
-  <SafeAreaView style={styles.container}>
-
-    <RedPart />
-    <View style={styles.boxes}>
-
-      <View style={styles.selectView}>
-        {/* <DropdownComponent/> */}
+      <RedPart />
+      <View style={styles.boxes}>
+        
+          <View style={styles.selectView}>
+          {/* <DropdownComponent/> */}
             <DropdownPicker/>
+          </View>
+   
+          <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
+          <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
       </View>
-
-      <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-      <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
-    </View>
-
-
-    <ScrollView style={styles.midContainer}>
-      {
-
-               flags.map(flag=>((
-
-          <View style={styles.cardsContainer} key={flag.id}>
-            <View style={styles.card}>
+      <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
+        
+        <View style={styles.cardsContainer}>
+          <View style={styles.card}>
               <View style={styles.dateContainerBorder}>
                 <View style={styles.dateContainer}>
                   <Text style={styles.day}>22</Text>
@@ -158,22 +111,22 @@ return (
                   <Text style={styles.year}>2022</Text>
                 </View>
 
-              </View>
-              <View style={styles.userContainerRightBorder}>
-                <View style={styles.userContainer}>
-                  <Text style={styles.username1}>{flag.address}</Text>
-                  <View style={styles.comments}>
-                    <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                    <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                        </View>
+                        <View style={styles.userContainerRightBorder}>
+                          <View style={styles.userContainer}>
+                            <Text style={styles.username1}>{flag.address}</Text>
+                            <View style={styles.comments}>
+                              <Text style={styles.username2}>2.5k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                              <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                            </View>
+                          </View>
+                        </View>
+                        <TouchableOpacity style={styles.upvoteBtn}>
+                          <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
                   </View>
-                </View>
-              </View>
-              <TouchableOpacity style={styles.upvoteBtn}>
-                <Text style={styles.upvoteTXT}>UPVOTE</Text>
-              </TouchableOpacity>
-            </View>
-
-          </View>
                  )))} 
                   
               </ScrollView> 
