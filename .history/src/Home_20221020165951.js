@@ -5,9 +5,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
-import RedPart2 from '../components/secureTopParts';
 import DropdownComponent from '../components/dropdownList';
-
+import RedPart2 from '../components/secureTopParts';
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
@@ -15,12 +14,12 @@ import {addDoc, collection,doc, deleteDoc,getDocs,query,where,getDoc,onSnapshot}
 import Comments from './Comments';
 import DropdownPicker from '../components/dropdownpicker';
 import { async } from '@firebase/util';
-import React from 'react';
+
 import { Link } from '@react-navigation/native';
 
 
 
-export default function HomeScreen({navigation}){
+export default function Home
   const [flags,setFlags]= React.useState([]);
 const listFlag = []
   const[users,setUsers]= React.useState('');
@@ -133,8 +132,8 @@ console.log(user);
 
 return (
   <SafeAreaView style={styles.container}>
-    {user != null ?(<RedPart2 />):(<RedPart />)}
-    
+
+    <RedPart />
     <View style={styles.boxes}>
 
       <View style={styles.selectView}>
@@ -192,7 +191,7 @@ return (
 
     </SafeAreaView>
   );
- }
+
 
 const styles = StyleSheet.create({
   container: {

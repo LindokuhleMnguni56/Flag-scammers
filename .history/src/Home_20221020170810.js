@@ -7,7 +7,7 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import RedPart2 from '../components/secureTopParts';
 import DropdownComponent from '../components/dropdownList';
-
+import RedPart2 from '../components/secureTopParts';
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';

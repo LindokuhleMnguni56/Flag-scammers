@@ -5,9 +5,9 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
-import RedPart2 from '../components/secureTopParts';
+import Re
 import DropdownComponent from '../components/dropdownList';
-
+import RedPart2 from '../components/secureTopParts';
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
@@ -133,7 +133,7 @@ console.log(user);
 
 return (
   <SafeAreaView style={styles.container}>
-    {user != null ?(<RedPart2 />):(<RedPart />)}
+    {user != null ?(<RedPart />):(<RedPart />)}
     
     <View style={styles.boxes}>
 

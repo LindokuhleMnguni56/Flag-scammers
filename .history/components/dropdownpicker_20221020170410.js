@@ -23,7 +23,7 @@ const DropdownPicker = () => {
             >
             {
                 addresses.map((a) => (
-                    <Picker.Item label={a} value={a} key={a}/>
+                    <Picker.Item label={a} value={a} key=/>
                 ))
             }
         </Picker>
