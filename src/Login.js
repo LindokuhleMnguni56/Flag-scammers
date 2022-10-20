@@ -60,6 +60,7 @@ export default function Login({navigation}){
           placeholder='Password'
           style={styles.input}
           onChangeText={(pass)=>setPass(pass)}
+          secureTextEntry
         />
        </View>    
       </View>
