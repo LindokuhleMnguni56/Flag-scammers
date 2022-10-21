@@ -11,8 +11,8 @@ import { TouchableOpacity } from 'react-native-web';
 export default function Comments({route,navigation}){
 
     const user = auth.currentUser;
-    const { flagComments } = route.params
-    console.log(flagComments.commentsData);
+    // const { flagComments } = route.params
+    // console.log(flagComments.commentsData);
 
     return(
         <SafeAreaView style={styles.container}>
