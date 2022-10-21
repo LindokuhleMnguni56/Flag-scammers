@@ -51,35 +51,28 @@ console.log(user);
 
 
   const getItems = async()=>{
+      
+    console.log(flagRef);
+    // myComment = 
+    let data = await getDocs(flagRef);
+    
+  
 
-  console.log(flagRef);
-  // myComment = 
-  let data = await getDocs(flagRef);
-
-
-  const q = query(collection(db, "flag"));
-  const querySnapshot = await getDocs(q)
-  querySnapshot.forEach((doc) => {
-    let commentCount = Object.keys(doc.data().comments).length
+    const q = query(collection(db, "flag"));
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) => {
+       let commentCount = doc.data().comments.commentsData.length
+       console.log(commentCount);
       listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
   });
 
 
+     setFlags(listFlag)
 
 
-
-
-
-     setFlags(data.docs.map((doc)=>(
-        {...doc.data(), id: doc.id}
-  )))
-
-
-
-
-  console.log(listFlag);
-  // getComments()
-}
+      console.log(listFlag);
+      // getComments()
+    }
 
 
 
@@ -161,22 +154,29 @@ return (
                   <Text style={styles.year}>2022</Text>
                 </View>
 
-              </View>
-              <View style={styles.userContainerRightBorder}>
-                <View style={styles.userContainer}>
-                  <Text style={styles.username1}>{flag.address}</Text>
-                  <View style={styles.comments}>
-                    <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                    <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity style={styles.upvoteBtn}>
-                <Text style={styles.upvoteTXT}>UPVOTE</Text>
-              </TouchableOpacity>
-            </View>
+                        </View>
+                        <View style={styles.userContainerRightBorder}>
+                          <View style={styles.userContainer}>
+                            <Text style={styles.username1}>{flag.address}</Text>
+                            <View style={styles.comments}>
+                              <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                              <TouchableOpacity style={{width:5}} onPress={() => 
+                                navigation.navigate("Comments",{flagComments : flag.comment})
+                                
+                                }>
 
-          </View>
+                                 <Text style={styles.username3}>{flag.commentCount}</Text>
+                                 <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                              </TouchableOpacity>
+                            </View>
+                          </View>
+                        </View>
+                        <TouchableOpacity style={styles.upvoteBtn}>
+                          <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
+                  </View>
                  )))} 
                   
               </ScrollView> 

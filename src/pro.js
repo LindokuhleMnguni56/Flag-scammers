@@ -10,7 +10,7 @@ import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 
 import RedPart2 from '../components/secureTopParts';
 
-export default function Pro (){
+export default function Pro(){
     //const Image = require('./assets/pic.png');
 
   return (

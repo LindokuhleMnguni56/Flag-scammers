@@ -99,7 +99,7 @@ const Register = ({navigation}) => {
         placeholder='Confirm Password'
         style={styles.input}
         onChangeText={(conf)=>setConfirmedPassword(conf)}
-        selectTextOnFocus
+        secureTextEntry
       />
       </View>
     </View>

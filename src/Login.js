@@ -7,7 +7,7 @@ import { auth } from './config/firebase';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import image1 from "../assets/bg.png";
 import image2 from '../assets/google.png';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword,} from 'firebase/auth';
 
 export default function Login({navigation}){
   const [email,setEmail]=react.useState('');
@@ -24,6 +24,17 @@ export default function Login({navigation}){
     })
     
 })
+// const googleLog = ()=>{
+//   signInWithPopup(auth,provider).then((result)=>{
+//       // alert("successfully logged in")
+//       console.log(result);
+//       setUser(result.user)
+//       history("/home");
+//   }).catch((err)=>{
+//       console.log(err);
+//   })
+  
+// }
 
 
 
@@ -157,9 +168,11 @@ const styles = StyleSheet.create({
     },
 
     forget:{
+      width:'100px',
       display:'flex',
       flexDirection:"row",
-      marginTop:"20px"
+      marginTop:"20px",
+
     },
 
     for:{
