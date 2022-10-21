@@ -58,15 +58,21 @@ export default function HomeScreen({navigation}) {
     
     const search = async() =>{
 
+      
+
         flags.map(flag=>((
+          
 
           // console.log(address)
 
           address == flag.address ?(
+            
             navigation.push('Comments')
           ):(
+            
             navigation.push('NotFound')
           )
+          
           
           // console.log(address)
           // address == flag.address ?(
@@ -76,7 +82,10 @@ export default function HomeScreen({navigation}) {
           // )
        
         
-      )))}
+      )))
+      
+      
+    }
    
 
     React.useEffect(()=>{

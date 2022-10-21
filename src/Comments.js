@@ -32,7 +32,7 @@ export default function Comments({flag}){
                                   <Text style={styles.username}>tebzahamham@gmail.com</Text>
                           </View>
                           <View style={styles.likes}>
-                                          <FontAwesomeIcon icon={ faFlag } style={styles.flags}/><Text style={styles.numberFlags}>1k</Text>
+                                <FontAwesomeIcon icon={ faFlag } style={styles.flags}/><Text style={styles.numberFlags}>1k</Text>
                           </View>
                     </View>
                     
@@ -156,8 +156,9 @@ const styles = StyleSheet.create({
         marginTop:20,
         borderBottomWidth:2,
         borderBottomColor:'#bd5d5d',
-        height:40,
+        height:60,
         width:'92%',
+    
         
     },
     userIconBg:{
@@ -172,11 +173,13 @@ const styles = StyleSheet.create({
         paddingLeft:6,
     },
     addComment:{
+        fontSize:12,
         marginLeft:15,
-        paddingLeft:5,
-        height:25,
-        width:'100%',
-        marginTop:10,
+        paddingHorizontal:10,
+        height:55,
+        width:'70%', 
+        paddingBottom:25,
+        
     },
     commentsBox:{
         display:'flex',
