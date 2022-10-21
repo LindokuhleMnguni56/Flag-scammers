@@ -6,12 +6,13 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import picture from '../assets/pic.png';
 import { auth } from '../src/config/firebase';
-import { Link } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 export default function RedPart2() {
-
+    const navigation = useNavigation();
+    
     const signOut = async()=>{
         auth
         .signOut()
@@ -21,15 +22,14 @@ export default function RedPart2() {
     const user = auth.currentUser;
 
     console.log(user.displayName)
-   
 
     return (
         <View style={styles.topContainer} >
 
             <View style={styles.userContainer}>
-            <TouchableOpacity><FontAwesomeIcon icon={faChevronLeft} style={{width:20,height:20,color:'white'}} /></TouchableOpacity>
-                <TouchableOpacity><FontAwesomeIcon icon={faUser} style={{backgroundColor:'black',width:20,height:20,borderRadius:50,color:'white', marginLeft:5}} /></TouchableOpacity>
-                <Text style={styles.username}>{user.displayName}</Text>
+            <TouchableOpacity onPress={() => {navigation.goBack();}}><FontAwesomeIcon icon={faChevronLeft} style={{width:20,height:20,color:'white'}} /></TouchableOpacity>
+                <TouchableOpacity onPress={() => {navigation.navigate('Pro');}}><FontAwesomeIcon icon={faUser} style={{backgroundColor:'black',width:20,height:20,borderRadius:50,color:'white', marginLeft:5}} /></TouchableOpacity>
+                <TouchableOpacity onPress={() => {navigation.navigate('Pro');}}><Text style={styles.username}>{user.displayName}</Text></TouchableOpacity>
             </View>
 
             <TouchableOpacity onPress={signOut}>

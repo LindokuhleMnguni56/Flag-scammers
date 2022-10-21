@@ -168,9 +168,11 @@ const styles = StyleSheet.create({
     },
 
     forget:{
+      width:'100px',
       display:'flex',
       flexDirection:"row",
-      marginTop:"20px"
+      marginTop:"20px",
+
     },
 
     for:{
