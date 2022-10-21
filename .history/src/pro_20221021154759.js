@@ -16,7 +16,17 @@ export default function Pro(){
 
 const user=auth.currentUser;
 console.log(user.displayName)
+
+const [totalFlags, setTotalFlags] = useState(0);
  
+
+  useEffect(() => {
+    firebase.firestore().collection("flag").get().then((querySnapshot) => {
+      const TotalFlag = querySnapshot.size
+        setTotalUsers(TotalFlag)
+
+    })
+  }, []);
   return (
     
     <View  style={styles.container}>

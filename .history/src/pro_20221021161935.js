@@ -16,7 +16,16 @@ export default function Pro(){
 
 const user=auth.currentUser;
 console.log(user.displayName)
- 
+ function streamedCount() {
+    const query = admin.firestore().collection("flag");
+
+    return new Promise<number>(resolve => {
+        let count = 0;
+        const stream = query.stream();
+        stream.on("data", _ => ++count);
+        stream.on("end", () => resolve(count));
+    });
+}
   return (
     
     <View  style={styles.container}>
@@ -67,7 +76,7 @@ console.log(user.displayName)
           <FontAwesomeIcon icon={faComment} style={styles.userIcon}/>
               <View style={styles.flagText}>
                   <Text style={styles.label}>comments</Text>
-                  <Text style={styles.text}>100</Text>
+                  <Text style={styles.text}>{streamedCount}</Text>
               </View>
           </View>
        </View>

@@ -16,7 +16,19 @@ export default function Pro(){
 
 const user=auth.currentUser;
 console.log(user.displayName)
+
+const query = firestore.collection("fruits");
+const snapshot = await query.get();
+const count = snapshot.size;
  
+
+  useEffect(() => {
+    firebase.firestore().collection("flag").get().then((querySnapshot) => {
+      const TotalFlag = querySnapshot.size
+        setTotalUsers(TotalFlag)
+
+    })
+  }, []);
   return (
     
     <View  style={styles.container}>

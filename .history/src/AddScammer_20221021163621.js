@@ -12,14 +12,16 @@ import RedPart from '../components/topPart';
 const AddScammer = () => {
     const moment = require('moment')
     const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
-    
-    const timestamp = time.format("YYYY-MM-DD HH:mm:ss")
-       
+    const xmas95 = new Date();
+    const weekday = xmas95.getDay();
+    const timestamp = {
+        date:time.format("YYYY-MM-DD HH:mm:ss")}
+        
     const [mail, setMail] = useState('');
     const [comment, setComment] = useState('');
 
     const itemRef = collection(db, "flag");
-
+    const commentRef = collection(db, "comments");
     const user = auth.currentUser
 
     const [selectedAddress, setSelectedAddress] = useState('');
@@ -40,6 +42,7 @@ const AddScammer = () => {
 
 
         const docRef = await addDoc(itemRef, {
+            dayee:
             address: mail,
             addressType: selectedAddress,
             date: timestamp, 

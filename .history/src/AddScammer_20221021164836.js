@@ -12,9 +12,11 @@ import RedPart from '../components/topPart';
 const AddScammer = () => {
     const moment = require('moment')
     const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
-    
-    const timestamp = time.format("YYYY-MM-DD HH:mm:ss")
-       
+    const day= moment()
+    const 
+    const timestamp = {
+        date:time.format("YYYY-MM-DD HH:mm:ss")}
+
     const [mail, setMail] = useState('');
     const [comment, setComment] = useState('');
 

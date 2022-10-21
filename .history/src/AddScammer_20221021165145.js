@@ -40,6 +40,9 @@ const AddScammer = () => {
 
 
         const docRef = await addDoc(itemRef, {
+            flag:{
+
+            },
             address: mail,
             addressType: selectedAddress,
             date: timestamp, 

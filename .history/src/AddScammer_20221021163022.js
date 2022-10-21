@@ -10,16 +10,32 @@ import moment from 'moment/moment';
 import RedPart from '../components/topPart';
 
 const AddScammer = () => {
+    var objToday = new Date(),
+	weekday = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'),
+	dayOfWeek = weekday[objToday.getDay()],
+	domEnder = function() { var a = objToday; if (/1/.test(parseInt((a + "").charAt(0)))) return "th"; a = parseInt((a + "").charAt(1)); return 1 == a ? "st" : 2 == a ? "nd" : 3 == a ? "rd" : "th" }(),
+	dayOfMonth = today + ( objToday.getDate() < 10) ? '0' + objToday.getDate() + domEnder : objToday.getDate() + domEnder,
+	months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'),
+	curMonth = months[objToday.getMonth()],
+	curYear = objToday.getFullYear(),
+	curHour = objToday.getHours() > 12 ? objToday.getHours() - 12 : (objToday.getHours() < 10 ? "0" + objToday.getHours() : objToday.getHours()),
+	curMinute = objToday.getMinutes() < 10 ? "0" + objToday.getMinutes() : objToday.getMinutes(),
+	curSeconds = objToday.getSeconds() < 10 ? "0" + objToday.getSeconds() : objToday.getSeconds(),
+	curMeridiem = objToday.getHours() > 12 ? "PM" : "AM";
+var today = curHour + ":" + curMinute + "." + curSeconds + curMeridiem + " " + dayOfWeek + " " + dayOfMonth + " of " + curMonth + ", " + curYear;
+
+document.getElementsByTagName('h1')[0].textContent = today;
+
     const moment = require('moment')
     const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
-    
-    const timestamp = time.format("YYYY-MM-DD HH:mm:ss")
-       
+    const timestamp = {
+        date:time.format("YYYY-MM-DD")}
+
     const [mail, setMail] = useState('');
     const [comment, setComment] = useState('');
 
     const itemRef = collection(db, "flag");
-
+    const commentRef = collection(db, "comments");
     const user = auth.currentUser
 
     const [selectedAddress, setSelectedAddress] = useState('');
@@ -40,6 +56,7 @@ const AddScammer = () => {
 
 
         const docRef = await addDoc(itemRef, {
+            date2:today,
             address: mail,
             addressType: selectedAddress,
             date: timestamp, 

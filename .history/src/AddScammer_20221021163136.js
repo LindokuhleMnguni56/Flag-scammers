@@ -10,16 +10,18 @@ import moment from 'moment/moment';
 import RedPart from '../components/topPart';
 
 const AddScammer = () => {
+
+    
     const moment = require('moment')
     const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
-    
-    const timestamp = time.format("YYYY-MM-DD HH:mm:ss")
-       
+    const timestamp = {
+        date:time.format("YYYY-MM-DD")}
+
     const [mail, setMail] = useState('');
     const [comment, setComment] = useState('');
 
     const itemRef = collection(db, "flag");
-
+    const commentRef = collection(db, "comments");
     const user = auth.currentUser
 
     const [selectedAddress, setSelectedAddress] = useState('');

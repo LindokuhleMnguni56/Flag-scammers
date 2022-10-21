@@ -12,11 +12,23 @@ import RedPart2 from '../components/secureTopParts';
 import { updateProfile } from 'firebase/auth';
 import { auth } from './config/firebase';
 import RedPart from '../components/topPart';
-export default function Pro(){
+export default async function Pro(){
 
 const user=auth.currentUser;
 console.log(user.displayName)
+
+const query = firestore.collection("flag");
+const snapshot = await query.get();
+const count = snapshot.size;
  
+
+  useEffect(() => {
+    firebase.firestore().collection("flag").get().then((querySnapshot) => {
+      const TotalFlag = querySnapshot.size
+        setTotalUsers(TotalFlag)
+
+    })
+  }, []);
   return (
     
     <View  style={styles.container}>
@@ -67,7 +79,7 @@ console.log(user.displayName)
           <FontAwesomeIcon icon={faComment} style={styles.userIcon}/>
               <View style={styles.flagText}>
                   <Text style={styles.label}>comments</Text>
-                  <Text style={styles.text}>100</Text>
+                  <Text style={styles.text}>{count}</Text>
               </View>
           </View>
        </View>

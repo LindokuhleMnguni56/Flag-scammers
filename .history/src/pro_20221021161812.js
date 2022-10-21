@@ -16,7 +16,16 @@ export default function Pro(){
 
 const user=auth.currentUser;
 console.log(user.displayName)
- 
+function streamedCount() {
+    const query = admin.firestore().collection("fruits");
+
+    return new Promise<number>(resolve => {
+        let count = 0;
+        const stream = query.stream();
+        stream.on("data", _ => ++count);
+        stream.on("end", () => resolve(count));
+    });
+}
   return (
     
     <View  style={styles.container}>
