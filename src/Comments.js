@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         marginRight:37,
         marginVertical:6,
         backgroundColor:'rgb(255,240,242)',
-        borderRadius:8,
+        borderRadius:4,
         width:110,
         height:25,
         textAlign:'center',
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
         width:'85%', 
         paddingBottom:40,
         border:'2px solid lightgrey',
-        borderRadius:8,
+        borderRadius:4,
         
     },
     commentsButton:{

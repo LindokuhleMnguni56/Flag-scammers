@@ -74,7 +74,7 @@ const AddScammer = () => {
                 <View style={styles.hhh}>
 
                     <View style={styles.selectView}>
-                        {/* <DropdownPicker /> */}
+                        
                         <Picker
                             style={[styles.dropdownPick, { marginTop: '25px', marginVertical: 10, backgroundColor: '' }]}
                             selectedValue={selectedAddress}
