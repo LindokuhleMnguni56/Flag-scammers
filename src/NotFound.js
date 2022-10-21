@@ -14,20 +14,20 @@ export default function NotFound() {
 
       <RedPart />
       <View style={styles.midContainer}>
-        <View style={styles.cardContainer}>
-            <View style={styles.card}>
-                    <View style={styles.userContainer}>
-                          <View style={styles.userContainerBorder}>
-                                  <Text style={styles.username}>tebzahamham@gmail.com</Text>
+              <View style={styles.cardContainer}>
+                  <View style={styles.card}>
+                          <View style={styles.userContainer}>
+                                <View style={styles.userContainerBorder}>
+                                        <Text style={styles.username}>tebzahamham@gmail.com</Text>
+                                </View>
+                                
+                          </View>
+                          <View style={styles.likes}>
+                                  <FontAwesomeIcon icon={ faFlag } style={styles.flags}/>
                           </View>
                           
-                    </View>
-                    <View style={styles.likes}>
-                            <FontAwesomeIcon icon={ faFlag } style={styles.flags}/>
-                    </View>
-                    
+                  </View>
             </View>
-      </View>
             <Text style={styles.notFoundText}>Not Found</Text>
             <View style={styles.bgImageContainer}>
                     <ImageBackground source={image1} style={styles.bgImage} />
@@ -35,7 +35,7 @@ export default function NotFound() {
             
             
       </View>
-      <View style={styles.tipsTextContainer}>
+        <View style={styles.tipsTextContainer}>
                 <Text style={styles.tipsText}>Other tips and tricks</Text>
         </View>
       <View style={styles.tipsBgImage}>
@@ -119,9 +119,10 @@ flags:{
     height:220,
     width:'100%',
   },
+ 
   bottomContainer:{
     backgroundColor:'#000000',
-    height:'15%',
+    height:'17%',
     width:'100%',
     
   },
@@ -139,7 +140,7 @@ flags:{
     backgroundColor:'#F8E9E9',
     height:40,
     marginTop:10,
-    width:'100%'
+    width:'100%',
     
   },
   tipsText:{
@@ -152,8 +153,7 @@ flags:{
     width:'75%',
     height:100,
     marginLeft:50,
-    paddingLeft:10,
-    
+    paddingLeft:10,   
   },
   firstTip:{
     marginTop:10,
