@@ -9,18 +9,24 @@ import picture from '../assets/pic.png';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import {addDoc, collection,getDocs} from 'firebase/firestore';
 import RedPart2 from '../components/secureTopParts';
-import { updateProfile } from 'firebase/auth';
-import { auth } from './config/firebase';
-import RedPart from '../components/topPart';
+import {}
+
 export default function Pro(){
+    const[items, setItem] = useState([]);
 
-const user=auth.currentUser;
-console.log(user.displayName)
-
+    const itemRef =collection(db,"flag");
+    const getItems = async()=>{
+        let data = await getDocs(itemRef);
+        setItem(data.docs.map((doc)=>({...doc.data(), id: doc.id})))
+    }
+    //const Image = require('./assets/pic.png');
   return (
     
     <View  style={styles.container}>
-     {user != null ?(<RedPart2 />):(<RedPart />)} 
+      <RedPart2> 
+         <Text style={styles.username1}>lindokuhle@gmail.com</Text>
+       
+     </RedPart2>  
     {/* <View style={styles.wrapper} >
     <Image source={picture}  />
     </View> */}
@@ -42,7 +48,7 @@ console.log(user.displayName)
               <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
               <View style={styles.flagText}>
                   <Text style={styles.label}>username</Text>
-                  <Text style={styles.text}>{user.displayName}</Text>
+                  <Text style={styles.text}>Sticky</Text>
               </View>
               <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>    
           </View>
@@ -51,7 +57,7 @@ console.log(user.displayName)
               <FontAwesomeIcon icon={faEnvelope} style={styles.userIcon}/>
               <View style={styles.flagText}>
                   <Text style={styles.label}>email</Text>
-                  <Text style={styles.text}>{user.email}</Text>
+                  <Text style={styles.text}>sticky@gmail.com</Text>
               </View>
           </View>
 

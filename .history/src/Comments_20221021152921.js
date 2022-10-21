@@ -7,7 +7,7 @@ import profileImg from '../assets/pic.png'
 import { Button, TouchableOpacity } from 'react-native-web';
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
 import { auth } from './config/firebase';
-import RedPart2 from '../components/secureTopParts';
+import re
 
 export default function Comments({route,navigation}){
 

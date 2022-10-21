@@ -16,7 +16,7 @@ export default function Pro(){
 
 const user=auth.currentUser;
 console.log(user.displayName)
-
+    //const Image = require('./assets/pic.png');
   return (
     
     <View  style={styles.container}>

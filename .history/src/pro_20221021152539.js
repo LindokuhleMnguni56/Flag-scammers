@@ -11,12 +11,12 @@ import {addDoc, collection,getDocs} from 'firebase/firestore';
 import RedPart2 from '../components/secureTopParts';
 import { updateProfile } from 'firebase/auth';
 import { auth } from './config/firebase';
-import RedPart from '../components/topPart';
+import
 export default function Pro(){
 
 const user=auth.currentUser;
 console.log(user.displayName)
-
+    //const Image = require('./assets/pic.png');
   return (
     
     <View  style={styles.container}>
