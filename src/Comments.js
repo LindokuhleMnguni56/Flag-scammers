@@ -1,11 +1,9 @@
-import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image } from 'react-native';
+import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image,TouchableOpacity } from 'react-native';
 import RedPart from '../components/topPart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
 import profileImg from '../assets/pic.png'
-import { Button, TouchableOpacity } from 'react-native-web';
-import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
+// import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
 import { auth } from './config/firebase';
 
 export default function Comments({route,navigation}){
@@ -38,12 +36,14 @@ export default function Comments({route,navigation}){
             <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
                 
                 <View style={styles.textBox} >
-                        <TouchableOpacity style={styles.userIconBg}>
+                        <TouchableOpacity style={styles.userIconBg} onPress={() => navigation.push('Pro')}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
                         </TouchableOpacity>
+                        <View style={styles.addCommentContainer}>
+                            <TextInput style={styles.addComment} multiline={true} placeholder='Add a comment....'></TextInput>
+                            <TouchableOpacity style={styles.sendButton}><Text style={{fontSize:12}}>Add Comment</Text></TouchableOpacity>
+                        </View>
                         
-                        <TextInput style={styles.addComment} placeholder='Add a comment....'></TextInput>
-                        <TouchableOpacity> <FontAwesomeIcon icon={ faPaperPlane } style={styles.flags.sendButton}/></TouchableOpacity>
                 </View>
                 <View style={styles.commentsBox}>
                         <TouchableOpacity style={styles.userIconBackground}>
@@ -75,7 +75,16 @@ const styles = StyleSheet.create({
       backgroundColor:'white',
     },
     sendButton:{
-        paddingTop:'10px'
+        alignSelf:'flex-end',
+        marginRight:37,
+        marginVertical:6,
+        backgroundColor:'rgb(255,240,242)',
+        borderRadius:4,
+        width:110,
+        height:25,
+        textAlign:'center',
+        justifyContent:'center',
+        
     },
     midContainer:{
         flex:12,
@@ -160,10 +169,8 @@ const styles = StyleSheet.create({
         marginTop:20,
         borderBottomWidth:2,
         borderBottomColor:'#bd5d5d',
-        height:60,
-        width:'92%',
-    
-        
+        height:100,
+        width:'92%', 
     },
     userIconBg:{
         backgroundColor:'grey',
@@ -176,14 +183,26 @@ const styles = StyleSheet.create({
         paddingTop:6,
         paddingLeft:6,
     },
+    addCommentContainer:{
+        width:'100%',
+        flexDirection:'column',
+        
+    },
     addComment:{
         fontSize:12,
         marginLeft:15,
-        paddingHorizontal:10,
+        paddingHorizontal:6,
+        paddingVertical:6,
         height:55,
-        width:'70%', 
-        paddingBottom:25,
+        width:'85%', 
+        paddingBottom:40,
+        border:'2px solid lightgrey',
+        borderRadius:4,
         
+    },
+    commentsButton:{
+        alignSelf:'flex-end',
+        marginRight:35
     },
     commentsBox:{
         display:'flex',
