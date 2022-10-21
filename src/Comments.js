@@ -8,11 +8,11 @@ import RedPart2 from '../components/secureTopParts';
 import profileImg from '../assets/pic.png'
 import { TouchableOpacity } from 'react-native-web';
 
-export default function Comments({flag}){
+export default function Comments({route,navigation}){
 
     const user = auth.currentUser;
-
-    console.log(flag);
+    const { flagComments } = route.params
+    console.log(flagComments.commentsData);
 
     return(
         <SafeAreaView style={styles.container}>
@@ -50,12 +50,14 @@ export default function Comments({flag}){
                         <TouchableOpacity style={styles.userIconBackground}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
                         </TouchableOpacity>
-                        <Text style={styles.userComments}>
-                                I got scammed twice with this email the scammer asked for my ID number and proof of residence
-                                and also R250 fee I only realized after I paid that I just gave away 
-                                my coonfidential information and even paid on top of that.
-                                Thank you for this app I wish I knew it earlier.
-                        </Text>
+                        {/* {
+                  
+                            flagComments.map(comment=>(( */}
+                                <Text style={styles.userComments}>
+                                        comments
+                                </Text>
+                            {/* )))} */}
+
                 </View>
                 
                 

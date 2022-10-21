@@ -54,28 +54,21 @@ export default function HomeScreen({navigation}) {
     console.log(flagRef);
     // myComment = 
     let data = await getDocs(flagRef);
+    
   
 
     const q = query(collection(db, "flag"));
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
-       let commentCount = Object.keys(doc.data().comments).length
+       let commentCount = doc.data().comments.commentsData.length
+       console.log(commentCount);
       listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
     });
 
 
+     setFlags(listFlag)
 
 
-
-
-
-     setFlags(data.docs.map((doc)=>(
-        {...doc.data(), id: doc.id}
-        )))
-
-
-
-        
       console.log(listFlag);
       // getComments()
     }
@@ -170,7 +163,14 @@ export default function HomeScreen({navigation}) {
                             <Text style={styles.username1}>{flag.address}</Text>
                             <View style={styles.comments}>
                               <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                              <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                              <TouchableOpacity style={{width:5}} onPress={() => 
+                                navigation.navigate("Comments",{flagComments : flag.comment})
+                                
+                                }>
+
+                                 <Text style={styles.username3}>{flag.commentCount}</Text>
+                                 <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                              </TouchableOpacity>
                             </View>
                           </View>
                         </View>

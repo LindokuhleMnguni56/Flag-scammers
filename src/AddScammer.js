@@ -7,6 +7,11 @@ import DropdownPicker from '../components/dropdownpicker'
 
 
 const AddScammer = () => {
+
+    
+
+
+
   return (
     <SafeAreaView style={styles.container}>
         <RedPart2/>
