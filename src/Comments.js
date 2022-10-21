@@ -41,7 +41,7 @@ export default function Comments({route,navigation}){
                         </TouchableOpacity>
                         <View style={styles.addCommentContainer}>
                             <TextInput style={styles.addComment} multiline={true} placeholder='Add a comment....'></TextInput>
-                            <TouchableOpacity style={styles.sendButton}><Text>Add Comment</Text></TouchableOpacity>
+                            <TouchableOpacity style={styles.sendButton}><Text style={{fontSize:12}}>Add Comment</Text></TouchableOpacity>
                         </View>
                         
                 </View>
@@ -76,14 +76,15 @@ const styles = StyleSheet.create({
     },
     sendButton:{
         alignSelf:'flex-end',
-        marginRight:40,
-        marginTop:5,
+        marginRight:37,
+        marginVertical:6,
         backgroundColor:'rgb(255,240,242)',
         borderRadius:8,
         width:110,
         height:25,
         textAlign:'center',
-        justifyContent:'center'
+        justifyContent:'center',
+        
     },
     midContainer:{
         flex:12,
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
         marginTop:20,
         borderBottomWidth:2,
         borderBottomColor:'#bd5d5d',
-        height:90,
+        height:100,
         width:'92%', 
     },
     userIconBg:{
@@ -190,8 +191,8 @@ const styles = StyleSheet.create({
     addComment:{
         fontSize:12,
         marginLeft:15,
-        paddingHorizontal:5,
-        paddingVertical:5,
+        paddingHorizontal:6,
+        paddingVertical:6,
         height:55,
         width:'85%', 
         paddingBottom:40,
