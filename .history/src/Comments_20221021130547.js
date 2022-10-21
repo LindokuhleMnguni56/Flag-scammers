@@ -2,11 +2,10 @@ import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image } from '
 import RedPart from '../components/topPart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faUser, } from '@fortawesome/free-regular-svg-icons';
 import profileImg from '../assets/pic.png'
 import { Button, TouchableOpacity } from 'react-native-web';
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
-import { auth } from './config/firebase';
 
 export default function Comments({route,navigation}){
 

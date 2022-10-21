@@ -6,7 +6,7 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import profileImg from '../assets/pic.png'
 import { Button, TouchableOpacity } from 'react-native-web';
 import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
-import { auth } from './config/firebase';
+import {au}
 
 export default function Comments({route,navigation}){
 
