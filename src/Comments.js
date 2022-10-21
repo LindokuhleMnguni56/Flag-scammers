@@ -43,8 +43,10 @@ export default function Comments({flag}){
                         <TouchableOpacity style={styles.userIconBg}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
                         </TouchableOpacity>
-                        
-                        <TextInput style={styles.addComment} placeholder='Add a comment....'></TextInput>
+                        <View style={styles.addCommentContainer}>
+                            <TextInput style={[styles.addComment,{textAlignVertical:'top'}]} multiline={true} placeholder='Add a comment....'></TextInput>
+                            <TouchableOpacity style={styles.commentsButton}><Text>Add Comment</Text></TouchableOpacity>
+                        </View>
                 </View>
                 <View style={styles.commentsBox}>
                         <TouchableOpacity style={styles.userIconBackground}>
@@ -172,14 +174,21 @@ const styles = StyleSheet.create({
         paddingTop:6,
         paddingLeft:6,
     },
+    addCommentContainer:{
+        width:'100%',
+    },
     addComment:{
         fontSize:12,
         marginLeft:15,
-        paddingHorizontal:10,
+        paddingHorizontal:5,
+        paddingVertical:5,
         height:55,
-        width:'70%', 
-        paddingBottom:25,
-        
+        width:'87%', 
+        paddingBottom:40,
+    },
+    commentsButton:{
+        alignSelf:'flex-end',
+        marginRight:35
     },
     commentsBox:{
         display:'flex',
