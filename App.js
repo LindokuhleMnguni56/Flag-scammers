@@ -8,8 +8,6 @@ import Login from './src/Login';
 import Pro  from './src/pro';
 import NotFound from './src/NotFound';
 import AddScammer from './src/AddScammer';
-import DropdownComponent from './components/dropdownList';
-import DropdownPicker from './components/dropdownpicker';
 import RedPart2 from './components/secureTopParts';
 
 

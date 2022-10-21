@@ -6,14 +6,15 @@ import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import RedPart2 from '../components/secureTopParts';
-import DropdownComponent from '../components/dropdownList';
+import { Picker } from 'react-native-web';
+
+
 
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
 import {addDoc, collection,doc, deleteDoc,getDocs,query,where,getDoc,onSnapshot} from 'firebase/firestore';
 import Comments from './Comments';
-import DropdownPicker from '../components/dropdownpicker';
 import { async } from '@firebase/util';
 import React from 'react';
 import { Link } from '@react-navigation/native';
@@ -25,6 +26,13 @@ export default function HomeScreen({navigation}){
 const listFlag = []
   const[users,setUsers]= React.useState('');
   const [address,setAddress] =React.useState('')
+
+  const [selectedAddress, setSelectedAddress] = React.useState('');
+  const [addresses] = React.useState([
+    'Email Address',
+    'Physical Address'
+]
+);
 
   const flagRef =collection(db,"flag");
   const commentRef =collection(db,"comments");
@@ -130,10 +138,24 @@ return (
     
     <View style={styles.boxes}>
 
-      <View style={styles.selectView}>
-        {/* <DropdownComponent/> */}
-            <DropdownPicker/>
-      </View>
+    <View style={styles.selectView}>
+                        
+            <Picker
+                  style={[styles.dropdownPick, { marginTop: '25px', marginVertical: 10, backgroundColor: '' }]}
+                  selectedValue={selectedAddress}
+                  onValueChange={(itemVal) => {
+                  setSelectedAddress(itemVal);
+                  console.log({ selectedAddress });
+
+                  }}
+                  >
+                  {
+                    addresses.map((a) => (
+                        <Picker.Item label={a} value={a} key={a} />
+                        ))
+                  }
+            </Picker>
+    </View>
 
       <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
       <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
@@ -145,14 +167,14 @@ return (
 
                flags.map(flag=>((
 
-          <View style={styles.cardsContainer} key={flag.id}>
-            <View style={styles.card}>
-              <View style={styles.dateContainerBorder}>
-                <View style={styles.dateContainer}>
-                  <Text style={styles.day}>22</Text>
-                  <Text style={styles.month}>Aug</Text>
-                  <Text style={styles.year}>2022</Text>
-                </View>
+                <View style={styles.cardsContainer} key={flag.id}>
+                  <View style={styles.card}>
+                        <View style={styles.dateContainerBorder}>
+                          <View style={styles.dateContainer}>
+                            <Text style={styles.day}>22</Text>
+                            <Text style={styles.month}>Aug</Text>
+                            <Text style={styles.year}>2022</Text>
+                          </View>
 
                         </View>
                         <View style={styles.userContainerRightBorder}>
@@ -166,6 +188,8 @@ return (
                                 }>
 
                                  <Text style={styles.username3}>{flag.commentCount}</Text>
+                                 </TouchableOpacity>
+                                 <TouchableOpacity>
                                  <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
                               </TouchableOpacity>
                             </View>
@@ -174,9 +198,9 @@ return (
                         <TouchableOpacity style={styles.upvoteBtn}>
                           <Text style={styles.upvoteTXT}>UPVOTE</Text>
                         </TouchableOpacity>
-                    </View>
-                    
                   </View>
+                    
+                </View>
                  )))} 
                   
               </ScrollView> 
