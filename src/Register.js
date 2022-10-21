@@ -1,6 +1,6 @@
 import { View, Text,StyleSheet, Image, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react';
-import {createUserWithEmailAndPassword, updateProfile,UserProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { auth } from './config/firebase';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import image1 from "../assets/bg.png"
@@ -15,7 +15,7 @@ const Register = ({navigation}) => {
     const [user,setUser]=React.useState('');
     const [confirmPassword,setConfirmedPassword]=React.useState('');
 
-   
+
   const register = ({navigation})=>{
 
     createUserWithEmailAndPassword(auth, email, password).then(async(userCredential)=>{
@@ -25,7 +25,6 @@ const Register = ({navigation}) => {
 
        updateProfile(auth.currentUser, {displayName:displayName}).then().catch();
       alert(displayName+ "successfull")
-      
       navigation.push('Home')
   }).catch((error)=>{
       alert(error);
@@ -298,6 +297,4 @@ button:{
 
 
 
-export default Register;
-
-
+export default Register

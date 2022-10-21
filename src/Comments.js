@@ -1,24 +1,20 @@
-import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image } from 'react-native';
+import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image,TouchableOpacity } from 'react-native';
 import RedPart from '../components/topPart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
-import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { auth } from './config/firebase';
-import RedPart2 from '../components/secureTopParts';
 import profileImg from '../assets/pic.png'
-import { TouchableOpacity } from 'react-native-web';
+// import {faPaperPlane} from '@fortawesome/free-solid-svg-icons';
+import { auth } from './config/firebase';
 
-export default function Comments({flag}){
+export default function Comments({route,navigation}){
 
     const user = auth.currentUser;
-
-    console.log(flag);
+    // const { flagComments } = route.params
+    // console.log(flagComments.commentsData);
 
     return(
         <SafeAreaView style={styles.container}>
-            {
-                user != null ? (<RedPart2 />):(<RedPart />)
-            } 
+            <RedPart />
             <View style={styles.card}>
                     <View style={styles.dateContainer}>
                         <View style={styles.dateContainerBorder}>
@@ -40,24 +36,27 @@ export default function Comments({flag}){
             <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
                 
                 <View style={styles.textBox} >
-                        <TouchableOpacity style={styles.userIconBg}>
+                        <TouchableOpacity style={styles.userIconBg} onPress={() => navigation.push('Pro')}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
                         </TouchableOpacity>
                         <View style={styles.addCommentContainer}>
-                            <TextInput style={[styles.addComment,{textAlignVertical:'top'}]} multiline={true} placeholder='Add a comment....'></TextInput>
-                            <TouchableOpacity style={styles.commentsButton}><Text>Add Comment</Text></TouchableOpacity>
+                            <TextInput style={styles.addComment} multiline={true} placeholder='Add a comment....'></TextInput>
+                            <TouchableOpacity style={styles.sendButton}><Text>Add Comment</Text></TouchableOpacity>
                         </View>
+                        
                 </View>
                 <View style={styles.commentsBox}>
                         <TouchableOpacity style={styles.userIconBackground}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
                         </TouchableOpacity>
-                        <Text style={styles.userComments}>
-                                I got scammed twice with this email the scammer asked for my ID number and proof of residence
-                                and also R250 fee I only realized after I paid that I just gave away 
-                                my coonfidential information and even paid on top of that.
-                                Thank you for this app I wish I knew it earlier.
-                        </Text>
+                        {/* {
+                  
+                            flagComments.map(comment=>(( */}
+                                <Text style={styles.userComments}>
+                                        comments
+                                </Text>
+                            {/* )))} */}
+
                 </View>
                 
                 
@@ -74,6 +73,17 @@ const styles = StyleSheet.create({
       flex:1,
       alignItems:'center',
       backgroundColor:'white',
+    },
+    sendButton:{
+        alignSelf:'flex-end',
+        marginRight:40,
+        marginTop:5,
+        backgroundColor:'rgb(255,240,242)',
+        borderRadius:8,
+        width:110,
+        height:25,
+        textAlign:'center',
+        justifyContent:'center'
     },
     midContainer:{
         flex:12,
@@ -158,10 +168,8 @@ const styles = StyleSheet.create({
         marginTop:20,
         borderBottomWidth:2,
         borderBottomColor:'#bd5d5d',
-        height:60,
-        width:'92%',
-    
-        
+        height:90,
+        width:'92%', 
     },
     userIconBg:{
         backgroundColor:'grey',
@@ -176,6 +184,8 @@ const styles = StyleSheet.create({
     },
     addCommentContainer:{
         width:'100%',
+        flexDirection:'column',
+        
     },
     addComment:{
         fontSize:12,
@@ -183,8 +193,11 @@ const styles = StyleSheet.create({
         paddingHorizontal:5,
         paddingVertical:5,
         height:55,
-        width:'87%', 
+        width:'85%', 
         paddingBottom:40,
+        border:'2px solid lightgrey',
+        borderRadius:8,
+        
     },
     commentsButton:{
         alignSelf:'flex-end',

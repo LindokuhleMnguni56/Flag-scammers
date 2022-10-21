@@ -1,14 +1,13 @@
 
 import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity,ScrollView } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import React from 'react';
-
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
-import DropdownComponent from '../components/dropdownList';
 import RedPart2 from '../components/secureTopParts';
+import DropdownComponent from '../components/dropdownList';
+
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
@@ -16,12 +15,14 @@ import {addDoc, collection,doc, deleteDoc,getDocs,query,where,getDoc,onSnapshot}
 import Comments from './Comments';
 import DropdownPicker from '../components/dropdownpicker';
 import { async } from '@firebase/util';
+import React from 'react';
+import { Link } from '@react-navigation/native';
 
 
-export default function HomeScreen({navigation}) {
 
+export default function HomeScreen({navigation}){
   const [flags,setFlags]= React.useState([]);
-  const listFlag = []
+const listFlag = []
   const[users,setUsers]= React.useState('');
   const [address,setAddress] =React.useState('')
 
@@ -29,22 +30,22 @@ export default function HomeScreen({navigation}) {
   const commentRef =collection(db,"comments");
 
   var user= auth.currentUser;
-  console.log(user);
-  
+console.log(user);
 
- 
+
+
 
   const addButton = async()=>{
-    if (user == null) {
-      
-      alert('not logged in')
-      navigation.push('Login');
+  if (user == null) {
+
+    alert('not logged in')
+    navigation.push('Login');
     }else{
-      alert('logged in')
-      navigation.push('AddScammer');
-     
-    }
+    alert('logged in')
+    navigation.push('AddScammer');
+
   }
+}
 
 
 
@@ -54,109 +55,98 @@ export default function HomeScreen({navigation}) {
     console.log(flagRef);
     // myComment = 
     let data = await getDocs(flagRef);
+    
   
 
     const q = query(collection(db, "flag"));
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
-       let commentCount = Object.keys(doc.data().comments).length
+       let commentCount = doc.data().comments.commentsData.length
+       console.log(commentCount);
       listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
-    });
+  });
 
 
+     setFlags(listFlag)
 
 
-
-
-
-     setFlags(data.docs.map((doc)=>(
-        {...doc.data(), id: doc.id}
-        )))
-
-
-
-        
       console.log(listFlag);
       // getComments()
     }
 
-   
 
-    
+
+
     const search = async() =>{
 
-      //   flags.map(flag=>((
+  //   flags.map(flag=>((
 
-      //     // console.log(address)
+  //     // console.log(address)
 
-      //     address === flag.address ?(
-      //       // navigation.push('NotFound')
-      //       console.log(flag.address)
-      //       // navigation.push('Comments')
-      //     ) :(
-      //       // navigation.push('Comments')
-      //       console.log(flag.address,"notfound")
-      //     )
-          
-      //     // console.log(address)
-      //     // address == flag.address ?(
-      //     //   navigation.push('Comments',{flag:flag})
-      //     // ):(
-      //     //   navigation.push('Home')
-      //     // )
-       
-        
-      // )))
-      console.log(flags.length);
-      
+  //     address === flag.address ?(
+  //       // navigation.push('NotFound')
+  //       console.log(flag.address)
+  //       // navigation.push('Comments')
+  //     ) :(
+  //       // navigation.push('Comments')
+  //       console.log(flag.address,"notfound")
+  //     )
+
+  //     // console.log(address)
+  //     // address == flag.address ?(
+  //     //   navigation.push('Comments',{flag:flag})
+  //     // ):(
+  //     //   navigation.push('Home')
+  //     // )
+
+
+  // )))
+  console.log(flags.length);
+
       for (var i=0; i < getItems().length; i++){
-        
-          if(address == flags.address){
-            navigation.push('Comments')
-            console.log('found')
-          }else{
-            navigation.push('NotFound')
-          }
-      }
 
+          if(address == flags.address){
+      navigation.push('Comments')
+      console.log('found')
+          }else{
+      navigation.push('NotFound')
     }
-   
+  }
+
+}
+
 
     React.useEffect(()=>{
-      console.log("some")
-      getItems();
-     
-      
-     }, [])
+  console.log("some")
+  getItems();
 
-  
-  return (
-    <SafeAreaView style={styles.container}>
-      {
-        user != null ? (<RedPart2 />):(<RedPart />)
-      } 
-      
-      
-      
-      <View style={styles.boxes}>
-        
-          <View style={styles.selectView}>
-          {/* <DropdownComponent/> */}
+
+}, [])
+
+
+return (
+  <SafeAreaView style={styles.container}>
+    {user != null ?(<RedPart2 />):(<RedPart />)}
+    
+    <View style={styles.boxes}>
+
+      <View style={styles.selectView}>
+        {/* <DropdownComponent/> */}
             <DropdownPicker/>
-          </View>
-   
-          <TextInput style={styles.inputBox} placeholder='Enter Address...' onChangeText={address=>setAddress(address)}></TextInput>
-          <TouchableOpacity onPress={search}><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
       </View>
-      
 
-            <ScrollView style={styles.midContainer}>
-            {
-                  
+      <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
+      <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
+    </View>
+
+
+    <ScrollView style={styles.midContainer}>
+      {
+
                flags.map(flag=>((
-        
-                  <View style={styles.cardsContainer} key={flag.id}>
-                    <View style={styles.card}>
+
+                <View style={styles.cardsContainer} key={flag.id}>
+                  <View style={styles.card}>
                         <View style={styles.dateContainerBorder}>
                           <View style={styles.dateContainer}>
                             <Text style={styles.day}>22</Text>
@@ -170,16 +160,23 @@ export default function HomeScreen({navigation}) {
                             <Text style={styles.username1}>{flag.address}</Text>
                             <View style={styles.comments}>
                               <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                              <Text style={styles.username3}>352</Text><FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                              <TouchableOpacity style={{width:5}} onPress={() => 
+                                navigation.navigate("Comments",{flagComments : flag.comment})
+                                
+                                }>
+
+                                 <Text style={styles.username3}>{flag.commentCount}</Text>
+                                 <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                              </TouchableOpacity>
                             </View>
                           </View>
                         </View>
                         <TouchableOpacity style={styles.upvoteBtn}>
                           <Text style={styles.upvoteTXT}>UPVOTE</Text>
                         </TouchableOpacity>
-                    </View>
-                    
                   </View>
+                    
+                </View>
                  )))} 
                   
               </ScrollView> 
@@ -195,7 +192,7 @@ export default function HomeScreen({navigation}) {
 
     </SafeAreaView>
   );
-}
+ }
 
 const styles = StyleSheet.create({
   container: {
