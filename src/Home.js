@@ -141,7 +141,7 @@ return (
     <View style={styles.selectView}>
                         
             <Picker
-                  style={[styles.dropdownPick, { marginTop: '25px', marginVertical: 10, backgroundColor: '' }]}
+                  style={[styles.dropdownPick, { marginTop: '25px', marginVertical: 10, }]}
                   selectedValue={selectedAddress}
                   onValueChange={(itemVal) => {
                   setSelectedAddress(itemVal);
@@ -179,17 +179,20 @@ return (
                         </View>
                         <View style={styles.userContainerRightBorder}>
                           <View style={styles.userContainer}>
+                          <TouchableOpacity onPress={() => 
+                                navigation.navigate("Comments",{flagComments : flag.comment})
+                                
+                                }>
                             <Text style={styles.username1}>{flag.address}</Text>
+                            </TouchableOpacity>
                             <View style={styles.comments}>
                               <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                              <TouchableOpacity style={{width:5}} onPress={() => 
+                              <TouchableOpacity style={{marginLeft:20,}} onPress={() => 
                                 navigation.navigate("Comments",{flagComments : flag.comment})
                                 
                                 }>
 
-                                 <Text style={styles.username3}>{flag.commentCount}</Text>
-                                 </TouchableOpacity>
-                                 <TouchableOpacity>
+                                 <Text style={[styles.username3,{width:5}]}>{flag.commentCount}</Text>
                                  <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
                               </TouchableOpacity>
                             </View>
@@ -340,7 +343,7 @@ const styles = StyleSheet.create({
   username3:{
     paddingTop: 10,
     fontSize: 10,
-    paddingLeft:60,
+    paddingLeft:40,
   },
   comments: {
     display: 'flex',
@@ -349,7 +352,7 @@ const styles = StyleSheet.create({
   commentIcon: {
     paddingTop: 10,
     position: 'absolute',
-    paddingLeft: 115,
+    paddingLeft: 60,
   },
   flags: {
     paddingTop: 10,
@@ -373,4 +376,15 @@ const styles = StyleSheet.create({
     color: '#6200EE',
     fontWeight: 'bold',
   },
+  dropdownPick:{
+    height: 25,
+    width:120,
+    borderColor: 'grey',
+    border:'1px solid black',
+    borderRadius: 4,
+    boxShadow: '#ababab 0px 6px 9px -3px;',
+    backgroundColor: '#EDEDED',
+    paddingLeft: '2%',
+    fontSize:12,
+},
 });
