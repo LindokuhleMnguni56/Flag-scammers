@@ -1,10 +1,12 @@
 import { View, Text,StyleSheet, Image, TextInput, TouchableOpacity, ImageBackground } from 'react-native'
 import React from 'react';
-import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import {createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider ,signInWithPopup} from 'firebase/auth';
 import { auth } from './config/firebase';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import image1 from "../assets/bg.png"
 import image2 from '../assets/google.png'
+
+const provider = new GoogleAuthProvider();
 
 
 const Register = ({navigation}) => {
@@ -31,6 +33,19 @@ const Register = ({navigation}) => {
       console.log(error)
   })
   
+}
+
+
+const LoginWithGoogle =() =>{
+  signInWithPopup(auth,provider).
+  then((result)=>{
+    console.log ((result));
+    navigation.push("Home")
+ 
+  }).catch ((error)=>{
+    console.log(error)
+  })
+
 }
 
 
@@ -131,6 +146,7 @@ const Register = ({navigation}) => {
       <View style={styles.GoogleContainer}>
             <TouchableOpacity
                 style={styles.GoogleButton}
+                onPress={LoginWithGoogle}
             >
               <Image
                source={image2}
