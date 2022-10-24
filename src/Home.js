@@ -7,6 +7,7 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import RedPart2 from '../components/secureTopParts';
 import { Picker } from 'react-native-web';
+import SpinnerIndicator from '../components/spinner';
 
 
 
@@ -18,6 +19,7 @@ import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
 import { Link } from '@react-navigation/native';
+
 
 
 
@@ -161,12 +163,11 @@ return (
       <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
     </View>
 
-
+    
     <ScrollView style={styles.midContainer}>
+    
       {
-
                flags.map(flag=>((
-
                 <View style={styles.cardsContainer} key={flag.id}>
                   <View style={styles.card}>
                         <View style={styles.dateContainerBorder}>
@@ -278,7 +279,6 @@ const styles = StyleSheet.create({
     paddingTop:15,
     borderRightWidth: 1,
     borderRightColor: 'black',
-
     
   },
   userContainerRightBorder:{

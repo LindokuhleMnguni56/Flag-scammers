@@ -19,9 +19,10 @@ export default function Comments({route,navigation}){
             <View style={styles.card}>
                     <View style={styles.dateContainer}>
                         <View style={styles.dateContainerBorder}>
+                            <Text style={styles.year}>2021<Text>-</Text></Text>
+                            <Text style={styles.month}>04<Text>-</Text></Text>
                             <Text style={styles.day}>15</Text>
-                            <Text style={styles.month}>May</Text>
-                            <Text style={styles.year}>2021</Text>
+                            
                         </View>
                     </View>
                     <View style={styles.userContainer}>
@@ -109,28 +110,31 @@ const styles = StyleSheet.create({
     },
     dateContainer:{
         flex:1,
-        width:80,
+        
     },
     dateContainerBorder:{
-      height:40,
-      marginTop:15,
-      borderRightWidth:1,
-      borderRightColor:'black',
-      width:50,
+        flexDirection:'row',  
+        height:40,
+        marginTop:15,
+        borderRightWidth:1,
+        borderRightColor:'black',
+        width:70,
+        paddingTop:11,
+        paddingLeft:4
     },
     day:{
-        paddingLeft:20,
+        
         fontSize:10,
         color:'#D2373C',
     },
     month:{
-        paddingLeft:15,
+        
         fontSize:10,
         color:'#D2373C',
         fontWeight:'bolder',
     },
     year:{
-        paddingLeft:15,
+        
         fontSize:10,
         color:'#D2373C',
     },
@@ -139,22 +143,28 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         marginRight:100,
+        
+  
     },
     userContainerBorder:{
         height:40,
         marginTop:13,
         paddingTop:10,
+        paddingLeft:10,
     },
     likes:{
         fle:1,
         display:'flex',
         flexDirection:'row',
         height:40,
-        marginLeft:45,
+        marginLeft:15,
         marginTop:25,
     },
     username:{
-      width:180,
+      width:210,
+      paddingLeft:5,
+      fontSize:13,
+      
     },
     flags:{
         color:'#D2373C',
