@@ -171,9 +171,10 @@ return (
                   <View style={styles.card}>
                         <View style={styles.dateContainerBorder}>
                           <View style={styles.dateContainer}>
+                            <Text style={styles.year}>2022<Text>-</Text></Text>
+                            <Text style={styles.month}>10<Text>-</Text></Text>
                             <Text style={styles.day}>22</Text>
-                            <Text style={styles.month}>Aug</Text>
-                            <Text style={styles.year}>2022</Text>
+                            
                           </View>
 
                         </View>
@@ -268,12 +269,16 @@ const styles = StyleSheet.create({
   },
   dateContainerBorder: {
     width: 70,
+    
   },
   dateContainer: {
+    flexDirection:'row',
     height: 40,
     marginTop: 20,
+    paddingTop:15,
     borderRightWidth: 1,
     borderRightColor: 'black',
+
     
   },
   userContainerRightBorder:{
@@ -316,18 +321,16 @@ const styles = StyleSheet.create({
     fontSize: '1.8em',
   },
   day: {
-    paddingLeft: 26,
     color: 'red',
     fontSize:10,
   },
   month: {
-    paddingLeft: 20,
     fontSize: 10,
     color: '#D2373C',
     fontWeight: 'bolder',
   },
   year: {
-    paddingLeft: 18,
+    paddingLeft:10,
     fontSize: 10,
     color: '#D2373C',
   },
