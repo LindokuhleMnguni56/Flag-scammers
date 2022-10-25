@@ -40,12 +40,9 @@ function App() {
                   <Stack.Screen name='AddScammer' options={{title:'AddScammer', headerShown:false}}>
                     {(props)=> <AddScammer {...props} />}
                   </Stack.Screen>
-                  <Stack.Screen name='secureTopParts' options={{title:'secureTopParts', headerShown:false}}>
-                    {(props)=> <RedPart2 {...props} />}
-                  </Stack.Screen>
-                  <Stack.Screen name='spinner' options={{title:'spinner', headerShown:false}}>
+                  {/* <Stack.Screen name='spinner' options={{title:'spinner', headerShown:false}}>
                     {(props)=> <SpinnerIndicator {...props} />}
-                  </Stack.Screen>
+                  </Stack.Screen> */}
                   
             </Stack.Navigator>
     </NavigationContainer>

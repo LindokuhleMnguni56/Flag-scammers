@@ -44,7 +44,9 @@ console.log(user.displayName)
                   <Text style={styles.label}>username</Text>
                   <Text style={styles.text}>{user.displayName}</Text>
               </View>
-              <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>    
+              <TouchableOpacity>
+              <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
+              </TouchableOpacity>    
           </View>
 
            <View style={styles.emailContainer}>

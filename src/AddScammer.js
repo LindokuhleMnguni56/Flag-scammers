@@ -155,8 +155,7 @@ const styles = StyleSheet.create({
     selectView: {
         display: 'flex',
         flexDirection: 'row',
-        width: '35%',
-
+        width: '55%',
 
     },
     txt: {
@@ -233,7 +232,17 @@ const styles = StyleSheet.create({
     hhh: {
         paddingHorizontal: '25px',
         marginTop: '100px'
-    }
+    },
+    dropdownPick:{
+        height: 25,
+        width:130,
+        border:'1px solid grey',
+        borderRadius: 4,
+        boxShadow: '#ababab 0px 6px 9px -3px;',
+        backgroundColor: '#EDEDED',
+        paddingLeft: '2%',
+        fontSize:12,
+    },
 
 
 
