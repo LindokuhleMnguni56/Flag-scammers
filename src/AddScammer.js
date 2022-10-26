@@ -43,12 +43,14 @@ const AddScammer = () => {
             address: mail,
             addressType: selectedAddress,
             date: timestamp, 
-            comments :{
-                commentsData:[{
-                    uid:user.uid,
-                    commentText:comment
-            }]
-            }
+            comments :[ {[user.displayName]:comment}]
+              
+                    // uid:user.uid,
+                    // commentText:comment
+                      
+                    // commentText:comment
+            
+            
         })
         alert('flag added')
     }
