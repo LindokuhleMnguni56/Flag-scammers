@@ -29,7 +29,7 @@ import React from 'react';
 export default function HomeScreen({navigation}){
   const [flags,setFlags]= React.useState([]);
 const listFlag = []
- const [likes,setLikes]=React.useState([])
+ const [likes,setLikes]=Re
   const [address,setAddress] =React.useState('')
   const itemRef = collection(db, "flags");
   const [selectedAddress, setSelectedAddress] = React.useState('');

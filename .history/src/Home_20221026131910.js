@@ -27,9 +27,11 @@ import React from 'react';
 
 
 export default function HomeScreen({navigation}){
+  const [likes,setLikes]=React.useState('')
+  let [loading, setLoading] = React.useState(true);
   const [flags,setFlags]= React.useState([]);
 const listFlag = []
- const [likes,setLikes]=React.useState([])
+
   const [address,setAddress] =React.useState('')
   const itemRef = collection(db, "flags");
   const [selectedAddress, setSelectedAddress] = React.useState('');
@@ -72,9 +74,7 @@ const addLike=async ()=>{
 }
 const deleteLike=async ()=>{
   if (user!=null){
-    const docRef = doc(db, "flags");
-
-deleteDoc(docRef)
+   
 .then(() => {
     console.log("Entire Document has been deleted successfully.")
 })
@@ -91,7 +91,7 @@ deleteDoc(docRef)
 
 // console.log(likes)
 
- 
+
 
 
 
@@ -114,7 +114,7 @@ deleteDoc(docRef)
 
 
      setFlags(listFlag)
-    //  setLoading(false)
+     setLoading(false)
 
 
       console.log(listFlag);
@@ -148,7 +148,7 @@ deleteDoc(docRef)
 
 
   // )))
- 
+  console.log(flags.length);
 
       for (var i=0; i < getItems().length; i++){
 
@@ -200,14 +200,14 @@ return (
       <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
     </View>
     <View>
-    {/* <SyncLoader
+    <SyncLoader
         color={"green"}
         loading={loading}
         // cssOverride={override}
         size={50}
         aria-label="Loading Spinner"
         data-testid="loader"
-      /> */}
+      />
     </View>
   
     
