@@ -185,7 +185,7 @@ return (
                         <View style={styles.userContainerRightBorder}>
                           <View style={styles.userContainer}>
                           <TouchableOpacity onPress={() => 
-                                navigation.navigate("Comments",{flagComments : flag.comment})
+                                navigation.navigate("Comments",{flagComments : flag.comment,flagAddress:flag.address})
                                 
                                 }>
                             <Text style={styles.username1}>{flag.address}</Text>
