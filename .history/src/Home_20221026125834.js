@@ -68,7 +68,7 @@ const addLike=async ()=>{
 }
 const deleteLike=async ()=>{
   if (user!=null){
-    const docRef = doc(db, "flags");
+    const docRef = doc(db, "cities", "yftq9RGp4jWNSyBZ1D6L");
 
 deleteDoc(docRef)
 .then(() => {
@@ -78,7 +78,7 @@ deleteDoc(docRef)
     console.log(error);
 })
 
-  }}
+  }
 
 //     const docRef=await deleteDoc(itemRef)
 //   }

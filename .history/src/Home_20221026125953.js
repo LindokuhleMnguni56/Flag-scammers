@@ -78,7 +78,7 @@ deleteDoc(docRef)
     console.log(error);
 })
 
-  }}
+  }\
 
 //     const docRef=await deleteDoc(itemRef)
 //   }

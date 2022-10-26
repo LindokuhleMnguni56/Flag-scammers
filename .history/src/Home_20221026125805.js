@@ -68,17 +68,6 @@ const addLike=async ()=>{
 }
 const deleteLike=async ()=>{
   if (user!=null){
-    const docRef = doc(db, "flags");
-
-deleteDoc(docRef)
-.then(() => {
-    console.log("Entire Document has been deleted successfully.")
-})
-.catch(error => {
-    console.log(error);
-})
-
-  }}
 
 //     const docRef=await deleteDoc(itemRef)
 //   }
