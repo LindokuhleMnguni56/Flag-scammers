@@ -79,8 +79,10 @@ const LoginWithGoogle =() =>{
       </View>
 
       <View style={styles.forget}>
-          <TouchableOpacity style={styles.for}>
-            <Text style={styles.textForget}>Forget password</Text>
+          <TouchableOpacity style={styles.for}
+          onPress={() => navigation.push('forgotPassword')}
+          >
+            <Text style={styles.textForget}>Forgot password?</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.for}

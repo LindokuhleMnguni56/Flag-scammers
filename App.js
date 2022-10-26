@@ -8,8 +8,9 @@ import Login from './src/Login';
 import Pro  from './src/pro';
 import NotFound from './src/NotFound';
 import AddScammer from './src/AddScammer';
-import RedPart2 from './components/secureTopParts';
-import SpinnerIndicator from './components/spinner';
+// import RedPart2 from './components/secureTopParts';
+// import SpinnerIndicator from './components/spinner';
+import Forgot from './src/forgotPassword';
 
 
 
@@ -40,9 +41,9 @@ function App() {
                   <Stack.Screen name='AddScammer' options={{title:'AddScammer', headerShown:false}}>
                     {(props)=> <AddScammer {...props} />}
                   </Stack.Screen>
-                  {/* <Stack.Screen name='spinner' options={{title:'spinner', headerShown:false}}>
-                    {(props)=> <SpinnerIndicator {...props} />}
-                  </Stack.Screen> */}
+                  <Stack.Screen name='forgotPassword' options={{title:'forgotPassword', headerShown:false}}>
+                    {(props)=> <Forgot {...props} />}
+                  </Stack.Screen>
                   
             </Stack.Navigator>
     </NavigationContainer>

@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
         marginTop:20,
       },
     bottomContainer:{
-        backgroundColor:'#000000',
+        backgroundColor:'white',
         height:'17%',
         width:'100%',
     },
@@ -286,7 +286,9 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-evenly',
-        marginTop:20,
+        marginTop:10,
+        zIndex:3000,
+        
     },
     userIconBackground:{
         backgroundColor:'grey',

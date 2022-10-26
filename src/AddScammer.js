@@ -1,15 +1,18 @@
-import { SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity,Picker, Modal } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { db, auth } from './config/firebase';
 import { addDoc, collection, query, where, getDocs } from 'firebase/firestore'
 import Top from '../components/secureTopParts';
 import RedPart2 from '../components/secureTopParts';
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Picker } from 'react-native-web'
 import moment from 'moment/moment';
 import RedPart from '../components/topPart';
+import ConfirmationPopup from '../components/modal';
 
-const AddScammer = () => {
+const AddScammer = ({navigation}) => {
+
+    const [visible, setVisible] = useState(false);
+
     const moment = require('moment')
     const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
     
@@ -29,6 +32,7 @@ const AddScammer = () => {
     ]
     );
     const addflag = async () => {
+        setVisible(true);
         if (user!=null){
         //add to flag
         // const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp,comment:{[uid]:comment  }})
@@ -52,7 +56,8 @@ const AddScammer = () => {
             
             
         })
-        alert('flag added')
+        
+        
     }
 
         //  await addDoc(commentRef,{comment:comment,flagId:docRef.id})
@@ -122,6 +127,14 @@ const AddScammer = () => {
                     >
                         <Text style={styles.buttonText}>FLAG</Text>
                     </TouchableOpacity>
+                </View>
+                <View>
+                    <ConfirmationPopup visible={visible}>
+                    <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
+                        Comment Added
+                    </Text>
+                    <TouchableOpacity onPress={() => setVisible(false)}><Text>OK</Text></TouchableOpacity>             
+                    </ConfirmationPopup>
                 </View>
 
 
