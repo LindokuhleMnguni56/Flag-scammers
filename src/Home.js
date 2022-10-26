@@ -29,114 +29,116 @@ import { Link } from '@react-navigation/native';
 export default function HomeScreen({navigation}){
   let [loading, setLoading] = React.useState(true);
   const [flags,setFlags]= React.useState([]);
-const listFlag = []
-  const[users,setUsers]= React.useState('');
-  const [address,setAddress] =React.useState('')
-
-  const [selectedAddress, setSelectedAddress] = React.useState('');
-  const [addresses] = React.useState([
-    'Email Address',
-    'Physical Address'
-]
-);
-
-  const flagRef =collection(db,"flag");
-  const commentRef =collection(db,"comments");
-
-  var user= auth.currentUser;
-console.log(user);
-
-
-
-
-  const addButton = async()=>{
-  if (user == null) {
-
-
-    navigation.push('Login');
-    }else{
-    
-    navigation.push('AddScammer');
-
+  const listFlag = []
+    const[users,setUsers]= React.useState('');
+    const [address,setAddress] =React.useState('')
+  
+    const [selectedAddress, setSelectedAddress] = React.useState('');
+    const [addresses] = React.useState([
+      'Email Address',
+      'Physical Address'
+  ]
+  );
+  
+    const flagRef =collection(db,"flag");
+    const commentRef =collection(db,"comments");
+  
+    var user= auth.currentUser;
+  console.log(user);
+  
+  
+  
+  
+    const addButton = async()=>{
+    if (user == null) {
+  
+      alert('not logged in')
+      navigation.push('Login');
+      }else{
+      alert('logged in')
+      navigation.push('AddScammer');
+  
+    }
   }
-}
-
-
-
-
-  const getItems = async()=>{
+  
+  
+  
+  
+    const getItems = async()=>{
+        
+      console.log(flagRef);
+      // myComment = 
+      let data = await getDocs(flagRef);
       
-    console.log(flagRef);
-    // myComment = 
-    let data = await getDocs(flagRef);
     
   
-
-    const q = query(collection(db, "flag"));
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc) => {
-       let commentCount = doc.data().comments.length
-       console.log(commentCount);
-      listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
-  });
-
-
-     setFlags(listFlag)
-     setLoading(false)
-
-
-      console.log(listFlag);
-      // getComments()
+      const q = query(collection(db, "flag"));
+      const querySnapshot = await getDocs(q)
+      querySnapshot.forEach((doc) => {
+         let commentCount = doc.data().comments.length
+        //  let commentCount = 2
+         console.log(commentCount);
+        listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
+    });
+  
+  
+       setFlags(listFlag)
+  
+  
+        console.log(listFlag);
+        // getComments()
+      }
+  
+  
+  
+  
+      const search = async() =>{
+  
+    //   flags.map(flag=>((
+  
+    //     // console.log(address)
+  
+    //     address === flag.address ?(
+    //       // navigation.push('NotFound')
+    //       console.log(flag.address)
+    //       // navigation.push('Comments')
+    //     ) :(
+    //       // navigation.push('Comments')
+    //       console.log(flag.address,"notfound")
+    //     )
+  
+    //     // console.log(address)
+    //     // address == flag.address ?(
+    //     //   navigation.push('Comments',{flag:flag})
+    //     // ):(
+    //     //   navigation.push('Home')
+    //     // )
+  
+  
+    // )))
+    console.log(flags.length);
+  
+        for (var i=0; i < getItems().length; i++){
+  
+            if(address == flags.address){
+        navigation.push('Comments')
+        console.log('found')
+            }else{
+        navigation.push('NotFound')
+      }
     }
-
-
-
-
-    const search = async() =>{
-
-  //   flags.map(flag=>((
-
-  //     // console.log(address)
-
-  //     address === flag.address ?(
-  //       // navigation.push('NotFound')
-  //       console.log(flag.address)
-  //       // navigation.push('Comments')
-  //     ) :(
-  //       // navigation.push('Comments')
-  //       console.log(flag.address,"notfound")
-  //     )
-
-  //     // console.log(address)
-  //     // address == flag.address ?(
-  //     //   navigation.push('Comments',{flag:flag})
-  //     // ):(
-  //     //   navigation.push('Home')
-  //     // )
-
-
-  // )))
-  console.log(flags.length);
-
-      for (var i=0; i < getItems().length; i++){
-
-          if(address == flags.address){
-      navigation.push('Comments')
-      console.log('found')
-          }else{
-      navigation.push('NotFound')
-    }
+  
   }
-
-}
-
-
-    React.useEffect(()=>{
-  console.log("some")
-  getItems();
-
-
-}, [])
+  
+  
+      React.useEffect(()=>{
+    console.log("some")
+    getItems();
+  
+  
+  }, [])
+  
+  
 
 
 return (
@@ -197,7 +199,7 @@ return (
                         <View style={styles.userContainerRightBorder}>
                           <View style={styles.userContainer}>
                           <TouchableOpacity onPress={() => 
-                                navigation.navigate("Comments",{flagComments : flag.comment})
+                                navigation.navigate("Comments",{flagComments : flag.comment,flagAddress:flag.address})
                                 
                                 }>
                             <Text style={styles.username1}>{flag.address}</Text>
