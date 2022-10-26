@@ -7,7 +7,10 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import RedPart2 from '../components/secureTopParts';
 import { Picker } from 'react-native-web';
-import SpinnerIndicator from '../components/spinner';
+import ClipLoader from "react-spinners/ClipLoader";
+import SyncLoader from "react-spinners/SyncLoader";
+
+
 
 
 
@@ -24,6 +27,7 @@ import { Link } from '@react-navigation/native';
 
 
 export default function HomeScreen({navigation}){
+  let [loading, setLoading] = React.useState(true);
   const [flags,setFlags]= React.useState([]);
 const listFlag = []
   const[users,setUsers]= React.useState('');
@@ -48,10 +52,10 @@ console.log(user);
   const addButton = async()=>{
   if (user == null) {
 
-    alert('not logged in')
+
     navigation.push('Login');
     }else{
-    alert('logged in')
+    
     navigation.push('AddScammer');
 
   }
@@ -71,13 +75,14 @@ console.log(user);
     const q = query(collection(db, "flag"));
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
-       let commentCount = doc.data().comments.commentsData.length
+       let commentCount = doc.data().comments.length
        console.log(commentCount);
       listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
   });
 
 
      setFlags(listFlag)
+     setLoading(false)
 
 
       console.log(listFlag);
@@ -162,7 +167,17 @@ return (
       <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
       <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
     </View>
-
+    <View>
+    <SyncLoader
+        color={"green"}
+        loading={loading}
+        // cssOverride={override}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </View>
+  
     
     <ScrollView style={styles.midContainer}>
     
@@ -194,7 +209,7 @@ return (
                                 
                                 }>
 
-                                 <Text style={[styles.username3,{width:5}]}>{flag.commentCount}</Text>
+                                 <Text style={[styles.username3,{width:55,}]}>{flag.commentCount}</Text>
                                  <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
                               </TouchableOpacity>
                             </View>
@@ -346,7 +361,7 @@ const styles = StyleSheet.create({
   username3:{
     paddingTop: 10,
     fontSize: 10,
-    paddingLeft:40,
+    paddingLeft:35,
   },
   comments: {
     display: 'flex',

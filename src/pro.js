@@ -37,8 +37,7 @@ console.log(user.displayName)
       </Text>
       
       <View style={styles.profileDetails}>
-          <View style={styles.usernameContainer}>
-              <br/>
+          <View style={styles.usernameContainer}> 
               <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
               <View style={styles.flagText}>
                   <Text style={styles.label}>username</Text>

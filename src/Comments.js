@@ -35,8 +35,6 @@ export default function Comments({route,navigation}){
                     </View>
                     
                 </View>
-            <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
-                
                 <View style={styles.textBox} >
                         <TouchableOpacity style={styles.userIconBg} onPress={() => navigation.push('Pro')}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
@@ -46,6 +44,87 @@ export default function Comments({route,navigation}){
                             <TouchableOpacity style={styles.sendButton}><Text style={{fontSize:12}}>Add Comment</Text></TouchableOpacity>
                         </View>
                         
+                </View>
+            <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
+                
+                
+                <View style={styles.commentsBox}>
+                        <TouchableOpacity style={styles.userIconBackground}>
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
+                        </TouchableOpacity>
+                        {/* {
+                  
+                            flagComments.map(comment=>(( */}
+                                <Text style={styles.userComments}>
+                                        comments
+                                </Text>
+                            {/* )))} */}
+
+                </View>
+                <View style={styles.commentsBox}>
+                        <TouchableOpacity style={styles.userIconBackground}>
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
+                        </TouchableOpacity>
+                        {/* {
+                  
+                            flagComments.map(comment=>(( */}
+                                <Text style={styles.userComments}>
+                                        comments
+                                </Text>
+                            {/* )))} */}
+
+                </View>
+                <View style={styles.commentsBox}>
+                        <TouchableOpacity style={styles.userIconBackground}>
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
+                        </TouchableOpacity>
+                        {/* {
+                  
+                            flagComments.map(comment=>(( */}
+                                <Text style={styles.userComments}>
+                                        comments
+                                </Text>
+                            {/* )))} */}
+
+                </View>
+                <View style={styles.commentsBox}>
+                        <TouchableOpacity style={styles.userIconBackground}>
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
+                        </TouchableOpacity>
+                        {/* {
+                  
+                            flagComments.map(comment=>(( */}
+                                <Text style={styles.userComments}>
+                                        comments
+                                </Text>
+                            {/* )))} */}
+
+                </View>
+                <View style={styles.commentsBox}>
+                        <TouchableOpacity style={styles.userIconBackground}>
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
+                        </TouchableOpacity>
+                        {/* {
+                  
+                            flagComments.map(comment=>(( */}
+                                <Text style={styles.userComments}>
+                                        comments
+                                </Text>
+                            {/* )))} */}
+
+                </View>
+                <View style={styles.commentsBox}>
+                        <TouchableOpacity style={styles.userIconBackground}>
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
+                        </TouchableOpacity>
+                        {/* {
+                  
+                            flagComments.map(comment=>(( */}
+                                <Text style={styles.userComments}>
+                                        comments
+                                </Text>
+                            {/* )))} */}
+
                 </View>
                 <View style={styles.commentsBox}>
                         <TouchableOpacity style={styles.userIconBackground}>
@@ -95,10 +174,12 @@ const styles = StyleSheet.create({
         marginTop:20,
       },
     bottomContainer:{
-        backgroundColor:'#000000',
+        backgroundColor:'white',
         height:'17%',
         width:'100%',
     },
+
+    
 
     card:{
     display:'flex',
@@ -219,7 +300,9 @@ const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         justifyContent:'space-evenly',
-        marginTop:20,
+        marginTop:10,
+        zIndex:3000,
+        
     },
     userIconBackground:{
         backgroundColor:'grey',
