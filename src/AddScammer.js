@@ -39,9 +39,7 @@ const AddScammer = ({navigation}) => {
         // console.log("New Flag  ID: ", docRef.flag.uid);
         // let data = await getDocs(commentRef);
 
-
         console.log(user);
-
 
         const docRef = await addDoc(itemRef, {
             address: mail,
@@ -53,10 +51,7 @@ const AddScammer = ({navigation}) => {
                     // commentText:comment
                       
                     // commentText:comment
-            
-            
         })
-        
         
     }
 
@@ -66,8 +61,12 @@ const AddScammer = ({navigation}) => {
         //add to comments
 
         // }
-
        
+    }
+
+    const close = () =>{
+        setVisible(false)
+        navigation.navigate('Home')
     }
 
 
@@ -133,7 +132,7 @@ const AddScammer = ({navigation}) => {
                     <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
                         Comment Added
                     </Text>
-                    <TouchableOpacity onPress={() => setVisible(false)}><Text>OK</Text></TouchableOpacity>             
+                    <TouchableOpacity onPress={() =>close()}><Text>OK</Text></TouchableOpacity>             
                     </ConfirmationPopup>
                 </View>
 
