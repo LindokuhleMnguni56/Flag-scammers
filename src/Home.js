@@ -168,14 +168,14 @@ return (
       <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
     </View>
     <View>
-    <SyncLoader
-        color={"green"}
-        loading={loading}
-        // cssOverride={override}
-        size={50}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
+      <SyncLoader
+          color={"#D2373C"}
+          loading={loading}
+          // cssOverride={override}
+          size={10}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
     </View>
   
     
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   },
   bottomContainer: {
     backgroundColor: '#000000',
-    height: '15%',
+    height: '17%',
     width: '100%',
   },
   card: {
