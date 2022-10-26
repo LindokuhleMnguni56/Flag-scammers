@@ -38,14 +38,15 @@ console.log(user.displayName)
       </Text>
       
       <View style={styles.profileDetails}>
-          <View style={styles.usernameContainer}>
-              <br/>
+          <View style={styles.usernameContainer}> 
               <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
               <View style={styles.flagText}>
                   <Text style={styles.label}>username</Text>
                   <Text style={styles.text}>{user.displayName}</Text>
               </View>
-              <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>    
+              <TouchableOpacity>
+              <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
+              </TouchableOpacity>    
           </View>
 
            <View style={styles.emailContainer}>
@@ -74,7 +75,7 @@ console.log(user.displayName)
        </View>
       </View>
       <View style={styles.bottomContainer}>
-      {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg> */}
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>     
     </View>
  
@@ -84,6 +85,7 @@ console.log(user.displayName)
 const styles = StyleSheet.create({
     container:{
       flex:1,
+      backgroundColor:'white'
     },
 
     flagText:{

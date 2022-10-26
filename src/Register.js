@@ -10,7 +10,6 @@ const provider = new GoogleAuthProvider();
 
 
 const Register = ({navigation}) => {
-    const [passSecured,setpassSecured]=React.useState(true);
     const [uid,setUid]=React.useState('');
     const [email,setEmail]=React.useState('');
     const [password,setPass]=React.useState('');
@@ -26,7 +25,7 @@ const Register = ({navigation}) => {
       setUser(()=>({...userCredential.user}));
 
        updateProfile(auth.currentUser, {displayName:displayName}).then().catch();
-      alert(displayName+ "successfull")
+      alert(displayName+ "successfully")
       navigation.push('Home')
   }).catch((error)=>{
       alert(error);
@@ -36,7 +35,7 @@ const Register = ({navigation}) => {
 }
 
 
-const LoginWithGoogle =() =>{
+const RegisterWithGoogle =() =>{
   signInWithPopup(auth,provider).
   then((result)=>{
     console.log ((result));
@@ -146,7 +145,7 @@ const LoginWithGoogle =() =>{
       <View style={styles.GoogleContainer}>
             <TouchableOpacity
                 style={styles.GoogleButton}
-                onPress={LoginWithGoogle}
+                onPress={ RegisterWithGoogle}
             >
               <Image
                source={image2}
@@ -307,8 +306,7 @@ button:{
     color:'#353535',
     textAlign:'center',
 
-  }
-
+  },
 });
 
 

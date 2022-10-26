@@ -7,6 +7,10 @@ import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import RedPart2 from '../components/secureTopParts';
 import { Picker } from 'react-native-web';
+import ClipLoader from "react-spinners/ClipLoader";
+import SyncLoader from "react-spinners/SyncLoader";
+
+
 
 
 
@@ -21,8 +25,10 @@ import React from 'react';
 
 
 
+
 export default function HomeScreen({navigation}){
   const [likes,setLikes]=React.useState('')
+  let [loading, setLoading] = React.useState(true);
   const [flags,setFlags]= React.useState([]);
 const listFlag = []
 
@@ -47,10 +53,10 @@ console.log(user);
   const addButton = async()=>{
   if (user == null) {
 
-    alert('not logged in')
+
     navigation.push('Login');
     }else{
-    alert('logged in')
+    
     navigation.push('AddScammer');
 
   }
@@ -110,6 +116,7 @@ deleteDoc(docRef)
 
 
      setFlags(listFlag)
+     setLoading(false)
 
 
       console.log(listFlag);
@@ -194,20 +201,30 @@ return (
       <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
       <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
     </View>
-
-
+    <View>
+    <SyncLoader
+        color={"green"}
+        loading={loading}
+        // cssOverride={override}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    </View>
+  
+    
     <ScrollView style={styles.midContainer}>
+    
       {
-
                flags.map(flag=>((
-
                 <View style={styles.cardsContainer} key={flag.id}>
                   <View style={styles.card}>
                         <View style={styles.dateContainerBorder}>
                           <View style={styles.dateContainer}>
+                            <Text style={styles.year}>2022<Text>-</Text></Text>
+                            <Text style={styles.month}>10<Text>-</Text></Text>
                             <Text style={styles.day}>22</Text>
-                            <Text style={styles.month}>Aug</Text>
-                            <Text style={styles.year}>2022</Text>
+                            
                           </View>
 
                         </View>
@@ -226,7 +243,7 @@ return (
                                 
                                 }>
 
-                                 <Text style={[styles.username3,{width:5}]}>{flag.commentCount}</Text>
+                                 <Text style={[styles.username3,{width:55,}]}>{flag.commentCount}</Text>
                                  <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
                               </TouchableOpacity>
                             </View>
@@ -310,10 +327,13 @@ const styles = StyleSheet.create({
   },
   dateContainerBorder: {
     width: 70,
+    
   },
   dateContainer: {
+    flexDirection:'row',
     height: 40,
     marginTop: 20,
+    paddingTop:15,
     borderRightWidth: 1,
     borderRightColor: 'black',
     
@@ -358,18 +378,16 @@ const styles = StyleSheet.create({
     fontSize: '1.8em',
   },
   day: {
-    paddingLeft: 26,
     color: 'red',
     fontSize:10,
   },
   month: {
-    paddingLeft: 20,
     fontSize: 10,
     color: '#D2373C',
     fontWeight: 'bolder',
   },
   year: {
-    paddingLeft: 18,
+    paddingLeft:10,
     fontSize: 10,
     color: '#D2373C',
   },
@@ -385,7 +403,7 @@ const styles = StyleSheet.create({
   username3:{
     paddingTop: 10,
     fontSize: 10,
-    paddingLeft:40,
+    paddingLeft:35,
   },
   comments: {
     display: 'flex',

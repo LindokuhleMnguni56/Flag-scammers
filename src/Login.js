@@ -1,14 +1,11 @@
 import { View, Text,StyleSheet, TextInput, TouchableOpacity, ImageBackground,Image } from 'react-native';
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import react from 'react';
 import { auth } from './config/firebase';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import image1 from "../assets/bg.png";
 import image2 from '../assets/google.png';
 import { signInWithEmailAndPassword, GoogleAuthProvider ,signInWithPopup} from 'firebase/auth';
-import  {LoginWithGoogle} from './config/firebase'
 
 const provider = new GoogleAuthProvider();
 
@@ -27,17 +24,6 @@ export default function Login({navigation}){
     })
     
 })
-// const googleLog = ()=>{
-//   signInWithPopup(auth,provider).then((result)=>{
-//       // alert("successfully logged in")
-//       console.log(result);
-//       setUser(result.user)
-//       history("/home");
-//   }).catch((err)=>{
-//       console.log(err);
-//   })
-  
-// }
 
 
 const LoginWithGoogle =() =>{
@@ -93,8 +79,10 @@ const LoginWithGoogle =() =>{
       </View>
 
       <View style={styles.forget}>
-          <TouchableOpacity style={styles.for}>
-            <Text style={styles.textForget}>Forget password</Text>
+          <TouchableOpacity style={styles.for}
+          onPress={() => navigation.push('forgotPassword')}
+          >
+            <Text style={styles.textForget}>Forgot password?</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.for}
@@ -277,10 +265,5 @@ const styles = StyleSheet.create({
     color:'#353535',
     textAlign:'center',
     } 
-  
-
-
-
-
   });
 
