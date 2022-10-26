@@ -83,7 +83,7 @@ export default function HomeScreen({navigation}){
   
   
        setFlags(listFlag)
-  
+       setLoading(false)     
   
         console.log(listFlag);
         // getComments()
