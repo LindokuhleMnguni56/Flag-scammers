@@ -82,7 +82,7 @@ console.log(user);
 
 
      setFlags(listFlag)
-    //  setLoading(false)
+     setLoading(false)
 
 
       console.log(listFlag);
@@ -215,13 +215,15 @@ return (
                             </View>
                           </View>
                         </View>
-                        <TouchableOpacity style={styles.upvoteBtn}>
-                              <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                        <TouchableOpacity style={styles.upvoteBtn} onPress={likes != null  ? addLike : deleteLike}>
+                              <Text style={styles.upvoteTXT}></Text>
                         </TouchableOpacity>
 
 
 
-           
+                        {/* <Button
+        title={recording ? 'Stop Recording' : 'Start Recording'}
+        onPress={recording ? stopRecording : startRecording} /> */}
 
                     
                   </View>

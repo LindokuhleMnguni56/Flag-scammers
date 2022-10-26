@@ -82,7 +82,7 @@ console.log(user);
 
 
      setFlags(listFlag)
-    //  setLoading(false)
+     setLoading(false)
 
 
       console.log(listFlag);
@@ -221,7 +221,9 @@ return (
 
 
 
-           
+                        {/* <Button
+        title={recording ? 'Stop Recording' : 'Start Recording'}
+        onPress={recording ? stopRecording : startRecording} /> */}
 
                     
                   </View>

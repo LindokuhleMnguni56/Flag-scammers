@@ -27,7 +27,7 @@ import React from 'react';
 
 
 export default function HomeScreen({navigation}){
-  const [likes,set]= React.useState([]);
+  const [likes,setLikes]= React.useState([]);
   const [flags,setFlags]= React.useState([]);
 const listFlag = []
   const[users,setUsers]= React.useState('');
@@ -82,7 +82,7 @@ console.log(user);
 
 
      setFlags(listFlag)
-    //  setLoading(false)
+     setLoading(false)
 
 
       console.log(listFlag);
@@ -216,12 +216,14 @@ return (
                           </View>
                         </View>
                         <TouchableOpacity style={styles.upvoteBtn}>
-                              <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                              <Text style={styles.upvoteTXT}></Text>
                         </TouchableOpacity>
 
 
 
-           
+                        {/* <Button
+        title={recording ? 'Stop Recording' : 'Start Recording'}
+        onPress={recording ? stopRecording : startRecording} /> */}
 
                     
                   </View>

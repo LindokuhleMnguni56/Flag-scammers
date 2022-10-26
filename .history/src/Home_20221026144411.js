@@ -21,13 +21,14 @@ import {addDoc, collection,doc, deleteDoc,getDocs,query,where,getDoc,onSnapshot,
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
-
+import { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } from 'react/cjs/react.development';
+const itemRef = collection(db, "flags");
 
 
 
 
 export default function HomeScreen({navigation}){
-  const [likes,set]= React.useState([]);
+  const [likes,setLikes]= React.useState([]);
   const [flags,setFlags]= React.useState([]);
 const listFlag = []
   const[users,setUsers]= React.useState('');
@@ -42,8 +43,8 @@ const listFlag = []
 
   const flagRef =collection(db,"flag");
   const commentRef =collection(db,"comments");
+const user=auth.currentUser;
 
-  var user= auth.currentUser;
 console.log(user);
 
 
@@ -62,7 +63,15 @@ console.log(user);
 }
 
 
-
+const addLike= async()=>{
+if (user == null){
+  const docRef = await addDoc(itemRef,{
+    likeId:__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.,
+  })
+}else{
+  const docRef = deleteDoc(itemRef
+  )
+}}
 
   const getItems = async()=>{
       
@@ -137,6 +146,7 @@ console.log(user);
 
 
 }, [])
+
 
 
 return (
@@ -215,13 +225,15 @@ return (
                             </View>
                           </View>
                         </View>
-                        <TouchableOpacity style={styles.upvoteBtn}>
-                              <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                        <TouchableOpacity style={styles.upvoteBtn} onPress={addLike}>
+                              <Text style={styles.upvoteTXT}>{likes != null  ? 'upvote ' : 'downvote '}</Text>
                         </TouchableOpacity>
 
 
 
-           
+                        {/* <Button
+        title={recording ? 'Stop Recording' : 'Start Recording'}
+        onPress={recording ? stopRecording : startRecording} /> */}
 
                     
                   </View>

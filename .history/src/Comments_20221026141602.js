@@ -14,7 +14,7 @@ import { async } from '@firebase/util';
 
 export default function Comments({route,navigation}){
 
-    const [likes,setLikes]=React.useState([]);
+    const [lik]
     const [flag,setFlag]= React.useState([]);
     const[comment,setComments]=React.useState('')
 
