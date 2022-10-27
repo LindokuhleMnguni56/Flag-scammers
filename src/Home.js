@@ -162,7 +162,7 @@ export default function HomeScreen({ navigation }) {
                     <View style={styles.card}>
                       <View style={styles.dateContainerBorder}>
                         <View style={styles.dateContainer}>
-                          <Text style={styles.year}>{flagDate}</Text>
+                          <Text style={styles.year}>{flag.date}</Text>
                         </View>
                       </View>
                       <View style={styles.userContainerRightBorder}>
