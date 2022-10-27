@@ -84,6 +84,8 @@ export default function Comments({route,navigation}){
             })
         
       });
+
+      
       getComment()
      }
 

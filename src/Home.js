@@ -16,6 +16,9 @@ import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
 import { Link } from '@react-navigation/native';
+
+
+
 export default function HomeScreen({ navigation }) {
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
@@ -39,23 +42,43 @@ export default function HomeScreen({ navigation }) {
       navigation.push('AddScammer');
     }
   }
+
+
   const getItems = async () => {
     console.log(flagRef);
     // myComment =
+
+   
+    onSnapshot(collection(db,"flag"), (snapshot) => {
+
+       snapshot.docChanges().forEach((change) =>{
+        if (change.type === "added") {
+          console.log("New city: ", change.doc.data());
+      }
+        let commentCount =  change.doc.data().comments.length
+        console.log(commentCount);
+      //   console.log(doc.data());
+        listFlag.push({ id: change.doc.id, address: change.doc.data().address, comment: change.doc.data().comments, date: change.doc.data().date, commentCount: commentCount })
+
+      })
+    } )
+
+
     let data = await getDocs(flagRef);
-    const q = query(collection(db, "flag"));
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc) => {
-      let commentCount = doc.data().comments.length
-      //  let commentCount = 2
-      console.log(commentCount);
-      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
-    });
+    // const q = query(collection(db, "flag"));
+    // const querySnapshot = await getDocs(q)
+    // querySnapshot.forEach((doc) => {
+    //   let commentCount = doc.data().comments.length
+    //   console.log(commentCount);
+    //   listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
+    // });
     setFlags(listFlag)
     setLoading(false)
     console.log(listFlag);
     // getComments()
   }
+  
+  
   const search = async () => {
     //   flags.map(flag=>((
     //     // console.log(address)
@@ -75,19 +98,23 @@ export default function HomeScreen({ navigation }) {
     //     // )
     // )))
     console.log(flags.length);
-    for (var i = 0; i < getItems().length; i++) {
+    for (var i = 0; i < flags.length; i++) {
       if (address == flags.address) {
-        navigation.push('Comments')
+        // navigation.push('Comments')
         console.log('found')
       } else {
-        navigation.push('NotFound')
+        console.log('NotFound')
       }
     }
   }
+
+  
   React.useEffect(() => {
     console.log("some")
     getItems();
   }, [])
+  
+  
   return (
     <SafeAreaView style={styles.container}>
       {user != null ? (<RedPart2 />) : (<RedPart />)}
@@ -126,7 +153,7 @@ export default function HomeScreen({ navigation }) {
                 </Picker>
               </View>
               <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-              <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
+              <TouchableOpacity onPress={search}><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
             </View>
             <ScrollView style={styles.midContainer}>
               {
