@@ -141,6 +141,7 @@ const AddScammer = ({navigation}) => {
                         <TextInput onChangeText={comment => setComment(comment)}
                             placeholder='Add Comment...'
                             style={styles.addComment}
+                            multiline={true}
                         />
                     </View>
                 </View>
