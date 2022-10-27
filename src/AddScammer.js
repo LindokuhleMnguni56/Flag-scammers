@@ -47,8 +47,8 @@ const AddScammer = ({navigation}) => {
                 address: mail,
                 addressType: selectedAddress,
                 date: timestamp, 
-                comments :[ {[user.displayName]:comment}]
-                  
+                comments :[ {[user.displayName]:comment}],
+                  likes:[user.displayName]
                         // uid:user.uid,
                         // commentText:comment
                           
@@ -78,7 +78,7 @@ const AddScammer = ({navigation}) => {
 
         //  await addDoc(commentRef,{comment:comment,flagId:docRef.id})
         // await addDoc(commentRef,{address:mail ,userId:user.uid,flagId:docRef.flag.id,comment:comment})
-        //1469914237
+    
         //add to comments
 
         // }
