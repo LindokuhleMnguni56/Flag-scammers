@@ -153,7 +153,7 @@ export default function HomeScreen({ navigation }) {
               aria-label="Loading Spinner"
               data-testid="loader"
             />
-            <Text>Loading Content please wait...</Text>
+            <Text style={{marginTop:10}}>Loading Content please wait...</Text>
         </View>
         
         </>
