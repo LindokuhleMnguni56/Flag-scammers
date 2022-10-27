@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity, ScrollView, Modal, Touchable } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
@@ -17,7 +17,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
-import {addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
+import { addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot } from 'firebase/firestore';
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
@@ -30,10 +30,9 @@ export default function HomeScreen({ navigation }) {
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
   const listFlag = []
-  
   const [users, setUsers] = React.useState('');
   const [address, setAddress] = React.useState('')
-  const itemRef = collection(db, "flags");
+
   const [selectedAddress, setSelectedAddress] = React.useState('');
   const [addresses] = React.useState([
     'Email Address',
@@ -43,8 +42,8 @@ export default function HomeScreen({ navigation }) {
 
   const flagRef = collection(db, "flag");
   const commentRef = collection(db, "comments");
- const user=auth.currentUser
 
+  var user = auth.currentUser;
   console.log(user);
 
 
@@ -59,18 +58,6 @@ export default function HomeScreen({ navigation }) {
 
     }
   }
-  const addlike = async () => {
-    if (user!=null) {
-
-      const docRef = await addDoc(itemRef, {
-        like:user.uid,
-      })
-
-     
-    } 
-  }
-
- 
 
 
 
@@ -219,7 +206,7 @@ export default function HomeScreen({ navigation }) {
                     </View>
                   </View>
                 </View>
-                <TouchableOpacity style={styles.upvoteBtn} onPress={addlike}>
+                <TouchableOpacity style={styles.upvoteBtn}>
                   <Text style={styles.upvoteTXT}>UPVOTE</Text>
                 </TouchableOpacity>
               </View>

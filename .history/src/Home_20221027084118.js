@@ -69,7 +69,18 @@ export default function HomeScreen({ navigation }) {
      
     } 
   }
+  const totalLikes= async()=>{
+    let data = await getDocs(itemRef);
 
+    const q = query(collection(db, "flags"));
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) => {
+      let likeCount = doc.data().itemRef.length
+    })
+  
+
+  }
+  console.log(likeCount)
  
 
 

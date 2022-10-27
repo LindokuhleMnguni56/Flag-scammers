@@ -69,7 +69,9 @@ export default function HomeScreen({ navigation }) {
      
     } 
   }
+  const totalLikes= async()=>{
 
+  }
  
 
 

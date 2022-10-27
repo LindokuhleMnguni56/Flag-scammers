@@ -47,7 +47,7 @@ const AddScammer = ({navigation}) => {
             addressType: selectedAddress,
             date: timestamp, 
             comments :[ {[user.displayName]:comment}],
-              
+              cmd:
                     // uid:user.uid,
                     // commentText:comment
                       

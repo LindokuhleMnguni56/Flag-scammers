@@ -17,7 +17,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
-import {addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
+import { addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
@@ -26,130 +26,117 @@ import React from 'react';
 
 
 
-export default function HomeScreen({ navigation }) {
-  let [loading, setLoading] = React.useState(true);
-  const [flags, setFlags] = React.useState([]);
-  const listFlag = []
-  
-  const [users, setUsers] = React.useState('');
-  const [address, setAddress] = React.useState('')
-  const itemRef = collection(db, "flags");
+export default function HomeScreen({navigation}){
+  const [likes,set]= React.useState([]);
+  const [flags,setFlags]= React.useState([]);
+const listFlag = []
+  const[users,setUsers]= React.useState('');
+  const [address,setAddress] =React.useState('')
+
   const [selectedAddress, setSelectedAddress] = React.useState('');
   const [addresses] = React.useState([
     'Email Address',
     'Physical Address'
-  ]
-  );
+]
+);
 
-  const flagRef = collection(db, "flag");
-  const commentRef = collection(db, "comments");
- const user=auth.currentUser
+  const flagRef =collection(db,"flag");
+  const commentRef =collection(db,"comments");
 
-  console.log(user);
-
-
+  var user= auth.currentUser;
+console.log(user);
 
 
-  const addButton = async () => {
-    if (user == null) {
 
-      navigation.push('Login');
-    } else {
-      navigation.push('AddScammer');
 
-    }
+  const addButton = async()=>{
+  if (user == null) {
+
+
+    navigation.push('Login');
+    }else{
+    
+    navigation.push('AddScammer');
+
   }
-  const addlike = async () => {
-    if (user!=null) {
-
-      const docRef = await addDoc(itemRef, {
-        like:user.uid,
-      })
-
-     
-    } 
-  }
-
- 
+}
 
 
 
 
-  const getItems = async () => {
-
+  const getItems = async()=>{
+      
     console.log(flagRef);
     // myComment = 
     let data = await getDocs(flagRef);
-
-
+    
+  
 
     const q = query(collection(db, "flag"));
     const querySnapshot = await getDocs(q)
     querySnapshot.forEach((doc) => {
-      let commentCount = doc.data().comments.length
-      //  let commentCount = 2
-      console.log(commentCount);
-      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
-    });
+       let commentCount = doc.data().comments.length
+       console.log(commentCount);
+      listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
+  });
 
 
-    setFlags(listFlag)
-    setLoading(false)
-
-    console.log(listFlag);
-    // getComments()
-  }
+     setFlags(listFlag)
+    //  setLoading(false)
 
 
-
-
-  const search = async () => {
-
-    //   flags.map(flag=>((
-
-    //     // console.log(address)
-
-    //     address === flag.address ?(
-    //       // navigation.push('NotFound')
-    //       console.log(flag.address)
-    //       // navigation.push('Comments')
-    //     ) :(
-    //       // navigation.push('Comments')
-    //       console.log(flag.address,"notfound")
-    //     )
-
-    //     // console.log(address)
-    //     // address == flag.address ?(
-    //     //   navigation.push('Comments',{flag:flag})
-    //     // ):(
-    //     //   navigation.push('Home')
-    //     // )
-
-
-    // )))
-    console.log(flags.length);
-
-    for (var i = 0; i < getItems().length; i++) {
-
-      if (address == flags.address) {
-        navigation.push('Comments')
-        console.log('found')
-      } else {
-        navigation.push('NotFound')
-      }
+      console.log(listFlag);
+      // getComments()
     }
 
+
+
+
+    const search = async() =>{
+
+  //   flags.map(flag=>((
+
+  //     // console.log(address)
+
+  //     address === flag.address ?(
+  //       // navigation.push('NotFound')
+  //       console.log(flag.address)
+  //       // navigation.push('Comments')
+  //     ) :(
+  //       // navigation.push('Comments')
+  //       console.log(flag.address,"notfound")
+  //     )
+
+  //     // console.log(address)
+  //     // address == flag.address ?(
+  //     //   navigation.push('Comments',{flag:flag})
+  //     // ):(
+  //     //   navigation.push('Home')
+  //     // )
+
+
+  // )))
+  console.log(flags.length);
+
+      for (var i=0; i < getItems().length; i++){
+
+          if(address == flags.address){
+      navigation.push('Comments')
+      console.log('found')
+          }else{
+      navigation.push('NotFound')
+    }
   }
 
-
-  React.useEffect(() => {
-    console.log("some")
-    getItems();
+}
 
 
-  }, [])
+    React.useEffect(()=>{
+  console.log("some")
+  getItems();
 
 
+}, [])
 
 
   return (
@@ -177,25 +164,34 @@ export default function HomeScreen({ navigation }) {
           </Picker>
         </View>
 
-        <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-        <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
-      </View>
-
-
-
-      <ScrollView style={styles.midContainer}>
-
-        {
-          flags.map(flag => ((
-            <View style={styles.cardsContainer} key={flag.id}>
-              <View style={styles.card}>
-                <View style={styles.dateContainerBorder}>
-                  <View style={styles.dateContainer}>
-                    <Text style={styles.year}>2022<Text>-</Text></Text>
-                    <Text style={styles.month}>10<Text>-</Text></Text>
-                    <Text style={styles.day}>22</Text>
-
-                  </View>
+      <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
+      <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
+    </View>
+    <View>
+    {/* <SyncLoader
+        color={"green"}
+        loading={loading}
+        // cssOverride={override}
+        size={50}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      /> */}
+    </View>
+  
+    
+    <ScrollView style={styles.midContainer}>
+    
+      {
+               flags.map(flag=>((
+                <View style={styles.cardsContainer} key={flag.id}>
+                  <View style={styles.card}>
+                        <View style={styles.dateContainerBorder}>
+                          <View style={styles.dateContainer}>
+                            <Text style={styles.year}>2022<Text>-</Text></Text>
+                            <Text style={styles.month}>10<Text>-</Text></Text>
+                            <Text style={styles.day}>22</Text>
+                            
+                          </View>
 
                 </View>
                 <View style={styles.userContainerRightBorder}>
@@ -213,33 +209,30 @@ export default function HomeScreen({ navigation }) {
 
                       }>
 
-                        <Text style={[styles.username3, { width: 55, }]}>{flag.commentCount}</Text>
-                        <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                      </TouchableOpacity>
-                    </View>
+                                 <Text style={[styles.username3,{width:55,}]}>{flag.commentCount}</Text>
+                                 <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                              </TouchableOpacity>
+                            </View>
+                          </View>
+                        </View>
+                        <TouchableOpacity style={styles.upvoteBtn}>
+                              <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                        </TouchableOpacity>
+
+
+
+           
+
+                    
                   </View>
+                    
                 </View>
-                <TouchableOpacity style={styles.upvoteBtn} onPress={addlike}>
-                  <Text style={styles.upvoteTXT}>UPVOTE</Text>
-                </TouchableOpacity>
-              </View>
+                 )))} 
+                  
+              </ScrollView> 
 
-            </View>
-          )))}
-
-      </ScrollView>
-      <View style={{  display: 'flex', flex :1}}>
-        <SyncLoader
-          color={"#D2373C"}
-          loading={loading}
-          // cssOverride={override}
-          size={10}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      </View>
-
-
+                  
+      
       <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
         <Text style={styles.button}>+</Text>
       </TouchableOpacity>

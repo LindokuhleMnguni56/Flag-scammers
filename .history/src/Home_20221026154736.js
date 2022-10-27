@@ -70,7 +70,6 @@ export default function HomeScreen({ navigation }) {
     } 
   }
 
- 
 
 
 
@@ -83,10 +82,7 @@ export default function HomeScreen({ navigation }) {
 
 
 
-    const q = query(collection(db, "flag"));
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc) => {
-      let commentCount = doc.data().comments.length
+ 
       //  let commentCount = 2
       console.log(commentCount);
       listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })

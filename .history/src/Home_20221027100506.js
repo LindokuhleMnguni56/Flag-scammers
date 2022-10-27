@@ -63,7 +63,7 @@ export default function HomeScreen({ navigation }) {
     if (user!=null) {
 
       const docRef = await addDoc(itemRef, {
-        like:user.uid,
+        like:[{[user.uid]:comment}],
       })
 
      

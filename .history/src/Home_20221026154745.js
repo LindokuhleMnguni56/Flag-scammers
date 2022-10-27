@@ -69,8 +69,11 @@ export default function HomeScreen({ navigation }) {
      
     } 
   }
+  const q = query(collection(db, "flag"));
+  const querySnapshot = await getDocs(q)
+  querySnapshot.forEach((doc) => {
+    let commentCount = doc.data().comments.length
 
- 
 
 
 

@@ -17,7 +17,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
-import {addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
+import { getCountFromServer,addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
@@ -30,7 +30,12 @@ export default function HomeScreen({ navigation }) {
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
   const listFlag = []
-  
+  getTotalUsers(): void {
+    const firestore = getFirestore();
+    const userCollectionReference = collection(firestore, "users");
+    const userCollectionSnapshot = await getCountFromServer(userCollectionReference);
+    return userCollectionSnapshot.data().count;
+  }
   const [users, setUsers] = React.useState('');
   const [address, setAddress] = React.useState('')
   const itemRef = collection(db, "flags");
@@ -70,7 +75,6 @@ export default function HomeScreen({ navigation }) {
     } 
   }
 
- 
 
 
 

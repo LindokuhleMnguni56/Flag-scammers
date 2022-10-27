@@ -70,6 +70,7 @@ export default function HomeScreen({ navigation }) {
     } 
   }
 
+  console.log(likeCount)
  
 
 

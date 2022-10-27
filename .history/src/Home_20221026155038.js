@@ -69,8 +69,11 @@ export default function HomeScreen({ navigation }) {
      
     } 
   }
-
- 
+  const q = query(collection(db, "flags"));
+  const querySnapshot = await getDocs(q)
+  querySnapshot.forEach((doc) => {
+    let likeCount = doc.data().itemRef.length
+con
 
 
 
