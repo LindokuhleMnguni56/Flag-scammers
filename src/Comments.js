@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
         fontWeight:'bolder',
     },
     year:{
-        paddingLeft:2,
+        paddingLeft:3,
         fontSize:10,
         color:'#D2373C',
     },
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     userContainerBorder:{
         height:40,
         marginTop:13,
-        paddingTop:13,
+        paddingTop:15,
     },
     likes:{
         fle:1,
@@ -233,13 +233,13 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         height:40,
         marginLeft:45,
-        marginTop:25,
+        marginTop:26,
     },
     username:{
       width:180,
       alignSelf:'flex-start',
-      paddingLeft:5,
-
+      paddingLeft:10,
+      fontSize:12
     },
     flags:{
         color:'#D2373C',
