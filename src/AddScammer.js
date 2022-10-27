@@ -16,7 +16,7 @@ const AddScammer = ({navigation}) => {
     const [visible, setVisible] = useState(false);
 
     const moment = require('moment')
-    const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
+    const time = moment() // moment(new Date()).format("YYYY-MM-DD ")
     
     const timestamp = time.format("YYYY-MM-DD")
        
@@ -34,7 +34,7 @@ const AddScammer = ({navigation}) => {
     ]
     );
     const addflag = async () => {
-        setVisible(true);
+        
         if (user!=null){
         //add to flag
         // const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp,comment:{[uid]:comment  }})
@@ -43,17 +43,40 @@ const AddScammer = ({navigation}) => {
 
         console.log(user);
 
-        const docRef = await addDoc(itemRef, {
-            address: mail,
-            addressType: selectedAddress,
-            date: timestamp, 
-            comments :[ {[user.displayName]:comment}]
-              
-                    // uid:user.uid,
-                    // commentText:comment
-                      
-                    // commentText:comment
-        })
+       if (mail !== '' ){
+
+        if(comment !== ''){
+
+            const docRef = await addDoc(itemRef, {
+                address: mail,
+                addressType: selectedAddress,
+                date: timestamp, 
+                comments :[ {[user.displayName]:comment}]
+                  
+                        // uid:user.uid,
+                        // commentText:comment
+                          
+                        // commentText:comment
+    
+                        
+                
+            })
+            setVisible(true);
+            
+        }
+
+        
+        console.log(mail)
+        
+        
+
+       }else{
+
+        console.log(' null')
+        setVisible(false);
+       }
+
+       
         
     }
 
