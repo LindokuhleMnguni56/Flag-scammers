@@ -94,41 +94,44 @@ export default function HomeScreen({navigation}){
   
       const search = async() =>{
   
-    //   flags.map(flag=>((
+      console.log(flags);
   
-    //     // console.log(address)
-  
-    //     address === flag.address ?(
-    //       // navigation.push('NotFound')
-    //       console.log(flag.address)
-    //       // navigation.push('Comments')
-    //     ) :(
-    //       // navigation.push('Comments')
-    //       console.log(flag.address,"notfound")
-    //     )
-  
-    //     // console.log(address)
-    //     // address == flag.address ?(
-    //     //   navigation.push('Comments',{flag:flag})
-    //     // ):(
-    //     //   navigation.push('Home')
-    //     // )
-  
-  
-    // )))
-    console.log(flags.length);
-  
-        for (var i=0; i < getItems().length; i++){
-  
-            if(address == flags.address){
-        navigation.push('Comments')
-        console.log('found')
-            }else{
-        navigation.push('NotFound')
-      }
-    }
-  
+      const q = query(collection(db, "flag"),where("address", "==", address ));
+
+      const querySnapshot = await getDocs(q)
+
+      // {querySnapshot != null ?(<RedPart2 />):(<RedPart />)}
+      console.log(querySnapshot);
+
+      
+    // console.log(doc.address);
   }
+
+//   const addComment = async() =>{
+       
+//     const q = query(collection(db, "flag"),where("address", "==", address ));
+//     const querySnapshot = await getDocs(q)
+
+   
+//     comments.push({[user.displayName]:comment})
+//     console.log(comments);
+//     querySnapshot.forEach((docs) => {
+       
+//        console.log(docs.id)
+//          const commentRef = doc(db, "flag", docs.id);
+//        console.log(comments)
+       
+//          updateDoc(commentRef , {
+//         comments : 
+//                  comments
+//         }).then(() =>{
+
+//       getComment()
+//         })
+    
+//   });
+//   getComment()
+//  }
   
   
       React.useEffect(()=>{
@@ -167,7 +170,7 @@ return (
     </View>
 
       <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-      <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
+      <TouchableOpacity onPress={search}><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
     </View>
     <View>
     <SyncLoader

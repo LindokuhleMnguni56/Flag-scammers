@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
         marginTop:20,
       },
     bottomContainer:{
-        backgroundColor:'white',
+        backgroundColor:'#000',
         height:'17%',
         width:'100%',
     },
