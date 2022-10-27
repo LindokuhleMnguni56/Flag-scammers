@@ -211,8 +211,8 @@ const styles = StyleSheet.create({
         marginTop: '10%',
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottomColor: 'grey',
-        borderBottomWidth: 1,
+        borderBottom:'lightgrey',
+        Width: 1,
 
 
 
@@ -222,17 +222,21 @@ const styles = StyleSheet.create({
     textInput: {
         width: '100%',
         paddingLeft: '10px',
+        
 
     },
 
 
     addComment: {
-        padding: '20px',
-        height: '100px',
-        boxShadow: '#ababab 0px 6px 9px -3px',
-        marginTop: '10%',
-        borderRadius: '10px',
-        borderColor: 'grey'
+        fontSize:12,
+        paddingHorizontal:6,
+        paddingVertical:6,
+        height:55,
+        width:'100%',
+        paddingBottom:40,
+        border:'2px solid lightgrey',
+        borderRadius:4,
+        marginTop:'10%'
 
 
     },
