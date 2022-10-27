@@ -18,6 +18,7 @@ export default function RedPart2() {
         auth
         .signOut()
         .then(() => console.log('User signed out!'));
+        navigation.navigate('Login')
     }
 
     const user = auth.currentUser;

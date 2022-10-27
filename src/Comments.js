@@ -70,7 +70,7 @@ export default function Comments({route,navigation}){
         const q = query(collection(db, "flag"),where("address", "==", flagAddress ));
         const querySnapshot = await getDocs(q)
 
-       
+        if(comment !== ''){
         comments.push({[user.displayName]:comment})
         console.log(comments);
         querySnapshot.forEach((docs) => {
@@ -90,6 +90,9 @@ export default function Comments({route,navigation}){
       });
       getComment()
       setVisible(true);
+    }else{
+        setVisible(false)
+    }
      }
 
      React.useEffect(()=>{
@@ -105,13 +108,13 @@ export default function Comments({route,navigation}){
         // <View style={styles.item}>
         //   <Text style={styles.title}>{title}</Text>
         // </View>
-        <View style={styles.commentsBox} >
+        <ScrollView style={styles.commentsBox} >
             <Text style={{marginLeft:15,width:'92%'}}>{comment.userName}</Text>
             <Text style={styles.userComments}>
                 {comment.commentMsg}  
             </Text>
 
-        </View>
+        </ScrollView>
       );
 
       const close = () =>{
@@ -138,7 +141,7 @@ export default function Comments({route,navigation}){
                           </View>
                     </View>
                 </View>
-            <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
+            <View style={styles.midContainer} showsVerticalScrollIndicator={false}>
                 <View style={styles.textBox} >
                         <TouchableOpacity style={styles.userIconBg} onPress={() => navigation.push('Pro')}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
@@ -160,7 +163,7 @@ export default function Comments({route,navigation}){
 
                 <FlatList keyExtractor={item => item.id} data={commentList} renderItem={renderItem}  />
 
-            </ScrollView>
+            </View>
             <View style={styles.bottomContainer}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
             </View>
