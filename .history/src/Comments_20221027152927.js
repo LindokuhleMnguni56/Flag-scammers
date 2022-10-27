@@ -149,7 +149,7 @@ export default function Comments({route,navigation}){
             <View style={styles.midContainer} showsVerticalScrollIndicator={false}>
                 <View style={styles.textBox} >
                         <TouchableOpacity style={styles.userIconBg} onPress={() => navigation.push('Pro')}>
-                            <Image source={user.photoURL} style={{height:30, borderRadius:50,}} />
+                            <Image source={user} style={{height:30, borderRadius:50,}} />
                         </TouchableOpacity>
                         <View style={styles.addCommentContainer}>
                             <TextInput style={styles.addComment} multiline={true} placeholder='Add a comment....' onChangeText={comment => setComments(comment)}></TextInput>

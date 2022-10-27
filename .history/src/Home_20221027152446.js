@@ -261,7 +261,7 @@ export default function HomeScreen({ navigation }) {
                       <View style={styles.userContainerRightBorder}>
                         <View style={styles.userContainer}>
                           <TouchableOpacity onPress={() =>
-                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date,flagCount:flag.likesCount })
+                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date,flagCount:fla })
                           }>
                             <Text style={styles.username1}>{flag.address}</Text>
                           </TouchableOpacity>

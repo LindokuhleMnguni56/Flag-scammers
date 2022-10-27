@@ -57,18 +57,18 @@ export default function HomeScreen({ navigation }) {
     console.log(flagRef);
     let likeFlag = false
     
-    // onSnapshot(collection(db,"flag"), (snapshot) => {
+    onSnapshot(collection(db,"flag"), (snapshot) => {
 
-    //    snapshot.docChanges().forEach((change) =>{
-    //     if (change.type === "added") {
-    //       console.log("New city: ", change.doc.data());
-    //   }
-    //     let commentCount =  change.doc.data().comments.length
+       snapshot.docChanges().forEach((change) =>{
+        if (change.type === "added") {
+          console.log("New city: ", change.doc.data());
+      }
+        let commentCount =  change.doc.data().comments.length
       
-    //     listFlag.push({ id: change.doc.id, address: change.doc.data().address, comment: change.doc.data().comments, date: change.doc.data().date, commentCount: commentCount })
+        listFlag.push({ id: change.doc.id, address: change.doc.data().address, comment: change.doc.data().comments, date: change.doc.data().date, commentCount: commentCount })
 
-    //   })
-    // } )
+      })
+    } )
     let data = await getDocs(flagRef);
     const q = query(collection(db, "flag"));
     const querySnapshot = await getDocs(q)
@@ -77,7 +77,6 @@ export default function HomeScreen({ navigation }) {
     querySnapshot.forEach((doc) => {
       let commentCount = doc.data().comments.length
       let likes = doc.data().likes
-      console.log(likes);
       let likesCount = doc.data().likes.length
       
       //  let commentCount = 2
@@ -261,7 +260,7 @@ export default function HomeScreen({ navigation }) {
                       <View style={styles.userContainerRightBorder}>
                         <View style={styles.userContainer}>
                           <TouchableOpacity onPress={() =>
-                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date,flagCount:flag.likesCount })
+                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date })
                           }>
                             <Text style={styles.username1}>{flag.address}</Text>
                           </TouchableOpacity>

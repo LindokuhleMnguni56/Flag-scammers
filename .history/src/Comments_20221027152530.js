@@ -142,14 +142,14 @@ export default function Comments({route,navigation}){
                                   <Text style={styles.username}>{flagAddress}</Text>
                           </View>
                           <View style={styles.likes}>
-                                <FontAwesomeIcon icon={ faFlag } style={styles.flags}/><Text style={styles.numberFlags}>{flagCount}</Text>
+                                <FontAwesomeIcon icon={ faFlag } style={styles.flags}/><Text style={styles.numberFlags}>1k</Text>
                           </View>
                     </View>
                 </View>
             <View style={styles.midContainer} showsVerticalScrollIndicator={false}>
                 <View style={styles.textBox} >
                         <TouchableOpacity style={styles.userIconBg} onPress={() => navigation.push('Pro')}>
-                            <Image source={user.photoURL} style={{height:30, borderRadius:50,}} />
+                            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
                         </TouchableOpacity>
                         <View style={styles.addCommentContainer}>
                             <TextInput style={styles.addComment} multiline={true} placeholder='Add a comment....' onChangeText={comment => setComments(comment)}></TextInput>
