@@ -16,7 +16,7 @@ const AddScammer = ({navigation}) => {
     const moment = require('moment')
     const time = moment() // moment(new Date()).format("YYYY-MM-DD ")
     
-    const timestamp = time.format("YYYY-MM-DD ")
+    const timestamp = time.format("YYYY-MM-DD")
        
     const [mail, setMail] = useState('');
     const [comment, setComment] = useState('');
@@ -38,7 +38,6 @@ const AddScammer = ({navigation}) => {
         // const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp,comment:{[uid]:comment  }})
         // console.log("New Flag  ID: ", docRef.flag.uid);
         // let data = await getDocs(commentRef);
-
 
         console.log(user);
 
@@ -77,7 +76,6 @@ const AddScammer = ({navigation}) => {
 
        
         
-        
     }
 
         //  await addDoc(commentRef,{comment:comment,flagId:docRef.id})
@@ -86,8 +84,12 @@ const AddScammer = ({navigation}) => {
         //add to comments
 
         // }
-
        
+    }
+
+    const close = () =>{
+        setVisible(false)
+        navigation.navigate('Home')
     }
 
 
@@ -151,9 +153,9 @@ const AddScammer = ({navigation}) => {
                 <View>
                     <ConfirmationPopup visible={visible}>
                     <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
-                        Comment Added
+                        Flag Added
                     </Text>
-                    <TouchableOpacity onPress={() => setVisible(false)}><Text>OK</Text></TouchableOpacity>             
+                    <TouchableOpacity onPress={() =>close()}><Text>OK</Text></TouchableOpacity>             
                     </ConfirmationPopup>
                 </View>
 

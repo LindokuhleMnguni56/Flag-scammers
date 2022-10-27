@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity,ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
@@ -8,7 +8,7 @@ import RedPart from '../components/topPart';
 import RedPart2 from '../components/secureTopParts';
 import { Picker } from 'react-native-web';
 import ClipLoader from "react-spinners/ClipLoader";
-import SyncLoader from "react-spinners/SyncLoader";
+import MoonLoader from "react-spinners/MoonLoader";
 
 
 
@@ -17,7 +17,7 @@ import SyncLoader from "react-spinners/SyncLoader";
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
-import {addDoc, collection,doc, deleteDoc,getDocs,query,where,getDoc,onSnapshot} from 'firebase/firestore';
+import { addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot } from 'firebase/firestore';
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
@@ -26,59 +26,57 @@ import { Link } from '@react-navigation/native';
 
 
 
-export default function HomeScreen({navigation}){
+export default function HomeScreen({ navigation }) {
   let [loading, setLoading] = React.useState(true);
-  const [flags,setFlags]= React.useState([]);
+  const [flags, setFlags] = React.useState([]);
   const listFlag = []
-    const[users,setUsers]= React.useState('');
-    const [address,setAddress] =React.useState('')
-  
-    const [selectedAddress, setSelectedAddress] = React.useState('');
-    const [addresses] = React.useState([
-      'Email Address',
-      'Physical Address'
+  const [users, setUsers] = React.useState('');
+  const [address, setAddress] = React.useState('')
+
+  const [selectedAddress, setSelectedAddress] = React.useState('');
+  const [addresses] = React.useState([
+    'Email Address',
+    'Physical Address'
   ]
   );
-  
-    const flagRef =collection(db,"flag");
-    const commentRef =collection(db,"comments");
-  
-    var user= auth.currentUser;
+
+  const flagRef = collection(db, "flag");
+  const commentRef = collection(db, "comments");
+
+  var user = auth.currentUser;
   console.log(user);
-  
-  
-  
-  
-    const addButton = async()=>{
+
+
+
+
+  const addButton = async () => {
     if (user == null) {
-  
-      alert('not logged in')
+
       navigation.push('Login');
-      }else{
-      alert('logged in')
+    } else {
       navigation.push('AddScammer');
-  
+
     }
   }
-  
-  
-  
-  
-    const getItems = async()=>{
-        
-      console.log(flagRef);
-      // myComment = 
-      let data = await getDocs(flagRef);
-      
-    
-  
-      const q = query(collection(db, "flag"));
-      const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((doc) => {
-         let commentCount = doc.data().comments.length
-        //  let commentCount = 2
-         console.log(commentCount);
-        listFlag.push({id:doc.id , address: doc.data().address,comment:doc.data().comments, date:doc.data().date, commentCount:commentCount })
+
+
+
+
+  const getItems = async () => {
+
+    console.log(flagRef);
+    // myComment = 
+    let data = await getDocs(flagRef);
+
+
+
+    const q = query(collection(db, "flag"));
+    const querySnapshot = await getDocs(q)
+    querySnapshot.forEach((doc) => {
+      let commentCount = doc.data().comments.length
+      //  let commentCount = 2
+      console.log(commentCount);
+      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
     });
   
   
@@ -137,40 +135,58 @@ export default function HomeScreen({navigation}){
       React.useEffect(()=>{
     console.log("some")
     getItems();
-  
-  
+
+
   }, [])
-  
-  
 
 
-return (
-  <SafeAreaView style={styles.container}>
-    {user != null ?(<RedPart2 />):(<RedPart />)}
+
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {user != null ? (<RedPart2 />) : (<RedPart />)}
+      {loading ? (
+        <>
+          <View style={{ flex: 2, display: 'flex', justifyContent: 'center',alignItems:'center' ,height: '100%' }} >
+            <MoonLoader
+              color={"#D2373C"}
+              loading={loading}
+              // cssOverride={override}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+            <Text>Loading Content please wait...</Text>
+        </View>
+        
+        </>
     
-    <View style={styles.boxes}>
+      ) :
+        (
+          <>
+            <View style={styles.boxes}>
 
-    <View style={styles.selectView}>
-                        
-            <Picker
+              <View style={styles.selectView}>
+
+                <Picker
                   style={[styles.dropdownPick, { marginTop: '25px', marginVertical: 10, }]}
                   selectedValue={selectedAddress}
                   onValueChange={(itemVal) => {
-                  setSelectedAddress(itemVal);
-                  console.log({ selectedAddress });
+                    setSelectedAddress(itemVal);
+                    console.log({ selectedAddress });
 
                   }}
-                  >
+                >
                   {
                     addresses.map((a) => (
-                        <Picker.Item label={a} value={a} key={a} />
-                        ))
+                      <Picker.Item label={a} value={a} key={a} />
+                    ))
                   }
-            </Picker>
-    </View>
+                </Picker>
+              </View>
 
       <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-      <TouchableOpacity onPress={search}><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
+      <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
     </View>
     <View>
     <SyncLoader
@@ -198,70 +214,74 @@ return (
                             
                           </View>
 
-                        </View>
-                        <View style={styles.userContainerRightBorder}>
-                          <View style={styles.userContainer}>
-                          <TouchableOpacity onPress={() => 
-                                navigation.navigate("Comments",{flagComments : flag.comment,flagAddress:flag.address})
-                                
-                                }>
-                            <Text style={styles.username1}>{flag.address}</Text>
-                            </TouchableOpacity>
-                            <View style={styles.comments}>
-                              <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                              <TouchableOpacity style={{marginLeft:20,}} onPress={() => 
-                                navigation.navigate("Comments",{flagComments : flag.comment})
-                                
-                                }>
+                      </View>
+                      <View style={styles.userContainerRightBorder}>
+                        <View style={styles.userContainer}>
+                          <TouchableOpacity onPress={() =>
+                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address })
 
-                                 <Text style={[styles.username3,{width:55,}]}>{flag.commentCount}</Text>
-                                 <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                              </TouchableOpacity>
-                            </View>
+                          }>
+                            <Text style={styles.username1}>{flag.address}</Text>
+                          </TouchableOpacity>
+                          <View style={styles.comments}>
+                            <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                            <TouchableOpacity style={{ marginLeft: 20, }} onPress={() =>
+                              navigation.navigate("Comments", { flagComments: flag.comment })
+
+                            }>
+
+                              <Text style={[styles.username3, { width: 55, }]}>{flag.commentCount}</Text>
+                              <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                            </TouchableOpacity>
                           </View>
                         </View>
-                        <TouchableOpacity style={styles.upvoteBtn}>
-                          <Text style={styles.upvoteTXT}>UPVOTE</Text>
-                        </TouchableOpacity>
-                  </View>
-                    
-                </View>
-                 )))} 
-                  
-              </ScrollView> 
+                      </View>
+                      <TouchableOpacity style={styles.upvoteBtn}>
+                        <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                      </TouchableOpacity>
+                    </View>
 
-                  
-      
+                  </View>
+                )))}
+
+            </ScrollView>
+          </>
+        )
+      }
+
+
+
+
       <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
-          <Text style={styles.button}>+</Text>
-        </TouchableOpacity>
+        <Text style={styles.button}>+</Text>
+      </TouchableOpacity>
       <View style={styles.bottomContainer}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>
 
     </SafeAreaView>
   );
- }
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor:'white',
+    backgroundColor: 'white',
   },
   midContainer: {
     flex: 12,
     height: '500px',
     width: '100%',
     marginTop: 20,
-    
+
   },
   boxes: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent:'space-evenly',
+    justifyContent: 'space-evenly',
     width: '100%',
-    
+
   },
   inputBox: {
     height: 25,
@@ -271,10 +291,10 @@ const styles = StyleSheet.create({
     paddingLeft: '2%',
     backgroundColor: '#EDEDED',
     borderRadius: 4,
-    fontSize:12,
+    fontSize: 12,
     boxShadow: '#ababab 0px 6px 9px -3px;',
   },
- 
+
   searchIconBtn: {
     backgroundColor: '#D2373C',
     width: '30px',
@@ -290,30 +310,30 @@ const styles = StyleSheet.create({
   },
   dateContainerBorder: {
     width: 70,
-    
+
   },
   dateContainer: {
-    flexDirection:'row',
+    flexDirection: 'row',
     height: 40,
     marginTop: 20,
-    paddingTop:15,
+    paddingTop: 10,
     borderRightWidth: 1,
     borderRightColor: 'black',
-    
+
   },
-  userContainerRightBorder:{
-    flex:3,
+  userContainerRightBorder: {
+    flex: 3,
   },
   userContainer: {
     height: 40,
-    width:180,
-    borderRightColor:'black',
-    paddingLeft:10,
-    marginTop:20,
+    width: 180,
+    borderRightColor: 'black',
+    paddingLeft: 10,
+    marginTop: 20,
   },
   bottomContainer: {
     backgroundColor: '#000000',
-    height: '15%',
+    height: '17%',
     width: '100%',
   },
   card: {
@@ -323,7 +343,7 @@ const styles = StyleSheet.create({
     width: '92%',
     marginLeft: 15,
     boxShadow: '#ababab 0px 6px 9px -3px;',
-    borderRadius:10
+    borderRadius: 10
 
   },
   buttonContainer: {
@@ -334,7 +354,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginRight: 15,
     alignSelf: 'flex-end',
-   
+
   },
   button: {
     color: '#EDEDED',
@@ -342,7 +362,7 @@ const styles = StyleSheet.create({
   },
   day: {
     color: 'red',
-    fontSize:10,
+    fontSize: 10,
   },
   month: {
     fontSize: 10,
@@ -350,7 +370,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bolder',
   },
   year: {
-    paddingLeft:10,
+    paddingLeft: 10,
     fontSize: 10,
     color: '#D2373C',
   },
@@ -363,10 +383,10 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     fontSize: 10,
   },
-  username3:{
+  username3: {
     paddingTop: 10,
     fontSize: 10,
-    paddingLeft:35,
+    paddingLeft: 35,
   },
   comments: {
     display: 'flex',
@@ -399,15 +419,15 @@ const styles = StyleSheet.create({
     color: '#6200EE',
     fontWeight: 'bold',
   },
-  dropdownPick:{
+  dropdownPick: {
     height: 25,
-    width:120,
+    width: 120,
     borderColor: 'grey',
-    border:'1px solid black',
+    border: '1px solid black',
     borderRadius: 4,
     boxShadow: '#ababab 0px 6px 9px -3px;',
     backgroundColor: '#EDEDED',
     paddingLeft: '2%',
-    fontSize:12,
-},
+    fontSize: 12,
+  },
 });
