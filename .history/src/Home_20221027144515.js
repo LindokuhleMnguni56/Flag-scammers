@@ -80,7 +80,14 @@ export default function HomeScreen({ navigation }) {
     // getComments()
   }
 
+  const getUserLikes = async() =>{
+    const docRef = doc(db, flags, user.displayName)
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    }
 
+  }
   const addLikes = async(flag) =>{
     let newLikes = []
     let oldLikes = {}
@@ -99,7 +106,6 @@ export default function HomeScreen({ navigation }) {
         await updateDoc(docRef, {
           likes: oldLikes
         });
-        getItems()
       }
 
     }else{
@@ -108,7 +114,6 @@ export default function HomeScreen({ navigation }) {
       await updateDoc(docRef, {
         likes: oldLikes
       });
-      getItems()
     }
 
     

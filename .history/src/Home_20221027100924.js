@@ -1,3 +1,4 @@
+
 import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity, ScrollView, Modal, Touchable } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -8,24 +9,28 @@ import RedPart2 from '../components/secureTopParts';
 import { Picker } from 'react-native-web';
 import ClipLoader from "react-spinners/ClipLoader";
 import MoonLoader from "react-spinners/MoonLoader";
+
+
+
+
+
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
-import {arrayUnion,addDoc, collection,updateDoc, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
+import {addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
+
+
+
+
 
 export default function HomeScreen({ navigation }) {
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
   const listFlag = []
-  const likes=[]
-
- const [like,setLike]=React.useState(1);
- const [dislikes,setDislikes]=React.useState(-1);
-//  const [likes,setLikes]=React.useState([]);
- 
+  
   const [users, setUsers] = React.useState('');
   const [address, setAddress] = React.useState('')
   const itemRef = collection(db, "flags");
@@ -35,105 +40,75 @@ export default function HomeScreen({ navigation }) {
     'Physical Address'
   ]
   );
+
   const flagRef = collection(db, "flag");
   const commentRef = collection(db, "comments");
  const user=auth.currentUser
+
   console.log(user);
+
+
+
+
   const addButton = async () => {
     if (user == null) {
+
       navigation.push('Login');
     } else {
       navigation.push('AddScammer');
+
     }
+  }
+  const addlike = async () => {
+    if (user!=null) {
+
+      const docRef = await addDoc(itemRef, {
+        like:user.uid,
+      })
+
+     
+    } 
   }
 
  
+
+
+
+
   const getItems = async () => {
+
     console.log(flagRef);
-    let likeFlag = false
-    // myComment =
+    // myComment = 
     let data = await getDocs(flagRef);
+
+
+
     const q = query(collection(db, "flag"));
     const querySnapshot = await getDocs(q)
-    const userT=auth.currentUser
-
     querySnapshot.forEach((doc) => {
       let commentCount = doc.data().comments.length
-      let likes = doc.data().likes
-      let likesCount = doc.data().likes.length
-      
       //  let commentCount = 2
-      // if()
-      likes.forEach((dataLike) =>{
-        if(dataLike == userT?.displayName){
-          console.log("this user voted fpr this flag");
-          likeFlag = true
-        } 
-      })
-      
-      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount,likesCount:likesCount, upvoted:likeFlag})
-      likeFlag = false
+      console.log(commentCount);
+      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
     });
+
+
     setFlags(listFlag)
     setLoading(false)
+
     console.log(listFlag);
     // getComments()
   }
 
 
-  const addLikes = async(flag) =>{
-    let newLikes = []
-    let oldLikes = {}
-    const docRef = doc(db, "flag", flag.id);
-
-    const docSnap = await getDoc(docRef);
-    oldLikes =  docSnap.data().likes
-    // console.log("Document data:", docSnap.data().likes);
-    console.log(oldLikes);
-    var index = oldLikes.indexOf(user.displayName) 
-    if(flag.upvoted ){
-      if (index !== -1) {
-      console.log("we are removing you");
-
-        oldLikes.splice(index, 1);
-        await updateDoc(docRef, {
-          likes: oldLikes
-        });
-        getItems()
-      }
-
-    }else{
-      console.log("we are adding you");
-      oldLikes.push(user.displayName)
-      await updateDoc(docRef, {
-        likes: oldLikes
-      });
-      getItems()
-    }
-
-    
-
-
-    console.log(oldLikes);
-
-
-
-
-
-
-
-
- }
- 
-
-
-
-
 
 
   const search = async () => {
+
     //   flags.map(flag=>((
+
     //     // console.log(address)
+
     //     address === flag.address ?(
     //       // navigation.push('NotFound')
     //       console.log(flag.address)
@@ -142,15 +117,20 @@ export default function HomeScreen({ navigation }) {
     //       // navigation.push('Comments')
     //       console.log(flag.address,"notfound")
     //     )
+
     //     // console.log(address)
     //     // address == flag.address ?(
     //     //   navigation.push('Comments',{flag:flag})
     //     // ):(
     //     //   navigation.push('Home')
     //     // )
+
+
     // )))
     console.log(flags.length);
+
     for (var i = 0; i < getItems().length; i++) {
+
       if (address == flags.address) {
         navigation.push('Comments')
         console.log('found')
@@ -158,11 +138,20 @@ export default function HomeScreen({ navigation }) {
         navigation.push('NotFound')
       }
     }
+
   }
+
+
   React.useEffect(() => {
     console.log("some")
     getItems();
+
+
   }, [])
+
+
+
+
   return (
     <SafeAreaView style={styles.container}>
       {user != null ? (<RedPart2 />) : (<RedPart />)}
@@ -179,18 +168,23 @@ export default function HomeScreen({ navigation }) {
             />
             <Text>Loading Content please wait...</Text>
         </View>
+        
         </>
+    
       ) :
         (
           <>
             <View style={styles.boxes}>
+
               <View style={styles.selectView}>
+
                 <Picker
                   style={[styles.dropdownPick, { marginTop: '25px', marginVertical: 10, }]}
                   selectedValue={selectedAddress}
                   onValueChange={(itemVal) => {
                     setSelectedAddress(itemVal);
                     console.log({ selectedAddress });
+
                   }}
                 >
                   {
@@ -200,10 +194,15 @@ export default function HomeScreen({ navigation }) {
                   }
                 </Picker>
               </View>
+
               <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
               <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
             </View>
+
+
+
             <ScrollView style={styles.midContainer}>
+
               {
                 flags.map(flag => ((
                   <View style={styles.cardsContainer} key={flag.id}>
@@ -213,45 +212,58 @@ export default function HomeScreen({ navigation }) {
                           <Text style={styles.year}>2022<Text>-</Text></Text>
                           <Text style={styles.month}>10<Text>-</Text></Text>
                           <Text style={styles.day}>22</Text>
+
                         </View>
+
                       </View>
                       <View style={styles.userContainerRightBorder}>
                         <View style={styles.userContainer}>
                           <TouchableOpacity onPress={() =>
                             navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address })
+
                           }>
                             <Text style={styles.username1}>{flag.address}</Text>
                           </TouchableOpacity>
                           <View style={styles.comments}>
-                            <Text style={styles.username2}>{flag.likesCount}</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                            <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
                             <TouchableOpacity style={{ marginLeft: 20, }} onPress={() =>
                               navigation.navigate("Comments", { flagComments: flag.comment })
+
                             }>
+
                               <Text style={[styles.username3, { width: 55, }]}>{flag.commentCount}</Text>
                               <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
                             </TouchableOpacity>
                           </View>
                         </View>
                       </View>
-                      <TouchableOpacity onPress={()=> addLikes(flag)} style={styles.upvoteBtn}>
+                      <TouchableOpacity style={styles.upvoteBtn}>
                         <Text style={styles.upvoteTXT}>UPVOTE</Text>
                       </TouchableOpacity>
                     </View>
+
                   </View>
                 )))}
+
             </ScrollView>
           </>
         )
       }
+
+
+
+
       <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
         <Text style={styles.button}>+</Text>
       </TouchableOpacity>
       <View style={styles.bottomContainer}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>
+
     </SafeAreaView>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -263,12 +275,14 @@ const styles = StyleSheet.create({
     height: '500px',
     width: '100%',
     marginTop: 20,
+
   },
   boxes: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     width: '100%',
+
   },
   inputBox: {
     height: 25,
@@ -279,8 +293,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#EDEDED',
     borderRadius: 4,
     fontSize: 12,
-    boxShadow: '#ABABAB 0px 6px 9px -3px;',
+    boxShadow: '#ababab 0px 6px 9px -3px;',
   },
+
   searchIconBtn: {
     backgroundColor: '#D2373C',
     width: '30px',
@@ -289,13 +304,14 @@ const styles = StyleSheet.create({
     paddingLeft: '8px',
     borderRadius: '20px',
     marginTop: '23px',
-    boxShadow: '#ABABAB 0px 6px 9px -1px;',
+    boxShadow: '#ababab 0px 6px 9px -1px;',
   },
   searchIcon: {
     color: '#EDEDED',
   },
   dateContainerBorder: {
     width: 70,
+
   },
   dateContainer: {
     flexDirection: 'row',
@@ -304,6 +320,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     borderRightWidth: 1,
     borderRightColor: 'black',
+
   },
   userContainerRightBorder: {
     flex: 3,
@@ -326,8 +343,9 @@ const styles = StyleSheet.create({
     height: 80,
     width: '92%',
     marginLeft: 15,
-    boxShadow: '#ABABAB 0px 6px 9px -3px;',
+    boxShadow: '#ababab 0px 6px 9px -3px;',
     borderRadius: 10
+
   },
   buttonContainer: {
     backgroundColor: '#D2373C',
@@ -337,6 +355,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginRight: 15,
     alignSelf: 'flex-end',
+
   },
   button: {
     color: '#EDEDED',
@@ -407,7 +426,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     border: '1px solid black',
     borderRadius: 4,
-    boxShadow: '#ABABAB 0px 6px 9px -3px;',
+    boxShadow: '#ababab 0px 6px 9px -3px;',
     backgroundColor: '#EDEDED',
     paddingLeft: '2%',
     fontSize: 12,

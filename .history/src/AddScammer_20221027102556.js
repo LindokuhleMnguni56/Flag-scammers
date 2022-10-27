@@ -41,40 +41,17 @@ const AddScammer = ({navigation}) => {
 
         console.log(user);
 
-       if (mail !== '' ){
-
-        if(comment !== ''){
-
-            const docRef = await addDoc(itemRef, {
-                address: mail,
-                addressType: selectedAddress,
-                date: timestamp, 
-                comments :[ {[user.displayName]:comment}],
-                  likes:[  [user.displayName]]
-                        // uid:user.uid,
-                        // commentText:comment
-                          
-                        // commentText:comment
-    
-                        
-                
-            })
-            setVisible(true);
-            
-        }
-
-        
-        console.log(mail)
-        
-        
-
-       }else{
-
-        console.log(' null')
-        setVisible(false);
-       }
-
-       
+        const docRef = await addDoc(itemRef, {
+            address: mail,
+            addressType: selectedAddress,
+            date: timestamp, 
+            comments :[ {[user.displayName]:comment}]
+              
+                    // uid:user.uid,
+                    // commentText:comment
+                      
+                    // commentText:comment
+        })
         
     }
 

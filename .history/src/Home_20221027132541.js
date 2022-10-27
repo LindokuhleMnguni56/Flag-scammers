@@ -11,7 +11,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
-import {arrayUnion,addDoc, collection,updateDoc, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
+import {addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
@@ -50,82 +50,51 @@ export default function HomeScreen({ navigation }) {
  
   const getItems = async () => {
     console.log(flagRef);
-    let likeFlag = false
     // myComment =
     let data = await getDocs(flagRef);
     const q = query(collection(db, "flag"));
     const querySnapshot = await getDocs(q)
-    const userT=auth.currentUser
-
     querySnapshot.forEach((doc) => {
       let commentCount = doc.data().comments.length
-      let likes = doc.data().likes
       let likesCount = doc.data().likes.length
-      
       //  let commentCount = 2
-      // if()
-      likes.forEach((dataLike) =>{
-        if(dataLike == userT?.displayName){
-          console.log("this user voted fpr this flag");
-          likeFlag = true
-        } 
-      })
+      console.log(commentCount);
       
-      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount,likesCount:likesCount, upvoted:likeFlag})
-      likeFlag = false
+      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount,likesCount:likesCount})
     });
     setFlags(listFlag)
     setLoading(false)
     console.log(listFlag);
     // getComments()
   }
-
-
-  const addLikes = async(flag) =>{
-    let newLikes = []
-    let oldLikes = {}
-    const docRef = doc(db, "flag", flag.id);
-
-    const docSnap = await getDoc(docRef);
-    oldLikes =  docSnap.data().likes
-    // console.log("Document data:", docSnap.data().likes);
-    console.log(oldLikes);
-    var index = oldLikes.indexOf(user.displayName) 
-    if(flag.upvoted ){
-      if (index !== -1) {
-      console.log("we are removing you");
-
-        oldLikes.splice(index, 1);
-        await updateDoc(docRef, {
-          likes: oldLikes
-        });
-        getItems()
-      }
-
-    }else{
-      console.log("we are adding you");
-      oldLikes.push(user.displayName)
-      await updateDoc(docRef, {
-        likes: oldLikes
-      });
-      getItems()
-    }
-
+  const addLikes = async() =>{
+       
+    const q = query(collection(db, "flag"))
     
+    const querySnapshot = await getDocs(q)
 
+   
+    likes.push({[user.displayName]:likes})
+    console.log(likes);
+    querySnapshot.forEach((docs) => {
+       
+       console.log(docs.id)
+         const likeRef = doc(db, "flag", docs.id);
+       console.log(likes)
+       
+         updateDoc(likeRef , {
+        likes : 
+                 likes
+        }).then(() =>{
 
-    console.log(oldLikes);
-
-
-
-
-
-
-
+     
+        })
+    
+  });
 
  }
- 
-
+ firestore().collection('flag')
+  .where(likes..documentId(), 'in', users)
 
 
 
@@ -233,7 +202,7 @@ export default function HomeScreen({ navigation }) {
                           </View>
                         </View>
                       </View>
-                      <TouchableOpacity onPress={()=> addLikes(flag)} style={styles.upvoteBtn}>
+                      <TouchableOpacity style={styles.upvoteBtn}>
                         <Text style={styles.upvoteTXT}>UPVOTE</Text>
                       </TouchableOpacity>
                     </View>

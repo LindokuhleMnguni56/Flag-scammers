@@ -11,7 +11,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
-import {arrayUnion,addDoc, collection,updateDoc, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
+import {arrayUnion,addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
@@ -80,7 +80,14 @@ export default function HomeScreen({ navigation }) {
     // getComments()
   }
 
+  const getUserLikes = async() =>{
+    const docRef = doc(db, flags, user.displayName)
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    }
 
+  }
   const addLikes = async(flag) =>{
     let newLikes = []
     let oldLikes = {}
@@ -96,21 +103,15 @@ export default function HomeScreen({ navigation }) {
       console.log("we are removing you");
 
         oldLikes.splice(index, 1);
-        await updateDoc(docRef, {
-          likes: oldLikes
-        });
-        getItems()
       }
 
     }else{
       console.log("we are adding you");
       oldLikes.push(user.displayName)
-      await updateDoc(docRef, {
-        likes: oldLikes
-      });
-      getItems()
     }
-
+    await updateDoc(washingtonRef, {
+      capital: true
+    });
     
 
 

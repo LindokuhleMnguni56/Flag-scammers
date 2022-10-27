@@ -11,7 +11,7 @@ import MoonLoader from "react-spinners/MoonLoader";
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
-import {arrayUnion,addDoc, collection,updateDoc, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
+import {arrayUnion,addDoc, collection, doc, deleteDoc, getDocs, query, where, getDoc, onSnapshot , documentId} from 'firebase/firestore';
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
@@ -80,42 +80,35 @@ export default function HomeScreen({ navigation }) {
     // getComments()
   }
 
-
-  const addLikes = async(flag) =>{
-    let newLikes = []
-    let oldLikes = {}
-    const docRef = doc(db, "flag", flag.id);
-
+  const getUserLikes = async() =>{
+    const docRef = doc(db, flags, user.displayName)
     const docSnap = await getDoc(docRef);
-    oldLikes =  docSnap.data().likes
-    // console.log("Document data:", docSnap.data().likes);
-    console.log(oldLikes);
-    var index = oldLikes.indexOf(user.displayName) 
-    if(flag.upvoted ){
-      if (index !== -1) {
-      console.log("we are removing you");
 
-        oldLikes.splice(index, 1);
-        await updateDoc(docRef, {
-          likes: oldLikes
-        });
-        getItems()
-      }
+  }
+  const addLikes = async() =>{
 
-    }else{
-      console.log("we are adding you");
-      oldLikes.push(user.displayName)
-      await updateDoc(docRef, {
-        likes: oldLikes
-      });
-      getItems()
-    }
-
+    const q = query(collection(db, "flag"))
     
+    const querySnapshot = await getDocs(q)
 
+   
+    likes.push({[user.displayName]:likes})
+    console.log(likes);
+    querySnapshot.forEach((docs) => {
+       
+       console.log(docs.id)
+         const likeRef = doc(db, "flag", docs.id);
+       console.log(likes)
+       
+         updateDoc(likeRef , {
+        likes : 
+                 likes
+        }).then(() =>{
 
-    console.log(oldLikes);
-
+     
+        })
+    
+  });
 
 
 
@@ -233,7 +226,7 @@ export default function HomeScreen({ navigation }) {
                           </View>
                         </View>
                       </View>
-                      <TouchableOpacity onPress={()=> addLikes(flag)} style={styles.upvoteBtn}>
+                      <TouchableOpacity style={styles.upvoteBtn}>
                         <Text style={styles.upvoteTXT}>UPVOTE</Text>
                       </TouchableOpacity>
                     </View>
