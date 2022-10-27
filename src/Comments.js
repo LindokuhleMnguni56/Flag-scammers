@@ -114,7 +114,7 @@ export default function Comments({route,navigation}){
         //   <Text style={styles.title}>{title}</Text>
         // </View>
         <ScrollView style={styles.commentsBox} >
-            <Text style={{marginLeft:15,width:'92%', color: '#6200EE',fontFamily:'sans-didot'}}>{comment.userName}</Text>
+            <Text style={{marginLeft:15,width:'92%', color: 'grey',fontFamily:'sans-didot',fontSize:12}}>{comment.userName} says... </Text>
             <Text style={styles.userComments}>
                 {comment.commentMsg}  
             </Text>
