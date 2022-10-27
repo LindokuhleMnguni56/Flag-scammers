@@ -16,7 +16,7 @@ const AddScammer = ({navigation}) => {
     const moment = require('moment')
     const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
     
-    const timestamp = time.format("YYYY-MM-DD HH:mm:ss")
+    const timestamp = time.format("YYYY-MM-DD")
        
     const [mail, setMail] = useState('');
     const [comment, setComment] = useState('');
@@ -131,7 +131,7 @@ const AddScammer = ({navigation}) => {
                 <View>
                     <ConfirmationPopup visible={visible}>
                     <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
-                        Comment Added
+                        Flag Added
                     </Text>
                     <TouchableOpacity onPress={() =>close()}><Text>OK</Text></TouchableOpacity>             
                     </ConfirmationPopup>

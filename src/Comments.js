@@ -28,9 +28,10 @@ export default function Comments({route,navigation}){
     // getComment()
     comments.forEach((comment,index)=>{
         let k = (Object.keys(comments[index]))
-            console.log(comment[k]);
-           commentList.push(comment[k])
+            console.log(k[0]);
+           commentList.push({userName:k[0] ,commentMsg :comment[k]})
     })
+    // console.log(commentList);
 
    
     
@@ -51,7 +52,7 @@ export default function Comments({route,navigation}){
                 comments.forEach((comment,index)=>{
                     let k = (Object.keys(comments[index]))
                         console.log(comment[k]);
-                       commentList.push(comment[k])
+                       commentList.push({userName:k[0] ,commentMsg :comment[k]})
                 })
            
             
@@ -100,24 +101,23 @@ export default function Comments({route,navigation}){
         //   <Text style={styles.title}>{title}</Text>
         // </View>
         <View style={styles.commentsBox} >
-        <TouchableOpacity style={styles.userIconBackground}>
-            <Image source={profileImg} style={{height:30, borderRadius:50,}} />
-        </TouchableOpacity>
-        <Text style={styles.userComments}>
-            {comment}
-        </Text>
-    </View>
+            <Text style={{marginLeft:15,width:'92%'}}>{comment.userName}</Text>
+            <Text style={styles.userComments}>
+                {comment.commentMsg}  
+            </Text>
+
+        </View>
       );
 
     return(
         <SafeAreaView style={styles.container}>
           {user != null ?(<RedPart2 />):(<RedPart />)}
-            <View style={styles.card}>
+                <View style={styles.card}>
                     <View style={styles.dateContainer}>
                         <View style={styles.dateContainerBorder}>
+                            <Text style={styles.year}>2021<Text>-</Text></Text>
+                            <Text style={styles.month}>05<Text>-</Text></Text>
                             <Text style={styles.day}>15</Text>
-                            <Text style={styles.month}>May</Text>
-                            <Text style={styles.year}>2021</Text>
                         </View>
                     </View>
                     <View style={styles.userContainer}>
@@ -140,8 +140,7 @@ export default function Comments({route,navigation}){
                         </View>
                 </View>
 
-          
- <FlatList data={commentList} renderItem={renderItem} keyExtractor={item => item.id} />
+                <FlatList style={{}} keyExtractor={item => item.id} data={commentList} renderItem={renderItem}  />
 
             </ScrollView>
             <View style={styles.bottomContainer}>
@@ -188,28 +187,32 @@ const styles = StyleSheet.create({
     },
     dateContainer:{
         flex:1,
-        width:80,
+        width:85,
+        
     },
     dateContainerBorder:{
+      flexDirection: 'row',
       height:40,
+      width:65,
       marginTop:15,
+      paddingTop: 15,
       borderRightWidth:1,
       borderRightColor:'black',
-      width:50,
+      
     },
     day:{
-        paddingLeft:20,
+        paddingLeft:2,
         fontSize:10,
         color:'#D2373C',
     },
     month:{
-        paddingLeft:15,
+        paddingLeft:2,
         fontSize:10,
         color:'#D2373C',
         fontWeight:'bolder',
     },
     year:{
-        paddingLeft:15,
+        paddingLeft:2,
         fontSize:10,
         color:'#D2373C',
     },
@@ -222,7 +225,7 @@ const styles = StyleSheet.create({
     userContainerBorder:{
         height:40,
         marginTop:13,
-        paddingTop:10,
+        paddingTop:13,
     },
     likes:{
         fle:1,
@@ -234,6 +237,9 @@ const styles = StyleSheet.create({
     },
     username:{
       width:180,
+      alignSelf:'flex-start',
+      paddingLeft:5,
+
     },
     flags:{
         color:'#D2373C',
@@ -283,12 +289,9 @@ const styles = StyleSheet.create({
         marginRight:35
     },
     commentsBox:{
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-evenly',
+        flexDirection:'column',
         marginTop:10,
-        zIndex:3000,
-        
+        width:'100%',
     },
     userIconBackground:{
         backgroundColor:'grey',
@@ -303,8 +306,11 @@ const styles = StyleSheet.create({
     },
     userComments:{
         fontSize:12,
-        width:'80%',
+        width:'92%',
         backgroundColor:'rgb(255,240,242)',
         padding:15,
+        marginTop:5,
+        marginLeft:15,
+        paddingLeft:10,
     },
   });

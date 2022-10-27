@@ -8,7 +8,7 @@ import RedPart from '../components/topPart';
 import RedPart2 from '../components/secureTopParts';
 import { Picker } from 'react-native-web';
 import ClipLoader from "react-spinners/ClipLoader";
-import SyncLoader from "react-spinners/SyncLoader";
+import MoonLoader from "react-spinners/MoonLoader";
 
 
 
@@ -155,89 +155,102 @@ export default function HomeScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
       {user != null ? (<RedPart2 />) : (<RedPart />)}
-
-      <View style={styles.boxes}>
-
-        <View style={styles.selectView}>
-
-          <Picker
-            style={[styles.dropdownPick, { marginTop: '25px', marginVertical: 10, }]}
-            selectedValue={selectedAddress}
-            onValueChange={(itemVal) => {
-              setSelectedAddress(itemVal);
-              console.log({ selectedAddress });
-
-            }}
-          >
-            {
-              addresses.map((a) => (
-                <Picker.Item label={a} value={a} key={a} />
-              ))
-            }
-          </Picker>
+      {loading ? (
+        <>
+          <View style={{ flex: 2, display: 'flex', justifyContent: 'center',alignItems:'center' ,height: '100%' }} >
+            <MoonLoader
+              color={"#D2373C"}
+              loading={loading}
+              // cssOverride={override}
+              size={50}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+            <Text>Loading Content please wait...</Text>
         </View>
+        
+        </>
+    
+      ) :
+        (
+          <>
+            <View style={styles.boxes}>
 
-        <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-        <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
-      </View>
+              <View style={styles.selectView}>
 
+                <Picker
+                  style={[styles.dropdownPick, { marginTop: '25px', marginVertical: 10, }]}
+                  selectedValue={selectedAddress}
+                  onValueChange={(itemVal) => {
+                    setSelectedAddress(itemVal);
+                    console.log({ selectedAddress });
 
-
-      <ScrollView style={styles.midContainer}>
-
-        {
-          flags.map(flag => ((
-            <View style={styles.cardsContainer} key={flag.id}>
-              <View style={styles.card}>
-                <View style={styles.dateContainerBorder}>
-                  <View style={styles.dateContainer}>
-                    <Text style={styles.year}>2022<Text>-</Text></Text>
-                    <Text style={styles.month}>10<Text>-</Text></Text>
-                    <Text style={styles.day}>22</Text>
-
-                  </View>
-
-                </View>
-                <View style={styles.userContainerRightBorder}>
-                  <View style={styles.userContainer}>
-                    <TouchableOpacity onPress={() =>
-                      navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address })
-
-                    }>
-                      <Text style={styles.username1}>{flag.address}</Text>
-                    </TouchableOpacity>
-                    <View style={styles.comments}>
-                      <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                      <TouchableOpacity style={{ marginLeft: 20, }} onPress={() =>
-                        navigation.navigate("Comments", { flagComments: flag.comment })
-
-                      }>
-
-                        <Text style={[styles.username3, { width: 55, }]}>{flag.commentCount}</Text>
-                        <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
-                <TouchableOpacity style={styles.upvoteBtn} onPress={addlike}>
-                  <Text style={styles.upvoteTXT}>UPVOTE</Text>
-                </TouchableOpacity>
+                  }}
+                >
+                  {
+                    addresses.map((a) => (
+                      <Picker.Item label={a} value={a} key={a} />
+                    ))
+                  }
+                </Picker>
               </View>
 
+              <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
+              <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
             </View>
-          )))}
 
-      </ScrollView>
-      <View style={{  display: 'flex', flex :1}}>
-        <SyncLoader
-          color={"#D2373C"}
-          loading={loading}
-          // cssOverride={override}
-          size={10}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      </View>
+
+
+            <ScrollView style={styles.midContainer}>
+
+              {
+                flags.map(flag => ((
+                  <View style={styles.cardsContainer} key={flag.id}>
+                    <View style={styles.card}>
+                      <View style={styles.dateContainerBorder}>
+                        <View style={styles.dateContainer}>
+                          <Text style={styles.year}>2022<Text>-</Text></Text>
+                          <Text style={styles.month}>10<Text>-</Text></Text>
+                          <Text style={styles.day}>22</Text>
+
+                        </View>
+
+                      </View>
+                      <View style={styles.userContainerRightBorder}>
+                        <View style={styles.userContainer}>
+                          <TouchableOpacity onPress={() =>
+                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address })
+
+                          }>
+                            <Text style={styles.username1}>{flag.address}</Text>
+                          </TouchableOpacity>
+                          <View style={styles.comments}>
+                            <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                            <TouchableOpacity style={{ marginLeft: 20, }} onPress={() =>
+                              navigation.navigate("Comments", { flagComments: flag.comment })
+
+                            }>
+
+                              <Text style={[styles.username3, { width: 55, }]}>{flag.commentCount}</Text>
+                              <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                            </TouchableOpacity>
+                          </View>
+                        </View>
+                      </View>
+                      <TouchableOpacity style={styles.upvoteBtn}>
+                        <Text style={styles.upvoteTXT}>UPVOTE</Text>
+                      </TouchableOpacity>
+                    </View>
+
+                  </View>
+                )))}
+
+            </ScrollView>
+          </>
+        )
+      }
+
+
 
 
       <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
@@ -304,7 +317,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 40,
     marginTop: 20,
-    paddingTop: 15,
+    paddingTop: 10,
     borderRightWidth: 1,
     borderRightColor: 'black',
 
