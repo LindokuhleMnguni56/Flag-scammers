@@ -36,11 +36,7 @@ const AddScammer = ({navigation}) => {
     const addflag = async () => {
         
         if (user!=null){
-        //add to flag
-        // const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp,comment:{[uid]:comment  }})
-        // console.log("New Flag  ID: ", docRef.flag.uid);
-        // let data = await getDocs(commentRef);
-
+        
         console.log(user);
 
        if (mail !== '' ){
