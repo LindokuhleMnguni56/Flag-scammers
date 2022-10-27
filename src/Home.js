@@ -46,9 +46,7 @@ export default function HomeScreen({ navigation }) {
 
   const getItems = async () => {
     console.log(flagRef);
-    // myComment =
-
-   
+    
     onSnapshot(collection(db,"flag"), (snapshot) => {
 
        snapshot.docChanges().forEach((change) =>{
@@ -56,56 +54,63 @@ export default function HomeScreen({ navigation }) {
           console.log("New city: ", change.doc.data());
       }
         let commentCount =  change.doc.data().comments.length
-        console.log(commentCount);
-      //   console.log(doc.data());
+      
         listFlag.push({ id: change.doc.id, address: change.doc.data().address, comment: change.doc.data().comments, date: change.doc.data().date, commentCount: commentCount })
 
       })
     } )
-
-
     let data = await getDocs(flagRef);
-    // const q = query(collection(db, "flag"));
-    // const querySnapshot = await getDocs(q)
-    // querySnapshot.forEach((doc) => {
-    //   let commentCount = doc.data().comments.length
-    //   console.log(commentCount);
-    //   listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
-    // });
+    
     setFlags(listFlag)
     setLoading(false)
     console.log(listFlag);
-    // getComments()
+
   }
   
   
   const search = async () => {
-    //   flags.map(flag=>((
-    //     // console.log(address)
-    //     address === flag.address ?(
-    //       // navigation.push('NotFound')
-    //       console.log(flag.address)
-    //       // navigation.push('Comments')
-    //     ) :(
-    //       // navigation.push('Comments')
-    //       console.log(flag.address,"notfound")
-    //     )
-    //     // console.log(address)
-    //     // address == flag.address ?(
-    //     //   navigation.push('Comments',{flag:flag})
-    //     // ):(
-    //     //   navigation.push('Home')
-    //     // )
-    // )))
-    console.log(flags.length);
-    for (var i = 0; i < flags.length; i++) {
-      if (address == flags.address) {
-        // navigation.push('Comments')
-        console.log('found')
-      } else {
-        console.log('NotFound')
-      }
-    }
+   
+        
+      
+        const q = query(collection(db, "flag"),where("address", "==", address ));
+        const Nq = query(collection(db, "flag"),where("address", "!=", address ));
+        const querySnapshot = await getDocs(q)
+        const notQuerySnapshot = await getDocs(Nq)
+
+       let flag = false;
+
+        querySnapshot.forEach((docs) => {
+           
+          const selectedAddress=docs.data().address
+          console.log(selectedAddress);
+          flag=true;
+          
+        }
+
+        );
+
+        if (flag==true){
+          // navigation.navigate("Comments")
+          querySnapshot.forEach((docs) => {
+           
+            const selectedAddress=docs.data().address
+
+            navigation.navigate("Comments", { flagComments: docs.data().comments, flagAddress: docs.data().address, flagDate: docs.data().date });
+            
+            
+          })
+          
+        }else{
+          navigation.navigate("NotFound",{flagAddress:address})
+
+        }
+        
+        
+       
+        
+       
+
+    
   }
 
   
@@ -152,7 +157,7 @@ export default function HomeScreen({ navigation }) {
                   }
                 </Picker>
               </View>
-              <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
+              <TextInput style={styles.inputBox} placeholder='Enter Address...' onChangeText={(address)=>setAddress(address)}></TextInput>
               <TouchableOpacity onPress={search}><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
             </View>
             <ScrollView style={styles.midContainer}>
@@ -162,7 +167,7 @@ export default function HomeScreen({ navigation }) {
                     <View style={styles.card}>
                       <View style={styles.dateContainerBorder}>
                         <View style={styles.dateContainer}>
-                          <Text style={styles.year}>{flagDate}</Text>
+                          <Text style={styles.year}>{flag.date}</Text>
                         </View>
                       </View>
                       <View style={styles.userContainerRightBorder}>

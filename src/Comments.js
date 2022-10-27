@@ -14,6 +14,8 @@ import { async } from '@firebase/util';
 import ConfirmationPopup from '../components/modal';
 import modalImage from '../assets/tick.png'
 
+
+
 export default function Comments({route,navigation}){
 
     const [visible, setVisible] = React.useState(false);
