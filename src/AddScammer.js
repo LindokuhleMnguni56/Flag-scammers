@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity,Picker, Modal } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity,Picker, Modal, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { db, auth } from './config/firebase';
 import { addDoc, collection, query, where, getDocs } from 'firebase/firestore'
@@ -8,6 +8,8 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import moment from 'moment/moment';
 import RedPart from '../components/topPart';
 import ConfirmationPopup from '../components/modal';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import modalImage from '../assets/tick.png'
 
 const AddScammer = ({navigation}) => {
 
@@ -135,6 +137,7 @@ const AddScammer = ({navigation}) => {
                         <TextInput onChangeText={comment => setComment(comment)}
                             placeholder='Add Comment...'
                             style={styles.addComment}
+                            multiline={true}
                         />
                     </View>
                 </View>
@@ -148,6 +151,7 @@ const AddScammer = ({navigation}) => {
                 </View>
                 <View>
                     <ConfirmationPopup visible={visible}>
+                    <Image source={modalImage} style={{width:50,height:50,alignSelf:'center'}}/>
                     <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
                         Flag Added
                     </Text>

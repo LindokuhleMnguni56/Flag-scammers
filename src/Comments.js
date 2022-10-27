@@ -1,5 +1,5 @@
 
-import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image,TouchableOpacity,FlatList } from 'react-native';
+import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image,TouchableOpacity,FlatList, Modal } from 'react-native';
 import RedPart from '../components/topPart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag, faLaptopFile } from '@fortawesome/free-solid-svg-icons';
@@ -11,9 +11,12 @@ import {addDoc, collection,doc,merge, deleteDoc,getDocs,query,where,getDoc,onSna
 import { db } from './config/firebase';
 import React from 'react';
 import { async } from '@firebase/util';
+import ConfirmationPopup from '../components/modal';
+import modalImage from '../assets/tick.png'
 
 export default function Comments({route,navigation}){
 
+    const [visible, setVisible] = React.useState(false);
    
     const [flag,setFlag]= React.useState([]);
     const[comment,setComments]=React.useState('')
@@ -57,6 +60,7 @@ export default function Comments({route,navigation}){
            
             
         });
+        
       
      }
      console.log(flag);
@@ -87,6 +91,7 @@ export default function Comments({route,navigation}){
 
       
       getComment()
+      setVisible(true);
      }
 
      React.useEffect(()=>{
@@ -110,6 +115,10 @@ export default function Comments({route,navigation}){
 
         </View>
       );
+
+      const close = () =>{
+        setVisible(false)
+    }
 
     return(
         <SafeAreaView style={styles.container}>
@@ -141,8 +150,17 @@ export default function Comments({route,navigation}){
                             <TouchableOpacity style={styles.sendButton}><Text style={{fontSize:12}} onPress={addComment}>Add Comment</Text></TouchableOpacity>
                         </View>
                 </View>
+                <View>
+                    <ConfirmationPopup visible={visible}>
+                    <Image source={modalImage} style={{width:50,height:50,alignSelf:'center'}}/>
+                    <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
+                        Comment Added
+                    </Text>
+                    <TouchableOpacity onPress={() =>close()}><Text>OK</Text></TouchableOpacity>             
+                    </ConfirmationPopup>
+                </View>
 
-                <FlatList style={{}} keyExtractor={item => item.id} data={commentList} renderItem={renderItem}  />
+                <FlatList keyExtractor={item => item.id} data={commentList} renderItem={renderItem}  />
 
             </ScrollView>
             <View style={styles.bottomContainer}>
