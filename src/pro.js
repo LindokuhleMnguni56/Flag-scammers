@@ -1,4 +1,4 @@
-import { View, Text,StyleSheet, TextInput, TouchableOpacity, ImageBackground,Image } from 'react-native';
+import { View, Text,StyleSheet, TextInput, TouchableOpacity, ImageBackground,Image, } from 'react-native';
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
@@ -14,6 +14,8 @@ import { auth } from './config/firebase';
 import RedPart from '../components/topPart';
 export default function Pro(){
 
+
+
 const user=auth.currentUser;
 console.log(user.displayName)
  
@@ -21,14 +23,13 @@ console.log(user.displayName)
     
     <View  style={styles.container}>
      {user != null ?(<RedPart2 />):(<RedPart />)} 
-    {/* <View style={styles.wrapper} >
-    <Image source={picture}  />
-    </View> */}
 
 
       <View style={styles.midContainer}>
       <View style={styles.wrapper} >
-      {/* <Icon color='red' sname='user'  type='font-awesome' size={12} /> */}
+
+      <FontAwesomeIcon icon={faUser} style={{backgroundColor:'black',width:170,height:170,borderRadius:50,color:'white', marginLeft:5}} />    
+      
   
   
       </View>
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
         width: 170,
         alignSelf: 'center',
         borderRadius:'330px',
-        backgroundColor: 'green',
+   
         borderRadius: '140px'
         
     },
