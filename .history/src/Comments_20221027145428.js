@@ -18,7 +18,6 @@ import modalImage from '../assets/tick.png'
 
 export default function Comments({route,navigation}){
 
-    const [visible, setVisible] = React.useState(false);
    
     const [flag,setFlag]= React.useState([]);
     const[comment,setComments]=React.useState('')

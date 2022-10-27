@@ -6,19 +6,25 @@ import { faBan } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import image1 from '../assets/4.png'
 import tipsImg from '../assets/tipsbg2.png'
+import { auth } from './config/firebase';
+import RedPart2 from '../components/secureTopParts';
 
 
-export default function NotFound() {
+
+export default function NotFound({route,navigation}) {
+  const { flagAddress } = route.params;
+
+  let user = auth.currentUser;
   return (
     <SafeAreaView style={styles.container}>
-
-      <RedPart />
+      {user != null ? (<RedPart2 />) : (<RedPart />)}
+      
       <View style={styles.midContainer}>
               <View style={styles.cardContainer}>
                   <View style={styles.card}>
                           <View style={styles.userContainer}>
                                 <View style={styles.userContainerBorder}>
-                                        <Text style={styles.username}>tebzahamham@gmail.com</Text>
+                                        <Text style={styles.username}>{flagAddress}</Text>
                                 </View>
                                 
                           </View>

@@ -23,7 +23,7 @@ export default function RedPart2() {
     }
 
     const user = auth.currentUser;
-const imageSrc=(user.photoURL)
+const imageSrc=auth.photoUrl
     console.log(user.displayName)
 
      return (

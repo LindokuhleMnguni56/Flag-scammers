@@ -23,8 +23,8 @@ export default function RedPart2() {
     }
 
     const user = auth.currentUser;
-const imageSrc=(user.photoURL)
-    console.log(user.displayName)
+const imageSrc=user.photoURL)
+    console.log((user.displayName)
 
      return (
         <View style={styles.topContainer} >

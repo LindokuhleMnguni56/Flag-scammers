@@ -16,6 +16,9 @@ import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
 import { Link } from '@react-navigation/native';
+
+
+
 export default function HomeScreen({ navigation }) {
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
@@ -46,23 +49,32 @@ export default function HomeScreen({ navigation }) {
       navigation.push('AddScammer');
     }
   }
+
+
   const getItems = async () => {
     console.log(flagRef);
-    // myComment =
+    
+    onSnapshot(collection(db,"flag"), (snapshot) => {
+
+       snapshot.docChanges().forEach((change) =>{
+        if (change.type === "added") {
+          console.log("New city: ", change.doc.data());
+      }
+        let commentCount =  change.doc.data().comments.length
+      
+        listFlag.push({ id: change.doc.id, address: change.doc.data().address, comment: change.doc.data().comments, date: change.doc.data().date, commentCount: commentCount })
+
+      })
+    } )
     let data = await getDocs(flagRef);
-    const q = query(collection(db, "flag"));
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc) => {
-      let commentCount = doc.data().comments.length
-      //  let commentCount = 2
-      console.log(commentCount);
-      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
-    });
+    
     setFlags(listFlag)
     setLoading(false)
     console.log(listFlag);
 
   }
+  
+  
   const search = async () => {
    
         if (address != ''){

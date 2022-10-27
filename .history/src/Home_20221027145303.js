@@ -15,7 +15,10 @@ import {arrayUnion,addDoc, collection,updateDoc, doc, deleteDoc, getDocs, query,
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
-import { Link } from '@react-navigation/native';
+
+
+
+
 export default function HomeScreen({ navigation }) {
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
@@ -46,23 +49,107 @@ export default function HomeScreen({ navigation }) {
       navigation.push('AddScammer');
     }
   }
+
+
+
+ 
   const getItems = async () => {
     console.log(flagRef);
-    // myComment =
+    let likeFlag = false
+    
+    onSnapshot(collection(db,"flag"), (snapshot) => {
+
+       snapshot.docChanges().forEach((change) =>{
+        if (change.type === "added") {
+          console.log("New city: ", change.doc.data());
+      }
+        let commentCount =  change.doc.data().comments.length
+      
+        listFlag.push({ id: change.doc.id, address: change.doc.data().address, comment: change.doc.data().comments, date: change.doc.data().date, commentCount: commentCount })
+
+      })
+    } )
     let data = await getDocs(flagRef);
     const q = query(collection(db, "flag"));
     const querySnapshot = await getDocs(q)
+    const userT=auth.currentUser
+
     querySnapshot.forEach((doc) => {
       let commentCount = doc.data().comments.length
+      let likes = doc.data().likes
+      let likesCount = doc.data().likes.length
+      
       //  let commentCount = 2
-      console.log(commentCount);
-      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
+      // if()
+      likes.forEach((dataLike) =>{
+        if(dataLike == userT?.displayName){
+          console.log("this user voted fpr this flag");
+          likeFlag = true
+        } 
+      })
+      
+      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount,likesCount:likesCount, upvoted:likeFlag})
+      likeFlag = false
     });
     setFlags(listFlag)
     setLoading(false)
     console.log(listFlag);
 
   }
+  
+  
+
+
+  const addLikes = async(flag) =>{
+    let newLikes = []
+    let oldLikes = {}
+    const docRef = doc(db, "flag", flag.id);
+
+    const docSnap = await getDoc(docRef);
+    oldLikes =  docSnap.data().likes
+    // console.log("Document data:", docSnap.data().likes);
+    console.log(oldLikes);
+    var index = oldLikes.indexOf(user.displayName) 
+    if(flag.upvoted ){
+      if (index !== -1) {
+      console.log("we are removing you");
+
+        oldLikes.splice(index, 1);
+        await updateDoc(docRef, {
+          likes: oldLikes
+        });
+        getItems()
+      }
+
+    }else{
+      console.log("we are adding you");
+      oldLikes.push(user.displayName)
+      await updateDoc(docRef, {
+        likes: oldLikes
+      });
+      getItems()
+    }
+
+    
+
+
+    console.log(oldLikes);
+
+
+
+
+
+
+
+
+ }
+ 
+
+
+
+
+
+
   const search = async () => {
    
         if (address != ''){
