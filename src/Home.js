@@ -162,15 +162,13 @@ export default function HomeScreen({ navigation }) {
                     <View style={styles.card}>
                       <View style={styles.dateContainerBorder}>
                         <View style={styles.dateContainer}>
-                          <Text style={styles.year}>2022<Text>-</Text></Text>
-                          <Text style={styles.month}>10<Text>-</Text></Text>
-                          <Text style={styles.day}>22</Text>
+                          <Text style={styles.year}>{flagDate}</Text>
                         </View>
                       </View>
                       <View style={styles.userContainerRightBorder}>
                         <View style={styles.userContainer}>
                           <TouchableOpacity onPress={() =>
-                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address })
+                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date })
                           }>
                             <Text style={styles.username1}>{flag.address}</Text>
                           </TouchableOpacity>

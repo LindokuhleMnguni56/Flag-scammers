@@ -27,6 +27,7 @@ export default function Comments({route,navigation}){
     const user = auth.currentUser;
     const { flagComments } = route.params;
     const { flagAddress } = route.params;
+    const {flagDate} = route.params;
     comments = flagComments;
     // getComment()
     comments.forEach((comment,index)=>{
@@ -129,9 +130,8 @@ export default function Comments({route,navigation}){
                 <View style={styles.card}>
                     <View style={styles.dateContainer}>
                         <View style={styles.dateContainerBorder}>
-                            <Text style={styles.year}>2021<Text>-</Text></Text>
-                            <Text style={styles.month}>05<Text>-</Text></Text>
-                            <Text style={styles.day}>15</Text>
+                            <Text style={styles.year}>{flagDate}</Text>
+                            
                         </View>
                     </View>
                     <View style={styles.userContainer}>
@@ -223,11 +223,6 @@ const styles = StyleSheet.create({
       borderRightColor:'black',
       
     },
-    day:{
-        paddingLeft:2,
-        fontSize:10,
-        color:'#D2373C',
-    },
     month:{
         paddingLeft:2,
         fontSize:10,
@@ -235,7 +230,7 @@ const styles = StyleSheet.create({
         fontWeight:'bolder',
     },
     year:{
-        paddingLeft:3,
+        paddingLeft:5,
         fontSize:10,
         color:'#D2373C',
     },
