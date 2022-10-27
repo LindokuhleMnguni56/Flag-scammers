@@ -1,4 +1,3 @@
-
 import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -9,11 +8,6 @@ import RedPart2 from '../components/secureTopParts';
 import { Picker } from 'react-native-web';
 import ClipLoader from "react-spinners/ClipLoader";
 import MoonLoader from "react-spinners/MoonLoader";
-
-
-
-
-
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
@@ -25,120 +19,112 @@ import { Link } from '@react-navigation/native';
 
 
 
-
 export default function HomeScreen({ navigation }) {
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
   const listFlag = []
   const [users, setUsers] = React.useState('');
   const [address, setAddress] = React.useState('')
-
   const [selectedAddress, setSelectedAddress] = React.useState('');
   const [addresses] = React.useState([
     'Email Address',
     'Physical Address'
   ]
   );
-
   const flagRef = collection(db, "flag");
   const commentRef = collection(db, "comments");
-
   var user = auth.currentUser;
   console.log(user);
-
-
-
-
   const addButton = async () => {
     if (user == null) {
-
       navigation.push('Login');
     } else {
       navigation.push('AddScammer');
-
     }
   }
-
-
 
 
   const getItems = async () => {
-
     console.log(flagRef);
-    // myComment = 
+    
+    onSnapshot(collection(db,"flag"), (snapshot) => {
+
+       snapshot.docChanges().forEach((change) =>{
+        if (change.type === "added") {
+          console.log("New city: ", change.doc.data());
+      }
+        let commentCount =  change.doc.data().comments.length
+      
+        listFlag.push({ id: change.doc.id, address: change.doc.data().address, comment: change.doc.data().comments, date: change.doc.data().date, commentCount: commentCount })
+
+      })
+    } )
     let data = await getDocs(flagRef);
-
-
-
-    const q = query(collection(db, "flag"));
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc) => {
-      let commentCount = doc.data().comments.length
-      //  let commentCount = 2
-      console.log(commentCount);
-      listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount })
-    });
-
-
+    
     setFlags(listFlag)
     setLoading(false)
-
     console.log(listFlag);
-    // getComments()
+
   }
-
-
-
-
+  
+  
   const search = async () => {
+   
+        if (address != ''){
 
-    //   flags.map(flag=>((
+          const q = query(collection(db, "flag"),where("address", "==", address ));
+          const Nq = query(collection(db, "flag"),where("address", "!=", address ));
+          const querySnapshot = await getDocs(q)
+          const notQuerySnapshot = await getDocs(Nq)
+  
+         let flag = false;
+  
+          querySnapshot.forEach((docs) => {
+             
+            const selectedAddress=docs.data().address
+            console.log(selectedAddress);
+            flag=true;
+            
+          }
+  
+          );
+  
+          if (flag==true){
+            // navigation.navigate("Comments")
+            querySnapshot.forEach((docs) => {
+             
+              const selectedAddress=docs.data().address
+  
+              navigation.navigate("Comments", { flagComments: docs.data().comments, flagAddress: docs.data().address, flagDate: docs.data().date });
+              
+              
+            })
+            
+          }else{
+            navigation.navigate("NotFound",{flagAddress:address})
+  
+          }
+          
+          
+        }else{
+          console.log('enter address');
+        }
+      
+       
+       
+        
+       
 
-    //     // console.log(address)
-
-    //     address === flag.address ?(
-    //       // navigation.push('NotFound')
-    //       console.log(flag.address)
-    //       // navigation.push('Comments')
-    //     ) :(
-    //       // navigation.push('Comments')
-    //       console.log(flag.address,"notfound")
-    //     )
-
-    //     // console.log(address)
-    //     // address == flag.address ?(
-    //     //   navigation.push('Comments',{flag:flag})
-    //     // ):(
-    //     //   navigation.push('Home')
-    //     // )
-
-
-    // )))
-    console.log(flags.length);
-
-    for (var i = 0; i < getItems().length; i++) {
-
-      if (address == flags.address) {
-        navigation.push('Comments')
-        console.log('found')
-      } else {
-        navigation.push('NotFound')
-      }
-    }
-
+    
   }
 
-
+  
   React.useEffect(() => {
     console.log("some")
     getItems();
-
-
   }, [])
-
-
-
-
+  
+  
   return (
     <SafeAreaView style={styles.container}>
       {user != null ? (<RedPart2 />) : (<RedPart />)}
@@ -153,25 +139,20 @@ export default function HomeScreen({ navigation }) {
               aria-label="Loading Spinner"
               data-testid="loader"
             />
-            <Text>Loading Content please wait...</Text>
+            <Text style={{marginTop:10}}>Loading Content please wait...</Text>
         </View>
-        
         </>
-    
       ) :
         (
           <>
             <View style={styles.boxes}>
-
               <View style={styles.selectView}>
-
                 <Picker
                   style={[styles.dropdownPick, { marginTop: '25px', marginVertical: 10, }]}
                   selectedValue={selectedAddress}
                   onValueChange={(itemVal) => {
                     setSelectedAddress(itemVal);
                     console.log({ selectedAddress });
-
                   }}
                 >
                   {
@@ -181,33 +162,23 @@ export default function HomeScreen({ navigation }) {
                   }
                 </Picker>
               </View>
-
-              <TextInput style={styles.inputBox} placeholder='Enter Address...'></TextInput>
-              <TouchableOpacity><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
+              <TextInput style={styles.inputBox} placeholder='Enter Address...' onChangeText={(address)=>setAddress(address)}></TextInput>
+              <TouchableOpacity onPress={search}><View style={styles.searchIconBtn} ><FontAwesomeIcon icon={faSearch} style={styles.searchIcon} /></View></TouchableOpacity>
             </View>
-
-
-
             <ScrollView style={styles.midContainer}>
-
               {
                 flags.map(flag => ((
                   <View style={styles.cardsContainer} key={flag.id}>
                     <View style={styles.card}>
                       <View style={styles.dateContainerBorder}>
                         <View style={styles.dateContainer}>
-                          <Text style={styles.year}>2022<Text>-</Text></Text>
-                          <Text style={styles.month}>10<Text>-</Text></Text>
-                          <Text style={styles.day}>22</Text>
-
+                          <Text style={styles.year}>{flag.date}</Text>
                         </View>
-
                       </View>
                       <View style={styles.userContainerRightBorder}>
                         <View style={styles.userContainer}>
                           <TouchableOpacity onPress={() =>
-                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address })
-
+                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date })
                           }>
                             <Text style={styles.username1}>{flag.address}</Text>
                           </TouchableOpacity>
@@ -215,9 +186,7 @@ export default function HomeScreen({ navigation }) {
                             <Text style={styles.username2}>100k</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
                             <TouchableOpacity style={{ marginLeft: 20, }} onPress={() =>
                               navigation.navigate("Comments", { flagComments: flag.comment })
-
                             }>
-
                               <Text style={[styles.username3, { width: 55, }]}>{flag.commentCount}</Text>
                               <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
                             </TouchableOpacity>
@@ -228,29 +197,21 @@ export default function HomeScreen({ navigation }) {
                         <Text style={styles.upvoteTXT}>UPVOTE</Text>
                       </TouchableOpacity>
                     </View>
-
                   </View>
                 )))}
-
             </ScrollView>
           </>
         )
       }
-
-
-
-
       <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
         <Text style={styles.button}>+</Text>
       </TouchableOpacity>
       <View style={styles.bottomContainer}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>
-
     </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -262,14 +223,12 @@ const styles = StyleSheet.create({
     height: '500px',
     width: '100%',
     marginTop: 20,
-
   },
   boxes: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     width: '100%',
-
   },
   inputBox: {
     height: 25,
@@ -280,9 +239,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#EDEDED',
     borderRadius: 4,
     fontSize: 12,
-    boxShadow: '#ababab 0px 6px 9px -3px;',
+    boxShadow: '#ABABAB 0px 6px 9px -3px;',
   },
-
   searchIconBtn: {
     backgroundColor: '#D2373C',
     width: '30px',
@@ -291,14 +249,13 @@ const styles = StyleSheet.create({
     paddingLeft: '8px',
     borderRadius: '20px',
     marginTop: '23px',
-    boxShadow: '#ababab 0px 6px 9px -1px;',
+    boxShadow: '#ABABAB 0px 6px 9px -1px;',
   },
   searchIcon: {
     color: '#EDEDED',
   },
   dateContainerBorder: {
     width: 70,
-
   },
   dateContainer: {
     flexDirection: 'row',
@@ -307,7 +264,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     borderRightWidth: 1,
     borderRightColor: 'black',
-
   },
   userContainerRightBorder: {
     flex: 3,
@@ -330,9 +286,8 @@ const styles = StyleSheet.create({
     height: 80,
     width: '92%',
     marginLeft: 15,
-    boxShadow: '#ababab 0px 6px 9px -3px;',
+    boxShadow: '#ABABAB 0px 6px 9px -3px;',
     borderRadius: 10
-
   },
   buttonContainer: {
     backgroundColor: '#D2373C',
@@ -342,7 +297,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginRight: 15,
     alignSelf: 'flex-end',
-
   },
   button: {
     color: '#EDEDED',
@@ -413,7 +367,7 @@ const styles = StyleSheet.create({
     borderColor: 'grey',
     border: '1px solid black',
     borderRadius: 4,
-    boxShadow: '#ababab 0px 6px 9px -3px;',
+    boxShadow: '#ABABAB 0px 6px 9px -3px;',
     backgroundColor: '#EDEDED',
     paddingLeft: '2%',
     fontSize: 12,

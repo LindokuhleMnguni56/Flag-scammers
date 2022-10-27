@@ -3,20 +3,29 @@ import { StyleSheet,SafeAreaView, Text, View, } from 'react-native';
 // import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { Link } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-web';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 export default function RedPart() {
+  const navigation = useNavigation();
   return (
 
         <View style={styles.topContainer} >
             <View style={styles.btnBackground}>
-              <TouchableOpacity>
-                <Text style={styles.usernameTXT1}><Link to={'/Login'}>Login</Link></Text>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Text style={styles.usernameTXT}><Link to={'/Register'}>Register</Link></Text>
-              </TouchableOpacity>
+                <TouchableOpacity 
+                    onPress={() => {navigation.goBack();}}
+                  >
+                    <FontAwesomeIcon icon={faChevronLeft} style={{width:20,height:20,color:'white'}} />
+                </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Text style={styles.usernameTXT1}><Link to={'/Login'}>Login</Link></Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Text style={styles.usernameTXT}><Link to={'/Register'}>Register</Link></Text>
+                  </TouchableOpacity>
             </View>      
         </View>     
         
@@ -35,9 +44,9 @@ export default function RedPart() {
       justifyContent:'flex-end',
     },
     btnBackground:{
-      display:'flex',
       flexDirection:'row',
-      marginRight:'205px',
+      width:'90%',
+      marginRight:20,
       
     },
     usernameTXT1:{
@@ -47,6 +56,7 @@ export default function RedPart() {
       borderRightColor:'white',
       height:20,
       color:'white',
+      paddingLeft:20
     },
     usernameTXT:{
       textAlign:'right',

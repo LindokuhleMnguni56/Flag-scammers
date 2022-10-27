@@ -1,5 +1,5 @@
 
-import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image,TouchableOpacity,FlatList } from 'react-native';
+import {StyleSheet,SafeAreaView, View,Text, TextInput, ScrollView,Image,TouchableOpacity,FlatList, Modal } from 'react-native';
 import RedPart from '../components/topPart';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faFlag, faLaptopFile } from '@fortawesome/free-solid-svg-icons';
@@ -11,9 +11,14 @@ import {addDoc, collection,doc,merge, deleteDoc,getDocs,query,where,getDoc,onSna
 import { db } from './config/firebase';
 import React from 'react';
 import { async } from '@firebase/util';
+import ConfirmationPopup from '../components/modal';
+import modalImage from '../assets/tick.png'
+
+
 
 export default function Comments({route,navigation}){
 
+    const [visible, setVisible] = React.useState(false);
    
     const [flag,setFlag]= React.useState([]);
     const[comment,setComments]=React.useState('')
@@ -24,6 +29,7 @@ export default function Comments({route,navigation}){
     const user = auth.currentUser;
     const { flagComments } = route.params;
     const { flagAddress } = route.params;
+    const {flagDate} = route.params;
     comments = flagComments;
     // getComment()
     comments.forEach((comment,index)=>{
@@ -57,6 +63,7 @@ export default function Comments({route,navigation}){
            
             
         });
+        
       
      }
      console.log(flag);
@@ -66,7 +73,7 @@ export default function Comments({route,navigation}){
         const q = query(collection(db, "flag"),where("address", "==", flagAddress ));
         const querySnapshot = await getDocs(q)
 
-       
+        if(comment !== ''){
         comments.push({[user.displayName]:comment})
         console.log(comments);
         querySnapshot.forEach((docs) => {
@@ -84,7 +91,13 @@ export default function Comments({route,navigation}){
             })
         
       });
+
+      
       getComment()
+      setVisible(true);
+    }else{
+        setVisible(false)
+    }
      }
 
      React.useEffect(()=>{
@@ -100,14 +113,18 @@ export default function Comments({route,navigation}){
         // <View style={styles.item}>
         //   <Text style={styles.title}>{title}</Text>
         // </View>
-        <View style={styles.commentsBox} >
-            <Text style={{marginLeft:15,width:'92%'}}>{comment.userName}</Text>
+        <ScrollView style={styles.commentsBox} >
+            <Text style={{marginLeft:15,width:'92%', color: '#6200EE',fontFamily:'sans-didot'}}>{comment.userName}</Text>
             <Text style={styles.userComments}>
                 {comment.commentMsg}  
             </Text>
 
-        </View>
+        </ScrollView>
       );
+
+      const close = () =>{
+        setVisible(false)
+    }
 
     return(
         <SafeAreaView style={styles.container}>
@@ -115,9 +132,8 @@ export default function Comments({route,navigation}){
                 <View style={styles.card}>
                     <View style={styles.dateContainer}>
                         <View style={styles.dateContainerBorder}>
-                            <Text style={styles.year}>2021<Text>-</Text></Text>
-                            <Text style={styles.month}>05<Text>-</Text></Text>
-                            <Text style={styles.day}>15</Text>
+                            <Text style={styles.year}>{flagDate}</Text>
+                            
                         </View>
                     </View>
                     <View style={styles.userContainer}>
@@ -129,7 +145,7 @@ export default function Comments({route,navigation}){
                           </View>
                     </View>
                 </View>
-            <ScrollView style={styles.midContainer} showsVerticalScrollIndicator={false}>
+            <View style={styles.midContainer} showsVerticalScrollIndicator={false}>
                 <View style={styles.textBox} >
                         <TouchableOpacity style={styles.userIconBg} onPress={() => navigation.push('Pro')}>
                             <Image source={profileImg} style={{height:30, borderRadius:50,}} />
@@ -139,10 +155,19 @@ export default function Comments({route,navigation}){
                             <TouchableOpacity style={styles.sendButton}><Text style={{fontSize:12}} onPress={addComment}>Add Comment</Text></TouchableOpacity>
                         </View>
                 </View>
+                <View>
+                    <ConfirmationPopup visible={visible}>
+                    <Image source={modalImage} style={{width:50,height:50,alignSelf:'center'}}/>
+                    <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
+                        Comment Added
+                    </Text>
+                    <TouchableOpacity onPress={() =>close()}><Text>OK</Text></TouchableOpacity>             
+                    </ConfirmationPopup>
+                </View>
 
-                <FlatList style={{}} keyExtractor={item => item.id} data={commentList} renderItem={renderItem}  />
+                <FlatList keyExtractor={item => item.id} data={commentList} renderItem={renderItem}  />
 
-            </ScrollView>
+            </View>
             <View style={styles.bottomContainer}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
             </View>
@@ -200,11 +225,6 @@ const styles = StyleSheet.create({
       borderRightColor:'black',
       
     },
-    day:{
-        paddingLeft:2,
-        fontSize:10,
-        color:'#D2373C',
-    },
     month:{
         paddingLeft:2,
         fontSize:10,
@@ -212,7 +232,7 @@ const styles = StyleSheet.create({
         fontWeight:'bolder',
     },
     year:{
-        paddingLeft:2,
+        paddingLeft:5,
         fontSize:10,
         color:'#D2373C',
     },
@@ -225,7 +245,7 @@ const styles = StyleSheet.create({
     userContainerBorder:{
         height:40,
         marginTop:13,
-        paddingTop:13,
+        paddingTop:15,
     },
     likes:{
         fle:1,
@@ -233,13 +253,13 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         height:40,
         marginLeft:45,
-        marginTop:25,
+        marginTop:26,
     },
     username:{
       width:180,
       alignSelf:'flex-start',
-      paddingLeft:5,
-
+      paddingLeft:10,
+      fontSize:12
     },
     flags:{
         color:'#D2373C',

@@ -1,4 +1,4 @@
-import { SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity,Picker, Modal } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View, TextInput, TouchableOpacity,Picker, Modal, Image } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { db, auth } from './config/firebase';
 import { addDoc, collection, query, where, getDocs } from 'firebase/firestore'
@@ -8,13 +8,15 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import moment from 'moment/moment';
 import RedPart from '../components/topPart';
 import ConfirmationPopup from '../components/modal';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import modalImage from '../assets/tick.png'
 
 const AddScammer = ({navigation}) => {
 
     const [visible, setVisible] = useState(false);
 
     const moment = require('moment')
-    const time = moment() // moment(new Date()).format("YYYY-MM-DD hh:mm:ss")
+    const time = moment() // moment(new Date()).format("YYYY-MM-DD ")
     
     const timestamp = time.format("YYYY-MM-DD")
        
@@ -32,26 +34,45 @@ const AddScammer = ({navigation}) => {
     ]
     );
     const addflag = async () => {
-        setVisible(true);
+        
         if (user!=null){
-        //add to flag
-        // const docRef = await addDoc(itemRef,{address:mail ,userId:user.uid,addressType:selectedAddress, date:timestamp,comment:{[uid]:comment  }})
-        // console.log("New Flag  ID: ", docRef.flag.uid);
-        // let data = await getDocs(commentRef);
-
+        
         console.log(user);
 
-        const docRef = await addDoc(itemRef, {
-            address: mail,
-            addressType: selectedAddress,
-            date: timestamp, 
-            comments :[ {[user.displayName]:comment}]
-              
-                    // uid:user.uid,
-                    // commentText:comment
-                      
-                    // commentText:comment
-        })
+       if (mail !== '' ){
+
+        if(comment !== ''){
+
+            const docRef = await addDoc(itemRef, {
+                address: mail,
+                addressType: selectedAddress,
+                date: timestamp, 
+                comments :[ {[user.displayName]:comment}]
+                  
+                        // uid:user.uid,
+                        // commentText:comment
+                          
+                        // commentText:comment
+    
+                        
+                
+            })
+            setVisible(true);
+            
+        }
+
+        
+        console.log(mail)
+        
+        
+
+       }else{
+
+        console.log(' null')
+        setVisible(false);
+       }
+
+       
         
     }
 
@@ -116,6 +137,7 @@ const AddScammer = ({navigation}) => {
                         <TextInput onChangeText={comment => setComment(comment)}
                             placeholder='Add Comment...'
                             style={styles.addComment}
+                            multiline={true}
                         />
                     </View>
                 </View>
@@ -129,6 +151,7 @@ const AddScammer = ({navigation}) => {
                 </View>
                 <View>
                     <ConfirmationPopup visible={visible}>
+                    <Image source={modalImage} style={{width:50,height:50,alignSelf:'center'}}/>
                     <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
                         Flag Added
                     </Text>
