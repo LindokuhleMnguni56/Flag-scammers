@@ -70,42 +70,47 @@ export default function HomeScreen({ navigation }) {
   
   const search = async () => {
    
-        
-      
-        const q = query(collection(db, "flag"),where("address", "==", address ));
-        const Nq = query(collection(db, "flag"),where("address", "!=", address ));
-        const querySnapshot = await getDocs(q)
-        const notQuerySnapshot = await getDocs(Nq)
+        if (address != ''){
 
-       let flag = false;
-
-        querySnapshot.forEach((docs) => {
-           
-          const selectedAddress=docs.data().address
-          console.log(selectedAddress);
-          flag=true;
-          
-        }
-
-        );
-
-        if (flag==true){
-          // navigation.navigate("Comments")
+          const q = query(collection(db, "flag"),where("address", "==", address ));
+          const Nq = query(collection(db, "flag"),where("address", "!=", address ));
+          const querySnapshot = await getDocs(q)
+          const notQuerySnapshot = await getDocs(Nq)
+  
+         let flag = false;
+  
           querySnapshot.forEach((docs) => {
-           
+             
             const selectedAddress=docs.data().address
-
-            navigation.navigate("Comments", { flagComments: docs.data().comments, flagAddress: docs.data().address, flagDate: docs.data().date });
+            console.log(selectedAddress);
+            flag=true;
             
+          }
+  
+          );
+  
+          if (flag==true){
+            // navigation.navigate("Comments")
+            querySnapshot.forEach((docs) => {
+             
+              const selectedAddress=docs.data().address
+  
+              navigation.navigate("Comments", { flagComments: docs.data().comments, flagAddress: docs.data().address, flagDate: docs.data().date });
+              
+              
+            })
             
-          })
+          }else{
+            navigation.navigate("NotFound",{flagAddress:address})
+  
+          }
+          
           
         }else{
-          navigation.navigate("NotFound",{flagAddress:address})
-
+          console.log('enter address');
         }
-        
-        
+      
+       
        
         
        
