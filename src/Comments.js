@@ -159,11 +159,13 @@ export default function Comments({route,navigation}){
                 </View>
                 <View>
                     <ConfirmationPopup visible={visible}>
-                    <Image source={modalImage} style={{width:50,height:50,alignSelf:'center'}}/>
-                    <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
-                        Comment Added
-                    </Text>
-                    <TouchableOpacity onPress={() =>close()}><Text>OK</Text></TouchableOpacity>             
+                        <Image source={modalImage} style={{width:50,height:50,alignSelf:'center'}}/>
+                        <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
+                            Your Comment was successfully added, Press ok to view comment
+                        </Text>
+                        <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:40,height:20,borderRadius:20,textAlign:'center'}} onPress={() =>close()}>
+                            <Text>OK</Text>
+                        </TouchableOpacity>             
                     </ConfirmationPopup>
                 </View>
 
