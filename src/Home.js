@@ -98,7 +98,7 @@ export default function HomeScreen({ navigation }) {
 
   }
 
-  
+
   
   
 
@@ -277,7 +277,7 @@ export default function HomeScreen({ navigation }) {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity style={{ marginLeft: 20,backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center' }} onPress={() =>
-                                  navigation.navigate("Comments", { flagComments: flag.comment })
+                                  navigation.navigate("Comments", {  flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date,flagCount:flag.likesCount })
                                 } >
                                   <Text style={[styles.username2, { width: 20, }]}>{flag.commentCount}</Text>
                                   <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
