@@ -50,7 +50,7 @@ console.log(user.displayName)
                   </View>
                   
               </View>
-              
+
           </View>
 
           <View style={styles.userContainer}> 
