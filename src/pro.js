@@ -28,50 +28,60 @@ console.log(user.displayName)
       <View style={styles.midContainer}>
       <View style={styles.wrapper} >
 
-      <FontAwesomeIcon icon={faUser} style={{backgroundColor:'black',width:170,height:170,borderRadius:50,color:'white', marginLeft:5}} />    
+      {/* <FontAwesomeIcon icon={faUser} style={{backgroundColor:'black',width:170,height:170,borderRadius:50,color:'white', marginLeft:5}} />     */}
       <Image source={user.photoURL} style={{backgroundColor:'black',width:170,height:170,borderRadius:50,color:'white', marginLeft:5}} />
   
   
       </View>
-      <Text style={styles.container}>
-
-      </Text>
+      
       
       <View style={styles.profileDetails}>
-          <View style={styles.usernameContainer}> 
-              <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
+
+          <View style={styles.userContainer}> 
+            <Text style={styles.label}>username</Text>
               <View style={styles.flagText}>
-                  <Text style={styles.label}>username</Text>
+                  <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
+                  
                   <Text style={styles.text}>{user.displayName}</Text>
+<<<<<<< HEAD
               </View>
               <TouchableOpacity>
                     <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
               </TouchableOpacity>    
+=======
+                  <TouchableOpacity>
+              <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
+              </TouchableOpacity>
+              </View>
+              
+>>>>>>> e834860e3c055fd0230dbfb52a1beee47b329b4e
           </View>
 
-           <View style={styles.emailContainer}>
-              <FontAwesomeIcon icon={faEnvelope} style={styles.userIcon}/>
+          <View style={styles.userContainer}> 
+            <Text style={styles.label}>email</Text>
               <View style={styles.flagText}>
-                  <Text style={styles.label}>email</Text>
+                  <FontAwesomeIcon icon={faEnvelope} style={styles.userIcon}/>
                   <Text style={styles.text}>{user.email}</Text>
-              </View>
+              </View> 
           </View>
 
-          <View style={styles.flagContainer}>
-              <FontAwesomeIcon icon={faFlag} style={styles.userIcon}/>
+          <View style={styles.userContainer}> 
+            <Text style={styles.label}>flags</Text>
               <View style={styles.flagText}>
-                  <Text style={styles.label}>flags</Text>
+                  <FontAwesomeIcon icon={faFlag} style={styles.userIcon}/>
                   <Text style={styles.text}>20</Text>
-              </View>
+              </View> 
+          </View>
+          
+          <View style={styles.userContainer}> 
+            <Text style={styles.label}>comments</Text>
+              <View style={styles.flagText}>
+                  <FontAwesomeIcon icon={faComment} style={styles.userIcon}/>
+                  <Text style={styles.text}>20</Text>
+              </View> 
           </View>
 
-          <View style={styles.commentContainer}>
-          <FontAwesomeIcon icon={faComment} style={styles.userIcon}/>
-              <View style={styles.flagText}>
-                  <Text style={styles.label}>comments</Text>
-                  <Text style={styles.text}>100</Text>
-              </View>
-          </View>
+
        </View>
       </View>
       <View style={styles.bottomContainer}>
@@ -91,18 +101,24 @@ const styles = StyleSheet.create({
     flagText:{
         alignContent: 'space-around',
         paddingLeft: 10,
+        display:'flex', 
+        flexDirection:'row',
+        
     },
 
     text:{
-
+        paddingTop:15,
+        paddingLeft:10,
+        fontSize:16,
     },
 
     label:{
         color: 'grey',
+        padding:5
     },
 
     midContainer: {
-        flex: 12,
+        // flex: 12,
         height: '500px',
         width: '100%',
         marginTop: 20,
@@ -117,13 +133,12 @@ const styles = StyleSheet.create({
         fontSize:'25px', 
         lineHeight:35, 
     }, 
-    usernameContainer:{ 
+    userContainer:{ 
        width:'100%', 
-        display:'flex', 
-        flexDirection:'row',
         borderBottomWidth:0.5,
-        //justifyContent:'space-between'
         alignSelf: 'flex-end',
+        borderBottomColor:'lightgrey'
+
     },
 
     editIcon:{
@@ -132,13 +147,7 @@ const styles = StyleSheet.create({
         paddingLeft: 230,
     },
 
-    emailContainer:{
-        width:'100%',
-        display:'flex',
-        flexDirection:'row',
-        borderBottomWidth:0.5,
-        alignSelf: 'flex-end',
-    },
+    
 
     flagContainer:{
         width:'100%',
@@ -163,20 +172,18 @@ const styles = StyleSheet.create({
         width: 170,
         alignSelf: 'center',
         borderRadius:'330px',
-   
-        borderRadius: '140px'
-        
+        borderRadius: '140px',
     },
      
     profileDetails:{
-        paddingBottom: 121,
-        alignSelf: 'center'
+        alignSelf: 'center',
+        paddingTop:40
     },
 
     userIcon: {
-        width: "20px",
-        height: "50px",
+        width: "12px",
         color:  '#D2373C',
+        paddingTop:10
     },
     bottomContainer: {
         flex: 2.5,
