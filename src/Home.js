@@ -224,10 +224,10 @@ export default function HomeScreen({ navigation }) {
             />
             <Text style={{marginTop:10}}>Loading Content please wait...</Text>
         </View>
-        </>
-      ) :
-        (
-          <>
+              </>
+            ) :
+              (
+                <>
             <View style={styles.boxes}>
               <View style={styles.selectView}>
                 <Picker
@@ -255,30 +255,37 @@ export default function HomeScreen({ navigation }) {
                     <View style={styles.card}>
                       <View style={styles.dateContainerBorder}>
                         <View style={styles.dateContainer}>
-                          <Text style={styles.year}>{flag.date}</Text>
+                          <Text style={styles.day}>18</Text>
+                          <Text style={styles.month}>Aug</Text>
+                          <Text style={styles.year}>2021</Text>
                         </View>
                       </View>
                       <View style={styles.userContainerRightBorder}>
                         <View style={styles.userContainer}>
-                          <TouchableOpacity onPress={() =>
-                            navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date,flagCount:flag.likesCount })
-                          }>
-                            <Text style={styles.username1}>{flag.address}</Text>
-                          </TouchableOpacity>
-                          <View style={styles.comments}>
-                            <Text style={styles.username2}>{flag.likesCount}</Text><FontAwesomeIcon icon={faFlag} style={styles.flags} />
-                            <TouchableOpacity style={{ marginLeft: 20, }} onPress={() =>
-                              navigation.navigate("Comments", { flagComments: flag.comment })
-                            }>
-                              <Text style={[styles.username3, { width: 55, }]}>{flag.commentCount}</Text>
-                              <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
-                            </TouchableOpacity>
-                          </View>
+                              <TouchableOpacity onPress={() =>
+                                navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date,flagCount:flag.likesCount })
+                              }>
+                                <Text style={styles.username1}>{flag.address}</Text>
+                              </TouchableOpacity>
+                              <View style={styles.comments}>
+                                
+                                <TouchableOpacity onPress={()=> addLikes(flag)} style={{backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center'}}>
+                                  <Text style={[styles.username2, { width: 20, }]}>{flag.likesCount}</Text>
+                                  <FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                                </TouchableOpacity>
+
+                                <TouchableOpacity style={{ marginLeft: 20,backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center' }} onPress={() =>
+                                  navigation.navigate("Comments", { flagComments: flag.comment })
+                                } >
+                                  <Text style={[styles.username2, { width: 20, }]}>{flag.commentCount}</Text>
+                                  <FontAwesomeIcon icon={faComment} style={styles.commentIcon} />
+                                </TouchableOpacity>
+                              </View>
                         </View>
                       </View>
-                      <TouchableOpacity onPress={()=> addLikes(flag)} style={styles.upvoteBtn}>
-                        <Text style={styles.upvoteTXT}>UPVOTE</Text>
-                      </TouchableOpacity>
+                      {/* <TouchableOpacity onPress={()=> addLikes(flag)} style={styles.upvoteBtn}>
+                        <FontAwesomeIcon icon={faFlag} />
+                      </TouchableOpacity> */}
                     </View>
                   </View>
                 )))}
@@ -341,10 +348,10 @@ const styles = StyleSheet.create({
     width: 70,
   },
   dateContainer: {
-    flexDirection: 'row',
-    height: 40,
-    marginTop: 20,
-    paddingTop: 10,
+    flexDirection: 'column',
+    height: 50,
+    marginTop: 15,
+    paddingLeft:20,
     borderRightWidth: 1,
     borderRightColor: 'black',
   },
@@ -388,6 +395,7 @@ const styles = StyleSheet.create({
   day: {
     color: 'red',
     fontSize: 10,
+    paddingLeft:3
   },
   month: {
     fontSize: 10,
@@ -395,47 +403,43 @@ const styles = StyleSheet.create({
     fontWeight: 'bolder',
   },
   year: {
-    paddingLeft: 10,
     fontSize: 10,
     color: '#D2373C',
   },
   username1: {
     paddingLeft: 10,
     fontSize: 12,
+    fontWeight:'bold',
   },
   username2: {
-    paddingLeft: 10,
-    paddingTop: 10,
     fontSize: 10,
+    
   },
-  username3: {
-    paddingTop: 10,
-    fontSize: 10,
-    paddingLeft: 35,
-  },
+
   comments: {
     display: 'flex',
     flexDirection: 'row',
+    justifyContent:'space-between',
+    padding:10,
+    width:'120%',
+    
+
   },
   commentIcon: {
-    paddingTop: 10,
-    position: 'absolute',
-    paddingLeft: 60,
+    
+    
   },
   flags: {
-    paddingTop: 10,
-    paddingLeft: 40,
     color: '#D2373C',
-    position: 'absolute',
+    
+    
   },
   upvoteBtn: {
     flex: 1,
-    border: '1px solid #6200EE',
     height: 22,
     width: 40,
     marginTop: 30,
     marginRight: 10,
-    borderRadius: 4,
   },
   upvoteTXT: {
     paddingLeft: 8,
@@ -456,3 +460,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
   },
 });
+
+
+
+
+
+
+
+
+
+
