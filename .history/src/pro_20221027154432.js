@@ -29,7 +29,7 @@ console.log(user.displayName)
       <View style={styles.wrapper} >
 
       <FontAwesomeIcon icon={faUser} style={{backgroundColor:'black',width:170,height:170,borderRadius:50,color:'white', marginLeft:5}} />    
-      <Image source={user.photoURL} style={{backgroundColor:'black',width:170,height:170,borderRadius:50,color:'white', marginLeft:5}} />
+      <Image source={user.photoURL} style={{height:30, borderRadius:50,}} />
   
   
       </View>
