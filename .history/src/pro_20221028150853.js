@@ -30,7 +30,7 @@ console.log(user.displayName)
       <View style={styles.midContainer}>
       <View style={styles.wrapper} >
 
-      {/* <FontAwesomeIcon icon={faUser} style={{backgroundColor:'black',width:170,height:170,borderRadius:50,color:'white', marginLeft:5}} />     */}
+      <FontAwesomeIcon icon={faUser} style={{backgroundColor:'black',width:170,height:170,borderRadius:50,color:'white', marginLeft:5}} />    
       <Image source={user.photoURL} style={{backgroundColor:'black',width:170,height:170,borderRadius:50,color:'white', marginLeft:5}} />
   
   
@@ -38,27 +38,21 @@ console.log(user.displayName)
       
       
       <View style={styles.profileDetails}>
-
-          <View style={styles.userContainer}> 
-            <Text style={styles.label}>username</Text>
+          <View style={styles.usernameContainer}> 
+              <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
               <View style={styles.flagText}>
-                  <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
-                  <View style={styles.textEdit}>
-                    <Text style={styles.text}>{user.displayName}</Text>
-                    <TouchableOpacity>
-                        <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
-                    </TouchableOpacity>
-
-                  </View>
-                  
+                  <Text style={styles.label}>username</Text>
+                  <Text style={styles.text}>{user.displayName}</Text>
               </View>
-
+              <TouchableOpacity>
+              <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
+              </TouchableOpacity>    
           </View>
 
-          <View style={styles.userContainer}> 
-            <Text style={styles.label}>email</Text>
+           <View style={styles.emailContainer}>
+              <FontAwesomeIcon icon={faEnvelope} style={styles.userIcon}/>
               <View style={styles.flagText}>
-                  <FontAwesomeIcon icon={faEnvelope} style={styles.userIcon}/>
+                  <Text style={styles.label}>email</Text>
                   <Text style={styles.text}>{user.email}</Text>
               </View> 
           </View>

@@ -265,9 +265,9 @@ console.log(YDAY);
                     <View style={styles.card}>
                       <View style={styles.dateContainerBorder}>
                         <View style={styles.dateContainer}>
-                          <Text style={styles.day}>{d.getDate()}</Text>
+                          <Text style={styles.day}>18</Text>
                           <Text style={styles.month}>{monthName}</Text>
-                          <Text style={styles.year}>{d.getFullYear()}</Text>
+                          <Text style={styles.year}>2021</Text>
                         </View>
                       </View>
                       <View style={styles.userContainerRightBorder}>

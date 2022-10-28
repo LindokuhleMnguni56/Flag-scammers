@@ -192,18 +192,21 @@ const styles = StyleSheet.create({
     color: "rgba(0, 0, 0, 0.8)",
   },
 
-  txtInput: {
-    width: "100%",
-    height: 40,
-    paddingHorizontal: 20,
-    display: "flex",
-    marginTop: "5%",
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#f3f5f6",
-    Width: 1,
-    borderRadius: 4,
-  },
+    txtInput: {
+        width: '100%',
+        height: 44,
+        paddingHorizontal: 20,
+        display: 'flex',
+        marginTop: '10%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderBottom:'lightgrey',
+        Width: 1,
+
+
+
+
+    },
 
   textInput: {
     width: "100%",
