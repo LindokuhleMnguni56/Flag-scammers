@@ -43,18 +43,11 @@ console.log(user.displayName)
                   <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
                   
                   <Text style={styles.text}>{user.displayName}</Text>
-<<<<<<< HEAD
-              </View>
-              <TouchableOpacity>
-                    <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
-              </TouchableOpacity>    
-=======
                   <TouchableOpacity>
               <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
               </TouchableOpacity>
               </View>
               
->>>>>>> e834860e3c055fd0230dbfb52a1beee47b329b4e
           </View>
 
           <View style={styles.userContainer}> 
