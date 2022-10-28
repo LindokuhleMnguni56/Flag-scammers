@@ -45,7 +45,7 @@ console.log(user.displayName)
                   <Text style={styles.text}>{user.displayName}</Text>
               </View>
               <TouchableOpacity>
-                    <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
+              <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
               </TouchableOpacity>    
           </View>
 
