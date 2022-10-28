@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity, Scro
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
-import { faFlag } from '@fortawesome/free-solid-svg-icons';
+import { faFlag } from '@fortawesome/free-regular-svg-icons';
 import RedPart from '../components/topPart';
 import RedPart2 from '../components/secureTopParts';
 import { Picker } from 'react-native-web';
@@ -279,12 +279,12 @@ console.log(YDAY);
                               </TouchableOpacity>
                               <View style={styles.comments}>
                                 
-                                <TouchableOpacity onPress={()=> addLikes(flag)} style={{backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center'}}>
+                                <TouchableOpacity onPress={()=> addLikes(flag)} style={{backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center',border:'1px solid lightgrey'}}>
                                   <Text style={[styles.username2, { width: 20, }]}>{flag.likesCount}</Text>
                                   <FontAwesomeIcon icon={faFlag} style={styles.flags} />
                                 </TouchableOpacity>
 
-                                <TouchableOpacity style={{ marginLeft: 20,backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center' }} onPress={() =>
+                                <TouchableOpacity style={{ marginLeft: 20,backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center',border:'1px solid lightgrey' }} onPress={() =>
                                   navigation.navigate("Comments", {  flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date,flagCount:flag.likesCount })
                                 } >
                                   <Text style={[styles.username2, { width: 20, }]}>{flag.commentCount}</Text>
@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
     flex: 12,
     height: '500px',
     width: '100%',
-    marginTop: 20,
+    marginTop: 40,
   },
   boxes: {
     display: 'flex',
@@ -386,7 +386,7 @@ const styles = StyleSheet.create({
     height: 80,
     width: '92%',
     marginLeft: 15,
-    boxShadow: '#ABABAB 0px 6px 9px -3px;',
+    boxShadow: '#ABABAB 3px 3px 7px -3px;',
     borderRadius: 10
   },
   buttonContainer: {
@@ -468,6 +468,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#EDEDED',
     paddingLeft: '2%',
     fontSize: 12,
+  },
+  cardsContainer:{
+    paddingBottom:10,
   },
 });
 
