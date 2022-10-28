@@ -119,15 +119,6 @@ const RegisterWithGoogle =() =>{
     </View>
 
 
-    
-    <View style={styles.forget}>
-        <TouchableOpacity style={styles.account}
-        onPress={() => navigation.push('Login')}
-        >
-          <Text style={styles.txtAccount}>Have an account click here</Text>
-        </TouchableOpacity>
-
-      </View>
 
     <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -137,6 +128,17 @@ const RegisterWithGoogle =() =>{
               <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
       </View>
+
+          
+    <View style={styles.forget}>
+        <TouchableOpacity style={styles.account}
+        onPress={() => navigation.push('Login')}
+        >
+          <Text style={styles.txtAccount}>Have an account click here</Text>
+        </TouchableOpacity>
+
+      </View>
+
       <View style={styles.OR}>
           <Text style={styles.ORTxt}>Or</Text>
         </View>
@@ -213,21 +215,17 @@ const styles = StyleSheet.create({
 
 
 
-  forget:{
-    width:'100%',
-    marginTop:"10px"
-  },
-
   account:{
-    width:'190px',
-    marginLeft:'50%'
+    marginTop:10,
+    flexDirection:'row',
+    justifyContent:'center',
   },
 
   txtAccount:{
     fontFamily:'coda',
     fontStyle:'normal',
-    fontWeight:'200',
-    fontSize:'14px',
+    fontWeight:'12',
+    fontSize:14,
     lineHeight:'23px',
     color:'#6d99c5',
   
