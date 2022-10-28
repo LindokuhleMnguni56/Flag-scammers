@@ -12,7 +12,7 @@ import AddScammer from './src/AddScammer';
 // import SpinnerIndicator from './components/spinner';
 import Forgot from './src/forgotPassword';
 import RedPart from './components/topPart';
-
+import EditProfileScreen from './src/editProfile';
 
 
 

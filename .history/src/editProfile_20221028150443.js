@@ -10,6 +10,7 @@ const editProfile = () => {
 const itemRef = collection(db, "flag");
 const [newUpate,setNewUpdate]= useState(null);
 const user = auth.currentUser
+const user.displayName=oldName
 const handleUpdate = async() => {
     db()
     .collection('flag')
