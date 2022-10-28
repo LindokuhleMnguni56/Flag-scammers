@@ -41,7 +41,13 @@ export default function Comments({route,navigation}){
     // console.log(commentList);
 
    
-    
+     //New date!!!!!!!!!!!!!!!!
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const d = new Date();
+        let monthName = months[d.getMonth()];
+        let YDAY= `${d.getDate()}/${d.getFullYear()}`
+        console.log(YDAY);
+
     const ref = collection(db,'flag');
 
         
@@ -133,8 +139,9 @@ export default function Comments({route,navigation}){
                 <View style={styles.card}>
                     <View style={styles.dateContainer}>
                         <View style={styles.dateContainerBorder}>
-                            <Text style={styles.year}>{flagDate}</Text>
-                            
+                          <Text style={styles.day}>{d.getDate()}</Text>
+                          <Text style={styles.month}>{monthName}</Text>
+                          <Text style={styles.year}>{d.getFullYear()}</Text>  
                         </View>
                     </View>
                     <View style={styles.userContainer}>
@@ -220,26 +227,29 @@ const styles = StyleSheet.create({
         
     },
     dateContainerBorder:{
-      flexDirection: 'row',
-      height:40,
-      width:65,
-      marginTop:15,
-      paddingTop: 15,
-      borderRightWidth:1,
-      borderRightColor:'black',
+        flexDirection: 'column',
+        height: 40,
+        marginTop: 15,
+        paddingLeft:20,
+        borderRightWidth: 1,
+        borderRightColor: 'black',
       
     },
-    month:{
+    day: {
+        color: 'red',
+        fontSize: 10,
+        paddingLeft:5
+      },
+      month: {
         paddingLeft:2,
-        fontSize:10,
-        color:'#D2373C',
-        fontWeight:'bolder',
-    },
-    year:{
-        paddingLeft:5,
-        fontSize:10,
-        color:'#D2373C',
-    },
+        fontSize: 10,
+        color: '#D2373C',
+        fontWeight: 'bolder',
+      },
+      year: {
+        fontSize: 10,
+        color: '#D2373C',
+      },
     userContainer:{
         flex:3,
         display:'flex',
