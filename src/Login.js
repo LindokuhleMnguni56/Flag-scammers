@@ -85,12 +85,6 @@ const LoginWithGoogle =() =>{
             <Text style={styles.textForget}>Forgot password?</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.for}
-          onPress={() => navigation.push('Register')}
-          >
-            <Text style={styles.textForget}>Don't have an account click here</Text>
-          </TouchableOpacity>
-
         </View>
 
       <View style={styles.buttonContainer}>
@@ -102,6 +96,16 @@ const LoginWithGoogle =() =>{
                 <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         </View>
+
+        <View  style={styles. account}>
+        <TouchableOpacity style={styles.for}
+          onPress={() => navigation.push('Register')}
+          >
+            <Text style={styles.accountText}>Don't have an account click here</Text>
+          </TouchableOpacity>
+        </View>
+
+
         <View style={styles.OR}> 
           <Text style={styles.ORTxt}>Or</Text>
         </View>
@@ -130,16 +134,15 @@ const styles = StyleSheet.create({
       flex:1,
       paddingHorizontal:30,
       justifyContent:'center',
-      height:'100%'
-      
+
     },
 
     header:{
       color:'#EA4335',
-      marginTop:'20%',
-      marginLeft:"20%",
+      marginTop:150,
+      marginLeft:60,
       fontFamily:'coda',
-      fontWeight:'200',
+      fontWeight:'200px',
       fontSize:'25px',
     },
 
@@ -173,31 +176,44 @@ const styles = StyleSheet.create({
     },
 
     forget:{
-      width:'100px',
-      display:'flex',
-      flexDirection:"row",
-      marginTop:"20px",
-
+      marginTop:10,
+      flexDirection:'row',
+      justifyContent:'flex-end',
     },
 
-    for:{
-      width:'190px',
+    account:{
+      marginTop:10,
+      flexDirection:'row',
+      justifyContent:'center',
+      
     },
+
+    accountText:{
+      fontFamily:'coda',
+      fontStyle:'normal',
+      fontWeight:'12',
+      fontSize:14,
+      lineHeight:'23px',
+      color:'#6d99c5',
+     
+    },
+
 
     textForget:{
       fontFamily:'coda',
       fontStyle:'normal',
-      fontWeight:'200',
-      fontSize:'15px',
+      fontWeight:'12',
+      fontSize:14,
       lineHeight:'23px',
-      color:'#34B1F8',
+      color:'#6d99c5',
+     
     },
   
     buttonContainer:{
       width:'100%',
       justifyContent:'center',
       alignItems:'center',
-      marginTop:'10%',
+      marginTop:10,
       paddingHorizontal:50
     },
 
@@ -205,7 +221,7 @@ const styles = StyleSheet.create({
       backgroundColor:'#EA4335',
       width:'100%',
       padding:15,
-      borderRadius:'27px',
+      borderRadius:27,
       alignItems:'center',
       fontSize:'bold'
       
@@ -218,14 +234,14 @@ const styles = StyleSheet.create({
 
    bottomContainer:{
     backgroundColor:'black',
-    marginTop:'10%',
+    marginTop:10,
   },
 
   GoogleContainer:{
     width:'100%',
     justifyContent:'center',
     alignItems:'center',
-    marginTop:'5%',
+    marginTop:5,
     paddingHorizontal:50,
     
   },
@@ -233,12 +249,12 @@ const styles = StyleSheet.create({
   GoogleButton:{
     backgroundColor: '#FFFFFF',
     width:'100%',
-    padding:15,
+    padding:13,
     alignItems:'center',
     fontSize:'bold',
     display:'flex',
     flexDirection:'row',
-    borderRadius:'27px',
+    borderRadius:27,
 
    
   },
@@ -254,14 +270,14 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent:'center',
     textAlign:'center',
-    marginTop:"10%", 
+    marginTop:10, 
   },
 
   ORTxt:{
     fontFamily:'coda',
     fontWeight:400,
-    fontSize:'25px',
-    lineHeight:'35px',
+    fontSize:25,
+    lineHeight:35,
     color:'#353535',
     textAlign:'center',
     } 
