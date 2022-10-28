@@ -3,7 +3,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-import { faFlag } from '@fortawesome/free-solid-svg-icons';
+import { faFlag } from '@fortawesome/free-regular-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import picture from '../assets/pic.png';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
@@ -41,11 +41,14 @@ console.log(user.displayName)
             <Text style={styles.label}>username</Text>
               <View style={styles.flagText}>
                   <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
+                  <View style={styles.textEdit}>
+                    <Text style={styles.text}>{user.displayName}</Text>
+                    <TouchableOpacity>
+                        <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
+                    </TouchableOpacity>
+
+                  </View>
                   
-                  <Text style={styles.text}>{user.displayName}</Text>
-                  <TouchableOpacity>
-              <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
-              </TouchableOpacity>
               </View>
               
           </View>
@@ -88,7 +91,7 @@ console.log(user.displayName)
 const styles = StyleSheet.create({
     container:{
       flex:1,
-      backgroundColor:'white'
+      backgroundColor:'white',
     },
 
     flagText:{
@@ -96,87 +99,77 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         display:'flex', 
         flexDirection:'row',
+        padding:10
         
     },
 
     text:{
-        paddingTop:15,
-        paddingLeft:10,
-        fontSize:16,
+        // paddingTop:15,
+        paddingLeft:15,
+        fontSize:14,
+        fontWeight:500
     },
 
     label:{
-        color: 'grey',
+        color:'#708090',
         padding:5
     },
 
     midContainer: {
         // flex: 12,
-        height: '500px',
+        // height: '500px',
         width: '100%',
         marginTop: 20,
+        height:'75%',
+        paddingHorizontal:20
+      },
+      textEdit:{
+        width:'90%',
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignSelf:'Right'
       },
 
-    header:{
-        color:'#EA4335',
-        marginTop:'20%',
-        marginLeft:"20%", 
-        fontFamily:'coda', 
-        fontWeight:'200', 
-        fontSize:'25px', 
-        lineHeight:35, 
-    }, 
+    
     userContainer:{ 
        width:'100%', 
         borderBottomWidth:0.5,
-        alignSelf: 'flex-end',
-        borderBottomColor:'lightgrey'
+        borderBottomColor:'lightgrey',
+        borderBottomLeftRadius:10,
+        borderBottomRightRadius:10,
+        paddingTop:5
 
     },
 
     editIcon:{
-        alignSelf: 'flex-end',
-        alignSelf: 'center',
-        paddingLeft: 230,
+        // alignSelf: 'flex-end',
+        // // alignSelf: 'center',
+        // paddingLeft: 230,
+        color:'#6699CC'
     },
 
-    
 
-    flagContainer:{
-        width:'100%',
-        display:'flex',
-        flexDirection:'row',
-        borderBottomWidth:0.5,
-        alignSelf: 'flex-end',
-    },
-
-    commentContainer:{
-        width:'100%',
-        display:'flex',
-        flexDirection:'row',
-        borderBottomWidth:0.5,   
-    },
-
+   
     
     wrapper:{
         top: '1064',
         radius: '40px',
         height:170,
-        width: 170,
+        // width: 170,
         alignSelf: 'center',
         borderRadius:'330px',
         borderRadius: '140px',
     },
      
-    profileDetails:{
-        alignSelf: 'center',
-        paddingTop:40
+    profileDetails:{    
+        padding:10,
     },
 
     userIcon: {
-        width: "12px",
+        width: "14px",
         color:  '#D2373C',
-        paddingTop:10
+        // paddingTop:10
     },
     bottomContainer: {
         flex: 2.5,
