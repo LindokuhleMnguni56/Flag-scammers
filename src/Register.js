@@ -119,15 +119,6 @@ const RegisterWithGoogle =() =>{
     </View>
 
 
-    
-    <View style={styles.forget}>
-        <TouchableOpacity style={styles.account}
-        onPress={() => navigation.push('Login')}
-        >
-          <Text style={styles.txtAccount}>Have an account click here</Text>
-        </TouchableOpacity>
-
-      </View>
 
     <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -137,6 +128,17 @@ const RegisterWithGoogle =() =>{
               <Text style={styles.buttonText}>Register</Text>
           </TouchableOpacity>
       </View>
+
+          
+    <View style={styles.forget}>
+        <TouchableOpacity style={styles.account}
+        onPress={() => navigation.push('Login')}
+        >
+          <Text style={styles.txtAccount}>Have an account click here</Text>
+        </TouchableOpacity>
+
+      </View>
+
       <View style={styles.OR}>
           <Text style={styles.ORTxt}>Or</Text>
         </View>
@@ -164,20 +166,19 @@ const RegisterWithGoogle =() =>{
 const styles = StyleSheet.create({
   wrapper:{
     flex:1,
-      paddingHorizontal:10,
-      justifyContent:'center',
-     
+    paddingHorizontal:30,
+    justifyContent:'center',
+    width:'100%'
   },
 
 
   header:{
     color:'#EA4335',
-    marginTop:'50%',
-    marginLeft:"20%",
-    fontFamily:'coda',
-    fontWeight:'200',
-    fontSize:'25px',
-    lineHeight:35,
+      marginTop:160,
+      marginLeft:60,
+      fontFamily:'coda',
+      fontWeight:'200px',
+      fontSize:'25px',
   },
 
   text:{
@@ -214,23 +215,19 @@ const styles = StyleSheet.create({
 
 
 
-  forget:{
-    width:'100%',
-    marginTop:"20px"
-  },
-
   account:{
-    width:'190px',
-    marginLeft:'50%'
+    marginTop:10,
+    flexDirection:'row',
+    justifyContent:'center',
   },
 
   txtAccount:{
     fontFamily:'coda',
     fontStyle:'normal',
-    fontWeight:'200',
-    fontSize:'15px',
+    fontWeight:'12',
+    fontSize:14,
     lineHeight:'23px',
-    color:'#34B1F8',
+    color:'#6d99c5',
   
   },
 
@@ -295,17 +292,16 @@ button:{
     alignItems:'center',
     justifyContent:'center',
     textAlign:'center',
-    marginTop:"10%", 
+    marginTop:10, 
   },
 
   ORTxt:{
     fontFamily:'coda',
     fontWeight:400,
-    fontSize:'25px',
-    lineHeight:'35px',
+    fontSize:25,
+    lineHeight:35,
     color:'#353535',
     textAlign:'center',
-
   },
 });
 
