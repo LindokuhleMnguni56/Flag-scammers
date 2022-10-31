@@ -170,8 +170,8 @@ export default function Comments({route,navigation}){
                         <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
                             Your Comment was successfully added, Press ok to view comment
                         </Text>
-                        <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:40,height:20,borderRadius:20,textAlign:'center'}} onPress={() =>close()}>
-                            <Text>OK</Text>
+                        <TouchableOpacity style={{backgroundColor: "blue",width:40,height:20,borderRadius:20,textAlign:'center'}} onPress={() =>close()}>
+                            <Text style={{color:'white'}}>OK</Text>
                         </TouchableOpacity>             
                     </ConfirmationPopup>
                 </View>
