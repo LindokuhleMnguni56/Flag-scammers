@@ -2,12 +2,13 @@ import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity, Scro
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
-import { faFlag } from '@fortawesome/free-regular-svg-icons';
+import { faFlag } from '@fortawesome/free-solid-svg-icons';
 import RedPart from '../components/topPart';
 import RedPart2 from '../components/secureTopParts';
 import { Picker } from 'react-native-web';
 import ClipLoader from "react-spinners/ClipLoader";
 import MoonLoader from "react-spinners/MoonLoader";
+// import { Icon } from 'react-native-vector-icons/Icon';
 // import { ScrollView } from 'react-native-web';
 import { db } from './config/firebase';
 import { auth } from './config/firebase';
@@ -22,8 +23,10 @@ import React from 'react';
 export default function HomeScreen({ navigation }) {
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
-  const listFlag = []
-  const likes=[]
+   let [flagState, setFlagState] = React.useState(false);
+  const listFlag = [];
+  const likes=[];
+ 
 
  const [like,setLike]=React.useState(1);
  const [dislikes,setDislikes]=React.useState(-1);
@@ -56,19 +59,8 @@ export default function HomeScreen({ navigation }) {
   const getItems = async () => {
     console.log(flagRef);
     let likeFlag = false
+   
     
-    // onSnapshot(collection(db,"flag"), (snapshot) => {
-
-    //    snapshot.docChanges().forEach((change) =>{
-    //     if (change.type === "added") {
-    //       console.log("New city: ", change.doc.data());
-    //   }
-    //     let commentCount =  change.doc.data().comments.length
-      
-    //     listFlag.push({ id: change.doc.id, address: change.doc.data().address, comment: change.doc.data().comments, date: change.doc.data().date, commentCount: commentCount })
-
-    //   })
-    // } )
     let data = await getDocs(flagRef);
     const q = query(collection(db, "flag"));
     const querySnapshot = await getDocs(q)
@@ -80,17 +72,18 @@ export default function HomeScreen({ navigation }) {
       console.log(likes);
       let likesCount = doc.data().likes.length
       
-      //  let commentCount = 2
-      // if()
       likes.forEach((dataLike) =>{
         if(dataLike == userT?.displayName){
           console.log("this user voted fpr this flag");
-          likeFlag = true
+          likeFlag = true;
+          // setFlagState(true)
+          
         } 
       })
       
       listFlag.push({ id: doc.id, address: doc.data().address, comment: doc.data().comments, date: doc.data().date, commentCount: commentCount,likesCount:likesCount, upvoted:likeFlag})
-      likeFlag = false
+      likeFlag = false;
+      // setFlagState(false)
     });
     setFlags(listFlag)
     setLoading(false)
@@ -121,16 +114,22 @@ export default function HomeScreen({ navigation }) {
         await updateDoc(docRef, {
           likes: oldLikes
         });
-        getItems()
+        getItems();
+        setFlagState(false)
+     
       }
 
     }else{
       console.log("we are adding you");
+     
       oldLikes.push(user.displayName)
       await updateDoc(docRef, {
         likes: oldLikes
       });
       getItems()
+      setFlagState(true)
+     
+      // StyleSheet.create({backgroundColor: 'red',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center',border:'1px solid lightgrey'})
     }
 
     
@@ -279,12 +278,19 @@ console.log(YDAY);
                               </TouchableOpacity>
                               <View style={styles.comments}>
                                 
-                                <TouchableOpacity onPress={()=> addLikes(flag)} style={{backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center',border:'1px solid lightgrey'}}>
+                                <TouchableOpacity onPress={()=> {addLikes(flag)}} 
+
+                                
+                                style={{backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center',border:'1px solid lightgrey'}}>
+
+
                                   <Text style={[styles.username2, { width: 20, }]}>{flag.likesCount}</Text>
-                                  <FontAwesomeIcon icon={faFlag} style={styles.flags} />
+                                  <FontAwesomeIcon icon={faFlag} style={flagState!= true?{color:'grey'}:{color:'#D2373C'}} />
                                 </TouchableOpacity>
 
-                                <TouchableOpacity style={{ marginLeft: 20,backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center',border:'1px solid lightgrey' }} onPress={() =>
+                                <TouchableOpacity 
+                                style={{ marginLeft: 20,backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center',border:'1px solid lightgrey' }} 
+                                onPress={() =>
                                   navigation.navigate("Comments", {  flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date,flagCount:flag.likesCount })
                                 } >
                                   <Text style={[styles.username2, { width: 20, }]}>{flag.commentCount}</Text>
@@ -383,7 +389,7 @@ const styles = StyleSheet.create({
   card: {
     display: 'flex',
     flexDirection: 'row',
-    height: 80,
+    height: 90,
     width: '92%',
     marginLeft: 15,
     boxShadow: '#ABABAB 3px 3px 7px -3px;',
@@ -420,6 +426,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     fontSize: 12,
     fontWeight:'bold',
+    width:240
   },
   username2: {
     fontSize: 10,
@@ -437,13 +444,13 @@ const styles = StyleSheet.create({
   },
   commentIcon: {
     
-    
+    color:'grey',
   },
-  flags: {
-    color: '#D2373C',
+  // flags: {
+  //   color: '#D2373C',
     
     
-  },
+  // },
   upvoteBtn: {
     flex: 1,
     height: 22,
@@ -471,6 +478,7 @@ const styles = StyleSheet.create({
   },
   cardsContainer:{
     paddingBottom:10,
+   
   },
 });
 
