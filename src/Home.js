@@ -379,6 +379,7 @@ const styles = StyleSheet.create({
     width: '45%',
     marginTop: '25px',
     paddingLeft: '2%',
+    paddingRight:'2%',    
     backgroundColor: "#f3f5f6",
     borderRadius: 4,
     fontSize: 12,

@@ -19,10 +19,12 @@ import moment from "moment/moment";
 import RedPart from "../components/topPart";
 import ConfirmationPopup from "../components/modal";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import modalImage from "../assets/tick.png";
+import modalImage from "../assets/cross3.png";
 
 const AddScammer = ({ navigation }) => {
   const [visible, setVisible] = useState(false);
+  const [FieldsVisible, setFieldsVisible] = React.useState(false);
+  const [commentVisible, setCommentsVisible] = React.useState(false);
 
   const moment = require("moment");
   const time = moment(); // moment(new Date()).format("YYYY-MM-DD ")
@@ -57,12 +59,15 @@ const AddScammer = ({ navigation }) => {
             // commentText:comment
           });
           setVisible(true);
+        }else{
+          setCommentsVisible(true)
         }
 
         console.log(mail);
       } else {
         console.log(" null");
         setVisible(false);
+        setFieldsVisible(true)
       }
     }
 
@@ -78,6 +83,14 @@ const AddScammer = ({ navigation }) => {
     setVisible(false);
     navigation.navigate("Home");
   };
+  const signInClose = () =>{
+    setFieldsVisible(false)
+  }
+
+  const closeComment = () => {
+    setCommentsVisible(false)
+  }
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -132,6 +145,39 @@ const AddScammer = ({ navigation }) => {
             <Text style={styles.buttonText}>FLAG</Text>
           </TouchableOpacity>
         </View>
+        </View>
+        <View>
+          <ConfirmationPopup visible={commentVisible}>
+            <Image
+              source={modalImage}
+              style={{ width: 50, height: 50, alignSelf: "center" }}
+            />
+            <Text
+              style={{ marginVertical: 30, fontSize: 20, textAlign: "center" }}
+            >
+              Please enter a comment
+            </Text>
+            <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:60,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() => closeComment()}>
+              <Text>OK</Text>
+            </TouchableOpacity>
+          </ConfirmationPopup>
+        </View>
+
+        <View>
+          <ConfirmationPopup visible={FieldsVisible}>
+            <Image
+              source={modalImage}
+              style={{ width: 50, height: 50, alignSelf: "center" }}
+            />
+            <Text
+              style={{ marginVertical: 30, fontSize: 20, textAlign: "center" }}
+            >
+              Please make sure all fields are filled up
+            </Text>
+            <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:60,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() => signInClose()}>
+              <Text>OK</Text>
+            </TouchableOpacity>
+          </ConfirmationPopup>
         </View>
         
         <View>
@@ -208,7 +254,10 @@ const styles = StyleSheet.create({
 
   textInput: {
     width: "100%",
-    paddingLeft: "10px",
+    paddingTop:'2%',
+    paddingBottom:'2%',
+    paddingLeft: "4%",
+    paddingRight:'4%',
     fontSize: 12,
   },
 
