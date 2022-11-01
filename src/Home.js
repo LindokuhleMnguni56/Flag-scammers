@@ -28,7 +28,7 @@ export default function HomeScreen({ navigation }) {
 
  const [like,setLike]=React.useState(1);
  const [dislikes,setDislikes]=React.useState(-1);
-//  const [likes,setLikes]=React.useState([]);
+
  
   const [users, setUsers] = React.useState('');
   const [address, setAddress] = React.useState('')
@@ -103,7 +103,6 @@ export default function HomeScreen({ navigation }) {
 
     const docSnap = await getDoc(docRef);
     oldLikes =  docSnap.data().likes
-    // console.log("Document data:", docSnap.data().likes);
     console.log(oldLikes);
     var index = oldLikes.indexOf(user.displayName) 
     if(flag.upvoted ){
@@ -129,7 +128,6 @@ export default function HomeScreen({ navigation }) {
       getItems()
       setFlagState(true)
      
-      // StyleSheet.create({backgroundColor: 'red',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center',border:'1px solid lightgrey'})
     }
 
     
@@ -226,7 +224,7 @@ console.log(YDAY);
             <MoonLoader
               color={"#D2373C"}
               loading={loading}
-              // cssOverride={override}
+              
               size={50}
               aria-label="Loading Spinner"
               data-testid="loader"
@@ -299,9 +297,7 @@ console.log(YDAY);
                               </View>
                         </View>
                       </View>
-                      {/* <TouchableOpacity onPress={()=> addLikes(flag)} style={styles.upvoteBtn}>
-                        <FontAwesomeIcon icon={faFlag} />
-                      </TouchableOpacity> */}
+                    
                     </View>
                   </View>
                 )))}
