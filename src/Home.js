@@ -57,6 +57,7 @@ export default function HomeScreen({ navigation }) {
   const getItems = async () => {
     console.log(flagRef);
     let likeFlag = false
+    // setFlagState(false)
    
     
     let data = await getDocs(flagRef);
@@ -71,6 +72,7 @@ export default function HomeScreen({ navigation }) {
       let likesCount = doc.data().likes.length
       
       likes.forEach((dataLike) =>{
+        // setFlagState(true)
         if(dataLike == userT?.displayName){
           console.log("this user voted fpr this flag");
           likeFlag = true;
@@ -283,7 +285,7 @@ console.log(YDAY);
 
 
                                   <Text style={[styles.username2, { width: 20, }]}>{flag.likesCount}</Text>
-                                  <FontAwesomeIcon icon={faFlag} style={flagState!= true?{color:'grey'}:{color:'#D2373C'}} />
+                                  <FontAwesomeIcon icon={faFlag} style={flag.upvoted!= true?{color:'grey'}:{color:'#D2373C'}} />
                                 </TouchableOpacity>
 
                                 <TouchableOpacity 
