@@ -315,7 +315,7 @@ console.log(YDAY);
             <Text
               style={{ marginVertical: 30, fontSize: 20, textAlign: "center" }}
             >
-              Please login first to like a flag
+              Login first to perform this action
             </Text>
             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                 <TouchableOpacity style={{backgroundColor: "#f3f5f6",width:80,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() => close()}>
@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
     flex: 12,
     height: '500px',
     width: '100%',
-    marginTop: 40,
+    marginTop: 20,
   },
   boxes: {
     display: 'flex',

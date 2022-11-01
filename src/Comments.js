@@ -21,6 +21,7 @@ export default function Comments({route,navigation}){
 
     const [visible, setVisible] = React.useState(false);
     const [signInVisible, setSignInVisible] = React.useState(false);
+    const [fieldVisible, setFieldVisible] = React.useState(false);
    
     const [flag,setFlag]= React.useState([]);
     const[comment,setComments]=React.useState('')
@@ -77,10 +78,31 @@ export default function Comments({route,navigation}){
      }
      console.log(flag);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      const addComment = async() =>{
-       
-        const q = query(collection(db, "flag"),where("address", "==", flagAddress ));
+
+        if (user != null){
+            const q = query(collection(db, "flag"),where("address", "==", flagAddress ));
         const querySnapshot = await getDocs(q)
+
+
 
         if(comment !== ''){
         comments.push({[user.displayName]:comment})
@@ -99,20 +121,52 @@ export default function Comments({route,navigation}){
           getComment()
             })
         
-      });
+            });
 
-      
-      getComment()
-      setVisible(true);
-    }else{
-        setVisible(false)
-        if(comment == ''){
-            setSignInVisible(true);
-        }else{
+            
+            getComment()
+            setVisible(true);
+            setFieldVisible(false)
+            
+
+            }else{
+                setVisible(false)
+                setFieldVisible(true)
+         
+                
+            }
             setSignInVisible(false);
+
+        }else{
+
+            setSignInVisible(true);
         }
-    }
+       
+        
      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
      React.useEffect(()=>{
         
@@ -141,6 +195,9 @@ export default function Comments({route,navigation}){
     }
     const closeSignInVisible = () =>{
         setSignInVisible(false)
+    }
+    const closeComment = () => {
+        setFieldVisible(false)
     }
 
     return(
@@ -176,6 +233,18 @@ export default function Comments({route,navigation}){
                 </View>
 
                 <View>
+                    <ConfirmationPopup visible={fieldVisible}>
+                        <Image source={modalImageX} style={{width:50,height:50,alignSelf:'center'}}/>
+                        <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
+                            comment field is empty
+                        </Text>
+                        <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:60,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() =>closeComment()}>
+                            <Text>OK</Text>
+                        </TouchableOpacity>             
+                    </ConfirmationPopup>
+                </View>
+
+                <View>
                     <ConfirmationPopup visible={signInVisible}>
                         <Image source={modalImageX} style={{width:50,height:50,alignSelf:'center'}}/>
                         <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
@@ -191,7 +260,7 @@ export default function Comments({route,navigation}){
                     <ConfirmationPopup visible={visible}>
                         <Image source={modalImage} style={{width:50,height:50,alignSelf:'center'}}/>
                         <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
-                            Your Comment was successfully added, Press ok to view comment
+                            Your Comment was successfully added
                         </Text>
                         <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:60,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() =>close()}>
                             <Text>OK</Text>
