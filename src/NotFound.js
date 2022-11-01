@@ -38,13 +38,12 @@ export default function NotFound({route,navigation}) {
             <View style={styles.bgImageContainer}>
                     <ImageBackground source={image1} style={styles.bgImage} />
             </View>
-            
-            
       </View>
-        <View style={styles.tipsTextContainer}>
+        
+      <View style={styles.tipsBgImage}>
+      <View style={styles.tipsTextContainer}>
                 <Text style={styles.tipsText}>Other tips and tricks</Text>
         </View>
-      <View style={styles.tipsBgImage}>
           <ImageBackground source={tipsImg} style={styles.tipsImage}>
                 <View style={styles.tipsAndTricksContainer}>
                         <Text style={styles.firstTip}>Do not share personal or financial information with a contact you did not expect.</Text>

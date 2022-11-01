@@ -45,9 +45,9 @@ console.log(user.displayName)
                   <FontAwesomeIcon icon={faUser} style={styles.userIcon}/>
                   <View style={styles.textEdit}>
                     <Text style={styles.text}>{user.displayName}</Text>
-                    <TouchableOpacity>
+                    {/* <TouchableOpacity>
                         <FontAwesomeIcon icon={faEdit} style={styles.editIcon}/>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
                   </View>
                   
@@ -63,7 +63,7 @@ console.log(user.displayName)
               </View> 
           </View>
 
-          <View style={styles.userContainer}> 
+          {/* <View style={styles.userContainer}> 
             <Text style={styles.label}>flags</Text>
               <View style={styles.flagText}>
                   <FontAwesomeIcon icon={faFlag} style={styles.userIcon}/>
@@ -77,7 +77,7 @@ console.log(user.displayName)
                   <FontAwesomeIcon icon={faComment} style={styles.userIcon}/>
                   <Text style={styles.text}>20</Text>
               </View> 
-          </View>
+          </View> */}
 
 
        </View>
