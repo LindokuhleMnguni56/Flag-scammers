@@ -144,8 +144,8 @@ const AddScammer = ({ navigation }) => {
             >
               Your Flag has been Added, Press ok to view Flag
             </Text>
-            <TouchableOpacity style={{backgroundColor: "blue",width:40,height:20,borderRadius:20,textAlign:'center'}} onPress={() => close()}>
-              <Text style={{color:'white'}}>OK</Text>
+            <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:40,height:20,borderRadius:20,textAlign:'center'}} onPress={() => close()}>
+              <Text>OK</Text>
             </TouchableOpacity>
           </ConfirmationPopup>
         </View>

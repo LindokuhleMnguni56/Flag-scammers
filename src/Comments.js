@@ -138,11 +138,11 @@ export default function Comments({route,navigation}){
           {user != null ?(<RedPart2 />):(<RedPart />)}
                 <View style={styles.card}>
                     <View style={styles.dateContainer}>
-                        <View style={styles.dateContainerBorder}>
+                       
                           <Text style={styles.day}>{d.getDate()}</Text>
                           <Text style={styles.month}>{monthName}</Text>
                           <Text style={styles.year}>{d.getFullYear()}</Text>  
-                        </View>
+                       
                     </View>
                     <View style={styles.userContainer}>
                           <View style={styles.userContainerBorder}>
@@ -170,8 +170,8 @@ export default function Comments({route,navigation}){
                         <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
                             Your Comment was successfully added, Press ok to view comment
                         </Text>
-                        <TouchableOpacity style={{backgroundColor: "blue",width:40,height:20,borderRadius:20,textAlign:'center'}} onPress={() =>close()}>
-                            <Text style={{color:'white'}}>OK</Text>
+                        <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:40,height:20,borderRadius:20,textAlign:'center'}} onPress={() =>close()}>
+                            <Text>OK</Text>
                         </TouchableOpacity>             
                     </ConfirmationPopup>
                 </View>
@@ -190,6 +190,8 @@ const styles = StyleSheet.create({
       flex:1,
       alignItems:'center',
       backgroundColor:'white',
+      width:'100%',
+      padding:10,
     },
     sendButton:{
         alignSelf:'flex-end',
@@ -216,25 +218,21 @@ const styles = StyleSheet.create({
     card:{
     display:'flex',
     flexDirection:'row',
-    height:60,
     width:'92%',
     marginTop:20,
     boxShadow:'#ABABAB 0px 6px 9px -3px;',
+    padding:10,
     },
     dateContainer:{
-        flex:1,
-        width:85,
-        
-    },
-    dateContainerBorder:{
-        flexDirection: 'column',
-        height: 40,
-        marginTop: 15,
-        paddingLeft:20,
+        // flex:2,
+        width:'20%',
         borderRightWidth: 1,
         borderRightColor: 'black',
-      
+        paddingLeft:20,
+        paddingTop:15
+        
     },
+    
     day: {
         color: 'red',
         fontSize: 10,
@@ -251,29 +249,30 @@ const styles = StyleSheet.create({
         color: '#D2373C',
       },
     userContainer:{
-        flex:3,
+        width:'80%',
         display:'flex',
         flexDirection:'row',
-        marginRight:100,
+        justifyContent:'space-between',
+     
+
     },
-    userContainerBorder:{
-        height:40,
-        marginTop:13,
-        paddingTop:15,
-    },
+   
     likes:{
         fle:1,
         display:'flex',
         flexDirection:'row',
         height:40,
-        marginLeft:45,
-        marginTop:26,
+        paddingTop:15        
     },
     username:{
-      width:180,
-      alignSelf:'flex-start',
+      
+    //   alignSelf:'flex-start',
+      width:230,
+      flexWrap:'wrap',
       paddingLeft:10,
-      fontSize:12
+      fontSize:12,
+      padding:10
+    
     },
     flags:{
         color:'#D2373C',
