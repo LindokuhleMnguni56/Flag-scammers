@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity, ScrollView, Modal, Touchable } from 'react-native';
+import { StyleSheet, Text, View, TextInput, SafeAreaView, TouchableOpacity, ScrollView, Modal,Image, Touchable } from 'react-native';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
@@ -14,20 +14,25 @@ import {arrayUnion,addDoc, collection,updateDoc, doc, deleteDoc, getDocs, query,
 import Comments from './Comments';
 import { async } from '@firebase/util';
 import React from 'react';
+import ConfirmationPopup from "../components/modal";
+import modalImage from "../assets/cross3.png";
 
 
 
 
 export default function HomeScreen({ navigation }) {
+
+  const [visible, setVisible] = React.useState(false);
+
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
-   let [flagState, setFlagState] = React.useState(false);
+  let [flagState, setFlagState] = React.useState(false);
   const listFlag = [];
   const likes=[];
  
 
- const [like,setLike]=React.useState(1);
- const [dislikes,setDislikes]=React.useState(-1);
+  const [like,setLike]=React.useState(1);
+  const [dislikes,setDislikes]=React.useState(-1);
 
  
   const [users, setUsers] = React.useState('');
@@ -45,15 +50,18 @@ export default function HomeScreen({ navigation }) {
   console.log(user);
   const addButton = async () => {
     if (user == null) {
-      navigation.push('Login');
+      // navigation.push('Login');
+      setVisible(true);
     } else {
       navigation.push('AddScammer');
     }
+    
   }
 
-
-
- 
+  const close = () => {
+    setVisible(false);
+    navigation.navigate("Login");
+  };
   const getItems = async () => {
     console.log(flagRef);
     let likeFlag = false
@@ -90,12 +98,6 @@ export default function HomeScreen({ navigation }) {
     console.log(listFlag);
 
   }
-
-
-  
-  
-
-
   const addLikes = async(flag) =>{
     let newLikes = []
     let oldLikes = {}
@@ -129,33 +131,15 @@ export default function HomeScreen({ navigation }) {
       setFlagState(true)
      
     }
-
-    
-
-
     console.log(oldLikes);
-
-
-
-
-
-
-
 
  }
 
-
- //New date!!!!!!!!!!!!!!!!
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const d = new Date();
 let monthName = months[d.getMonth()];
 let YDAY= `${d.getDate()}/${d.getFullYear()}`
 console.log(YDAY);
-
-
-
-
-
 
 
   const search = async () => {
@@ -308,6 +292,22 @@ console.log(YDAY);
        <View style={styles.bottomContainer}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>
+      <View>
+          <ConfirmationPopup visible={visible}>
+            <Image
+              source={modalImage}
+              style={{ width: 50, height: 50, alignSelf: "center" }}
+            />
+            <Text
+              style={{ marginVertical: 30, fontSize: 20, textAlign: "center" }}
+            >
+              Please signin/login first to add a flag
+            </Text>
+            <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:60,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() => close()}>
+              <Text>OK</Text>
+            </TouchableOpacity>
+          </ConfirmationPopup>
+        </View>
       <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
         <Text style={styles.button}>+</Text>
       </TouchableOpacity>
@@ -339,7 +339,7 @@ const styles = StyleSheet.create({
     width: '45%',
     marginTop: '25px',
     paddingLeft: '2%',
-    backgroundColor: '#EDEDED',
+    backgroundColor: "#f3f5f6",
     borderRadius: 4,
     fontSize: 12,
     boxShadow: '#ABABAB 0px 6px 9px -3px;',
@@ -472,7 +472,7 @@ const styles = StyleSheet.create({
     border: '1px solid black',
     borderRadius: 4,
     boxShadow: '#ABABAB 0px 6px 9px -3px;',
-    backgroundColor: '#EDEDED',
+    backgroundColor: "#f3f5f6",
     paddingLeft: '2%',
     fontSize: 12,
   },

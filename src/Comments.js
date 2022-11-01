@@ -13,12 +13,14 @@ import React from 'react';
 import { async } from '@firebase/util';
 import ConfirmationPopup from '../components/modal';
 import modalImage from '../assets/tick.png'
+import modalImageX from "../assets/cross3.png";
 
 
 
 export default function Comments({route,navigation}){
 
     const [visible, setVisible] = React.useState(false);
+    const [signInVisible, setSignInVisible] = React.useState(false);
    
     const [flag,setFlag]= React.useState([]);
     const[comment,setComments]=React.useState('')
@@ -104,6 +106,11 @@ export default function Comments({route,navigation}){
       setVisible(true);
     }else{
         setVisible(false)
+        if(comment == ''){
+            setSignInVisible(true);
+        }else{
+            setSignInVisible(false);
+        }
     }
      }
 
@@ -131,6 +138,10 @@ export default function Comments({route,navigation}){
 
       const close = () =>{
         setVisible(false)
+    }
+    const closeSignInVisible = () =>{
+        setSignInVisible(false)
+        navigation.navigate("Login");
     }
 
     return(
@@ -164,13 +175,26 @@ export default function Comments({route,navigation}){
                             <TouchableOpacity style={styles.sendButton}><Text style={{fontSize:12}} onPress={addComment}>Add Comment</Text></TouchableOpacity>
                         </View>
                 </View>
+
+                <View>
+                    <ConfirmationPopup visible={signInVisible}>
+                        <Image source={modalImageX} style={{width:50,height:50,alignSelf:'center'}}/>
+                        <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
+                            Please signin/login first to add a comment
+                        </Text>
+                        <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:60,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() =>closeSignInVisible()}>
+                            <Text>OK</Text>
+                        </TouchableOpacity>             
+                    </ConfirmationPopup>
+                </View>
+
                 <View>
                     <ConfirmationPopup visible={visible}>
                         <Image source={modalImage} style={{width:50,height:50,alignSelf:'center'}}/>
                         <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
                             Your Comment was successfully added, Press ok to view comment
                         </Text>
-                        <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:40,height:20,borderRadius:20,textAlign:'center'}} onPress={() =>close()}>
+                        <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:60,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() =>close()}>
                             <Text>OK</Text>
                         </TouchableOpacity>             
                     </ConfirmationPopup>

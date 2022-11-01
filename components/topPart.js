@@ -1,8 +1,7 @@
-import { StyleSheet,SafeAreaView, Text, View, } from 'react-native';
+import { StyleSheet,SafeAreaView, Text, View, TouchableOpacity } from 'react-native';
 // import { faEllipsisV} from '@fortawesome/free-solid-svg-icons';
 // import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { Link } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-web';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigation } from '@react-navigation/native';
