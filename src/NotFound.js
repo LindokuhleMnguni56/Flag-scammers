@@ -86,12 +86,10 @@ const styles = StyleSheet.create({
   },
   userContainer:{
     flex:3,
-    display:'flex',
-    flexDirection:'row',
     marginRight:100,
 },
 userContainerBorder:{
-    paddingTop:10,
+    paddingVertical:10,
 },
 
 username:{
@@ -99,7 +97,7 @@ username:{
   paddingLeft:20,
 },
 flags:{
-    paddingTop:25,
+    paddingTop:15,
     color:'green',
     paddingRight:20,
 },
