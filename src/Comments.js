@@ -141,7 +141,6 @@ export default function Comments({route,navigation}){
     }
     const closeSignInVisible = () =>{
         setSignInVisible(false)
-        navigation.navigate("Login");
     }
 
     return(
@@ -180,7 +179,7 @@ export default function Comments({route,navigation}){
                     <ConfirmationPopup visible={signInVisible}>
                         <Image source={modalImageX} style={{width:50,height:50,alignSelf:'center'}}/>
                         <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
-                            Please signin/login first to add a comment
+                            Please login first to add a comment
                         </Text>
                         <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:60,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() =>closeSignInVisible()}>
                             <Text>OK</Text>

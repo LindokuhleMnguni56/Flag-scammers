@@ -79,7 +79,6 @@ const styles = StyleSheet.create({
   card:{
     display:'flex',
     flexDirection:'row',
-    height:60,
     width:'95%',
     marginLeft:30,
     marginTop:20,
@@ -92,8 +91,6 @@ const styles = StyleSheet.create({
     marginRight:100,
 },
 userContainerBorder:{
-    height:40,
-    marginTop:13,
     paddingTop:10,
 },
 
@@ -108,8 +105,8 @@ flags:{
 },
 
   bgImageContainer:{
-    marginTop:10,
-    marginLeft:140,
+    paddingTop:10,
+    alignSelf:'center',
     width:120,
     borderRadius:50,
     alignItems:'center',
@@ -133,7 +130,7 @@ flags:{
     
   },
   notFoundText:{
-    marginLeft:40,
+    alignSelf:'center',
     textAlign:'center',
     marginTop:20,
     width:'80%',
@@ -144,13 +141,12 @@ flags:{
   tipsTextContainer:{
     textAlign:'center',
     backgroundColor:'#F8E9E9',
-    height:40,
-    marginTop:10,
+    paddingVertical:10,
+    justifyContent:'center',
     width:'100%',
     
   },
   tipsText:{
-    paddingTop:10,
     fontSize:18,
     fontWeight:'bolder',
     fontFamily:'sans',

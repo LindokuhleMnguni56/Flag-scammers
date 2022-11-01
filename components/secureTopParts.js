@@ -71,11 +71,11 @@ export default function RedPart2() {
               You are about to be signed out, Do you want to continue?
             </Text>
             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                <TouchableOpacity style={{backgroundColor: "green",width:60,height:20,borderRadius:20,textAlign:'center'}} onPress={() => close()}>
-                <Text style={{color:'white'}}>Cancel</Text>
+                <TouchableOpacity style={{backgroundColor: "#f3f5f6",width:80,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() => close()}>
+                <Text>Cancel</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={{backgroundColor: "red",width:60,height:20,borderRadius:20,textAlign:'center'}} onPress={() => signOut()}>
-                <Text style={{color:'white'}}>Logout</Text>
+                <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:80,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() => signOut()}>
+                <Text>Logout</Text>
                 </TouchableOpacity>
             </View>    
           </ConfirmationPopup>

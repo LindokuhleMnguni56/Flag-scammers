@@ -23,6 +23,7 @@ import modalImage from "../assets/cross3.png";
 export default function HomeScreen({ navigation }) {
 
   const [visible, setVisible] = React.useState(false);
+  const [signInVisible, setSignInVisible] = React.useState(false);
 
   let [loading, setLoading] = React.useState(true);
   const [flags, setFlags] = React.useState([]);
@@ -60,8 +61,13 @@ export default function HomeScreen({ navigation }) {
 
   const close = () => {
     setVisible(false);
-    navigation.navigate("Login");
+    setSignInVisible(false)
   };
+  const signInClose = () => {
+    setVisible(false)
+    setSignInVisible(false)
+    navigation.navigate("Login");
+  }
   const getItems = async () => {
     console.log(flagRef);
     let likeFlag = false
@@ -99,7 +105,9 @@ export default function HomeScreen({ navigation }) {
 
   }
   const addLikes = async(flag) =>{
-    let newLikes = []
+    if (user != null) {
+
+      let newLikes = []
     let oldLikes = {}
     const docRef = doc(db, "flag", flag.id);
 
@@ -129,9 +137,16 @@ export default function HomeScreen({ navigation }) {
       });
       getItems()
       setFlagState(true)
+
+      
      
     }
     console.log(oldLikes);
+
+    }else{
+      setSignInVisible(true)
+    }
+    
 
  }
 
@@ -244,14 +259,13 @@ console.log(YDAY);
                 flags.map(flag => ((
                   <View style={styles.cardsContainer} key={flag.id}>
                     <View style={styles.card}>
-                      <View style={styles.dateContainerBorder}>
                         <View style={styles.dateContainer}>
                           <Text style={styles.day}>{d.getDate()}</Text>
                           <Text style={styles.month}>{monthName}</Text>
                           <Text style={styles.year}>{d.getFullYear()}</Text>
                         </View>
-                      </View>
-                      <View style={styles.userContainerRightBorder}>
+                      
+                        <View style={styles.userContainerRightBorder}>
                         <View style={styles.userContainer}>
                               <TouchableOpacity onPress={() =>
                                 navigation.navigate("Comments", { flagComments: flag.comment, flagAddress: flag.address, flagDate: flag.date,flagCount:flag.likesCount })
@@ -266,7 +280,7 @@ console.log(YDAY);
                                 style={{backgroundColor: '#EDEDED',borderRadius:10,width:80,padding:5,flexDirection:'row',justifyContent:'center',border:'1px solid lightgrey'}}>
 
 
-                                  <Text style={[styles.username2, { width: 20, }]}>{flag.likesCount}</Text>
+                                  <Text style={[styles.username2, { width: 20 }]}>{flag.likesCount}</Text>
                                   <FontAwesomeIcon icon={faFlag} style={flag.upvoted!= true?{color:'grey'}:{color:'#D2373C'}} />
                                 </TouchableOpacity>
 
@@ -293,6 +307,27 @@ console.log(YDAY);
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="white" fillOpacity="1" d="M0,32L120,53.3C240,75,380,117,720,117.3C960,117,1200,75,1320,53.3L1440,32L1440,0L1320,0C1200,0,960,0,720,0C480,0,240,0,120,0L0,0Z"></path></svg>
       </View>
       <View>
+          <ConfirmationPopup visible={signInVisible}>
+            <Image
+              source={modalImage}
+              style={{ width: 50, height: 50, alignSelf: "center" }}
+            />
+            <Text
+              style={{ marginVertical: 30, fontSize: 20, textAlign: "center" }}
+            >
+              Please login first to like a flag
+            </Text>
+            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                <TouchableOpacity style={{backgroundColor: "#f3f5f6",width:80,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() => close()}>
+                    <Text>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:80,height:30,borderRadius:20,textAlign:'center',justifyContent:'center',padding:4}} onPress={() => signInClose()}>
+                    <Text>Login</Text>
+                </TouchableOpacity>
+            </View>
+          </ConfirmationPopup>
+        </View>
+      <View>
           <ConfirmationPopup visible={visible}>
             <Image
               source={modalImage}
@@ -301,11 +336,16 @@ console.log(YDAY);
             <Text
               style={{ marginVertical: 30, fontSize: 20, textAlign: "center" }}
             >
-              Please signin/login first to add a flag
+              Please login first to add a flag 
             </Text>
-            <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:60,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() => close()}>
-              <Text>OK</Text>
-            </TouchableOpacity>
+            <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                <TouchableOpacity style={{backgroundColor: "#f3f5f6",width:80,height:30,borderRadius:20,textAlign:'center',justifyContent:'center'}} onPress={() => close()}>
+                    <Text>Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{backgroundColor: "rgb(255,240,242)",width:80,height:30,borderRadius:20,textAlign:'center',justifyContent:'center',padding:4}} onPress={() => signInClose()}>
+                    <Text>Login</Text>
+                </TouchableOpacity>
+            </View>
           </ConfirmationPopup>
         </View>
       <TouchableOpacity style={styles.buttonContainer} onPress={addButton}>
@@ -357,14 +397,10 @@ const styles = StyleSheet.create({
   searchIcon: {
     color: '#EDEDED',
   },
-  dateContainerBorder: {
-    width: 70,
-  },
   dateContainer: {
     flexDirection: 'column',
-    height: 50,
-    marginTop: 15,
-    paddingLeft:20,
+    width:'20%',
+    padding:20,
     borderRightWidth: 1,
     borderRightColor: 'black',
   },
@@ -372,7 +408,8 @@ const styles = StyleSheet.create({
   userContainer: {
     width: 180,
     paddingLeft: 10,
-    marginTop: 20,
+    paddingTop: 10,
+    
   },
   bottomContainer: {
     backgroundColor: '#000000',
@@ -384,12 +421,12 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     flexWrap:'wrap',
-  
     width: '92%',
     marginLeft: 15,
     boxShadow: '#ABABAB 3px 3px 7px -3px;',
     borderRadius: 10,
-    paddingBottom:10
+    paddingBottom:10,
+    paddingTop:20
   },
   buttonContainer: {
     backgroundColor: '#D2373C',
