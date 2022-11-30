@@ -196,7 +196,9 @@ const styles = StyleSheet.create({
  
   input:{
     width:'100%',
-    paddingLeft:'10px',
+    paddingLeft:10,
+    paddingTop:5,
+    paddingBottom:5,
   },
 
   
