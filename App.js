@@ -45,7 +45,9 @@ function App() {
                   <Stack.Screen name='topPart' options={{title:'topPart', headerShown:false}}>
                     {(props)=> <RedPart {...props} />}
                   </Stack.Screen>
-        
+                  <Stack.Screen name='forgotPassword' options={{title:'forgotPassword', headerShown:false}}>
+                    {(props)=> <Forgot {...props} />}
+                  </Stack.Screen>
                   
             </Stack.Navigator>
     </NavigationContainer>

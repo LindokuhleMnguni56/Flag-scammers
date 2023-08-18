@@ -69,32 +69,13 @@ export default function Comments({route,navigation}){
                     let k = (Object.keys(comments[index]))
                         console.log(comment[k]);
                        commentList.push({userName:k[0] ,commentMsg :comment[k]})
-                })
-           
+                })   
             
         });
         
       
      }
      console.log(flag);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
      const addComment = async() =>{
 
@@ -144,28 +125,6 @@ export default function Comments({route,navigation}){
        
         
      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
      React.useEffect(()=>{

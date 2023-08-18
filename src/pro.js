@@ -62,6 +62,7 @@ console.log(user.displayName)
                   <Text style={styles.text}>{user.email}</Text>
               </View> 
           </View>
+          
 
           {/* <View style={styles.userContainer}> 
             <Text style={styles.label}>flags</Text>

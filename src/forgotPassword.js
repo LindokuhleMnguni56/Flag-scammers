@@ -2,6 +2,9 @@ import { StyleSheet, Text, View, TextInput,TouchableOpacity  } from 'react-nativ
 import React from 'react'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from './config/firebase'
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -18,7 +21,16 @@ export default function Forgot({navigation}) {
   });
 
   return (
+    
     <View style={{flex:1, alignItems:'center',justifyContent:'center'}}>
+      
+              <TouchableOpacity 
+                    onPress={() => {navigation.goBack();}} style={{paddingBottom:80,paddingRight:230}}
+                  >
+                    <FontAwesomeIcon icon={faChevronLeft} style={{width:20,height:20,color:'blue'}} />
+              </TouchableOpacity>
+    
+              
         <Text style={{paddingBottom:50, color:'blue'}}>Forgot Password?</Text>
       <View style={{height:200,width:250,}}>
       <Text style={{textAlign:'center'}}>Enter your email address and we'll send you the link to retrieve your password</Text>

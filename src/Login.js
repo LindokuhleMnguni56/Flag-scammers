@@ -13,13 +13,11 @@ export default function Login({navigation}){
   const [email,setEmail]=react.useState('');
   const [password,setPass]=react.useState('');
   
-
   const login = (()=>{
 
     signInWithEmailAndPassword(auth, email, password).then(()=>{
       navigation.push('Home');
     }).catch((err)=>{
-
         console.log(err);
     })
     
@@ -161,6 +159,8 @@ const styles = StyleSheet.create({
     input:{
       width:'100%',
       paddingLeft:'10px',
+      paddingTop:5,
+      paddingBottom:5,
     },
 
     LoginTxt:{

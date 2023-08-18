@@ -35,7 +35,6 @@ export default function HomeScreen({ navigation }) {
   const [like,setLike]=React.useState(1);
   const [dislikes,setDislikes]=React.useState(-1);
 
- 
   const [users, setUsers] = React.useState('');
   const [address, setAddress] = React.useState('')
   const itemRef = collection(db, "flags");
